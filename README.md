@@ -1,3 +1,3 @@
-# SIS-client
+# dACC-client
 
-A repository for SIS frontend app
+A repository for dACC frontend app
