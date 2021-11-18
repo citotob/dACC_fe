@@ -1,0 +1,36 @@
+{
+    "dataNotif" : [
+        {
+            "userId": 1,
+            "date": "04/11/2020",
+            "name": "Cito",
+            "role": "Penyedia",
+            "title": "Notification Personal",
+            "Message": "Pendaftaran Gagal"
+        },
+        {
+            "userId": 2,
+            "date": "04/11/2020",
+            "name": "Radit",
+            "role": "Penyedia",
+            "title": "Notification Personal",
+            "Message": "Invitation Personal"
+        },
+        {
+            "userId": 3,
+            "date": "04/11/2020",
+            "name": "Faisal",
+            "role": "Penyedia",
+            "title": "Notification Personal",
+            "Message": "Telah Mengajukan Penawaran"
+        },
+        {
+            "userId": 4,
+            "date": "04/11/2020",
+            "name": "Yohs",
+            "role": "Penyedia",
+            "title": "Email",
+            "Message": "Berhasil Mengajukan Tawaran"
+        }
+    ]
+}

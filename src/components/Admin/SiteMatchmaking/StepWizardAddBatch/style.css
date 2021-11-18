@@ -1,0 +1,62 @@
+#headerTC > .modal-title {
+	width: 100% !important;
+}
+.tcBtn {
+	padding: 0 !important;
+	background-color: #f99746 !important;
+	height: 38px;
+	width: 38px;
+	color: #fff !important;
+	font-size: 22px !important;
+	border-radius: 100% !important;
+	text-align: center !important;
+}
+#bodyTC > .firstStep {
+	padding: 20% 0;
+	width: 100% !important;
+	vertical-align: middle;
+	text-align: center;
+}
+
+/* navigation */
+.tcPrev {
+	color: black !important;
+	background-color: #fff;
+	border: black 2px solid !important;
+	margin-right: 5% !important;
+}
+.tcNext {
+	background-color: black !important;
+	color: white !important;
+}
+.tcSkip {
+	background-color: transparent !important;
+	color: black !important;
+	border: none !important;
+	margin-right: 5%;
+}
+.textTcBlue {
+	color: #1e1f24 !important;
+	font-size: 16px;
+}
+.textTcOrange {
+	color: #f99746 !important;
+	font-size: 16px;
+}
+.stepText{
+	color: #073030;
+	font-size: 20px;
+	text-align: right;
+}
+
+@media (max-width:480px){
+	.tcBtn {
+		display: none !important;
+	}
+	.stepText{
+		text-align: left;
+	}
+	.tcSkip {
+		margin-top: 2%;
+	}
+}

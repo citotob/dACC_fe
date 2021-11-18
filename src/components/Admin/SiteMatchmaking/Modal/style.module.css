@@ -1,0 +1,182 @@
+.button {
+	background-color: #e7883a !important;
+	color: white !important;
+	border: none !important;
+	margin: 0.5rem !important;
+	width: 100%;
+}
+
+.modal-open {
+	overflow-y: auto !important;
+}
+
+.dropdownRekomendasi {
+	width: 100% !important;
+	display: flex !important;
+	text-align: left !important;
+	justify-content: space-between !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	margin-top: 0px;
+	background-color: white !important;
+	border: 1px solid #dcdcdc !important;
+	border-radius: 4px !important;
+	padding-left: 12px !important;
+	overflow-x: auto !important;
+}
+
+.inputUpdate {
+	background-color: #faf9f9 !important;
+}
+
+.marginTB {
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.judulHeaderEdit {
+	background-color: #faf9f9 !important;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.buttonSimpan {
+	background-color: #073030 !important;
+	color: white !important;
+}
+
+.inputRegister {
+	margin-bottom: 16px !important;
+	text-align: left;
+}
+
+.inputRegisterFile {
+	padding-top: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-bottom: 0.5rem;
+	text-align: left;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	color: #495057;
+	background-color: #faf9f9 !important;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	white-space: nowrap;
+	overflow-x: auto;
+}
+
+.inputRegChoose {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	text-align: left;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	color: #9f9f9f !important;
+	background-color: #e8e8e8;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+}
+
+.buttonStyle {
+	background-color: #073030 !important;
+	color: white !important;
+	margin-bottom: 20px !important;
+}
+
+.centerElementSpan {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.headText {
+	text-align: center !important;
+	font-size: 20px;
+}
+
+.title {
+	color: #333;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.sub_title {
+	color: #888;
+}
+
+.text {
+	color: #888;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-bottom: 45px;
+}
+
+.ModTit {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.btn_cancel {
+	cursor: pointer;
+}
+
+.wrapper {
+	margin-bottom: 50px;
+	display: block !important;
+}
+
+.btn_confirm {
+	background-color: rgb(231, 136, 58) !important;
+	padding: 4px 20px !important;
+	margin-left: 5px !important;
+	color: #fff !important;
+	cursor: pointer;
+	font-size: 14px !important;
+	margin-bottom: 10px !important;
+}
+
+.btn_confirm_xls {
+	background-color: rgb(231, 136, 58) !important;
+	padding: 0px 0px !important;
+	margin-left: 5px !important;
+	color: #fff !important;
+	cursor: pointer;
+	font-size: 14px !important;
+	margin-bottom: 10px !important;
+}
+
+.btn_add_sites {
+	background-color: rgb(231, 136, 58) !important;
+	padding: 4px 20px !important;
+	margin-left: 5px !important;
+	color: #fff !important;
+	cursor: pointer;
+	font-size: 14px !important;
+	margin-bottom: 10px !important;
+}
+
+.btn_reject {
+	background-color: red !important;
+	padding: 4px 20px !important;
+	margin-right: 5px !important;
+	color: #fff !important;
+	cursor: pointer;
+	font-size: 14px !important;
+	margin-bottom: 10px !important;
+}
+
+.btn_clustering {
+	background-color: #073030 !important;
+	padding: 10px 60px !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+	color: #fff !important;
+	cursor: pointer;
+	font-size: 14px !important;
+	margin-bottom: 10px !important;
+}

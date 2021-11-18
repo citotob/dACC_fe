@@ -1,0 +1,40 @@
+.wrap-content {
+	text-align: center;
+}
+
+.title-content {
+	margin-top: 10px;
+	text-align: center;
+	color: #808080;
+	font-size: 15px;
+}
+
+.total-content {
+	margin-top: 10px;
+	font-size: 30px;
+	color: #49adad;
+	font-weight: bold;
+	line-height: 37px;
+}
+
+.total-penyedia {
+	color: #16c046;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+.nama-penyedia {
+	font-size: 15px;
+	/* font-weight: bold; */
+}
+
+.wrapper-penyedia {
+	/* margin-right: 30px; */
+	margin-bottom: 10px !important;
+}
+
+@media screen and (max-device-width: 991px) {
+	.wrap-content {
+		margin-top: 40px;
+	}
+}

@@ -1,0 +1,26 @@
+.cardsec2{
+    padding-bottom: 20px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+.cardTitle{
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap;
+    margin-top: 10px !important; 
+    text-align: left;
+}
+
+.cardSubtitle{
+    display: block;/* or inline-block */
+    text-overflow: ellipsis !important;
+    word-wrap: break-word !important;
+    overflow: hidden !important;
+    max-height: 4.5em;
+    line-height: 1.5em;
+    text-align: left;
+}
+
+.clicked{
+    background-color: #f6f6f6 !important;
+}

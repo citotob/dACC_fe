@@ -1,0 +1,125 @@
+.headText {
+	text-align: center !important;
+	margin-left: 140px !important;
+}
+
+.title {
+	color: #333;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.sub_title {
+	color: #777;
+}
+
+.text {
+	color: #777;
+	font-weight: bold;
+	margin-bottom: 50px;
+}
+
+.input {
+	background-color: #FAF9F9 !important;
+	/* border-color: none; */
+	width: 80% !important;
+	border-radius: 10px !important;
+	border: 1px solid rgb(163, 157, 157) !important;
+	margin-bottom: 2% !important;
+	outline: 0 !important;
+}
+
+.uploadData {
+	width: 80% !important;
+	border-radius: 10px !important;
+	border: 1px solid rgb(163, 157, 157) !important;
+	margin-bottom: 4% !important;
+	background-color: #f8f8f8;
+	padding: 4px;
+}
+
+.btn_cancel {
+	cursor: pointer;
+}
+
+.wrapper {
+	margin-bottom: 50px;
+	display: block !important;
+}
+
+.btn_confirm {
+	background-color: #e7883a !important;
+	padding: 10px 40px !important;
+	color: #fff !important;
+	cursor: pointer;
+	font-size: 14px !important;
+	margin-bottom: 10px !important;
+}
+
+.styleError {
+	text-align: left;
+	color: #c42127 !important;
+	width: 80%;
+}
+
+/* error format dokumen */
+.lblDokErr {
+	color: #c42127 !important;
+}
+
+.selectWrapper {
+	position: relative;
+}
+
+.selectWrapper::after {
+	content: url(../../../assets/icons/select-arrow-icon.svg);
+	top: 6px;
+	right: 16px;
+	position: absolute;
+}
+
+/* ================= SELECT DROPDOWN STYLING START ==============  */
+.selectDropdown select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background-image: none;
+	flex: 1;
+	padding: 0 10px;
+	cursor: pointer;
+	font-size: 1em;
+	width: 100px !important;
+	/* font-family: "DM Sans", sans-serif; */
+}
+
+.selectDropdown select::-ms-expand {
+	display: none;
+}
+
+.selectDropdown {
+	position: relative;
+	display: flex;
+	line-height: 3;
+	overflow: hidden;
+	border-radius: 0.25em;
+	width: 80px;
+}
+
+.selectDropdown::after {
+	content: url(../../../assets/icons/select-arrow-icon.svg);
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	cursor: pointer;
+	pointer-events: none;
+	transition: 0.25s all ease;
+}
+.selectDropdown:hover::after {
+	color: #1d3d5a;
+}
+/* ================= SELECT DROPDOWN STYLING END ==============  */

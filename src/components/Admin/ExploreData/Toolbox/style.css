@@ -1,0 +1,41 @@
+.button-pilih-lokasi-ok {
+	background-color: #073030 !important;
+	border: solid black !important;
+	border-radius: 4px !important;
+	border-width: 1px !important;
+	font-size: 12px !important;
+	font-weight: bold !important;
+}
+.button-pilih-lokasi-cancel {
+	background-color: white !important;
+	border: solid black !important;
+	border-radius: 4px !important;
+	border-width: 1px !important;
+	font-size: 12px !important;
+	font-weight: bold !important;
+}
+.button-pilih-lokasi-zoom {
+	background-color: #073030 !important;
+	border: solid black !important;
+	border-radius: 4px !important;
+	border-width: 1px !important;
+	font-size: 12px !important;
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+	min-width: 50% !important;
+}
+.button-pilih-lokasi-reset-zoom {
+	background-color: #838383 !important;
+	border: solid black !important;
+	border-radius: 4px !important;
+	border-width: 1px !important;
+	font-size: 12px !important;
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+	min-width: 50% !important;
+}
+
+#tb-toolbox td {
+	padding-top: 4px !important;
+	padding-bottom: 4px !important;
+}

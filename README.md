@@ -1,2 +1,3 @@
-# dACC_fe
- 
+# SIS-client
+
+A repository for SIS frontend app

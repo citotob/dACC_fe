@@ -1,0 +1,41 @@
+.title_dok {
+	/* color: #2C3780; */
+	text-align: center !important;
+	text-transform: uppercase;
+}
+
+.titName {
+	text-align: center !important;
+	text-transform: uppercase;
+	font-size: 40px;
+	background-color: #faf9f9;
+	width: 100% !important;
+	margin: 0 1.5% 2% 1.5%;
+}
+
+.btn_cancel {
+	color: #999 !important;
+	font-weight: 600;
+}
+
+.btn_cancel:hover {
+	color: #444 !important;
+	font-weight: 600;
+}
+
+.btn_download {
+	color: #fff !important;
+	background-color: #e7883a7a !important;
+	font-weight: 600;
+}
+
+.btn_download:hover {
+	color: #fff !important;
+	background-color: #e7883a !important;
+	font-weight: 600;
+}
+
+.iframe_doc {
+	width: 100%;
+	height: 500px;
+}

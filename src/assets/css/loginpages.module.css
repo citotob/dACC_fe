@@ -1,0 +1,279 @@
+.containerlogin {
+	/* width: 100%; */
+	height: 100vh;
+	position: relative;
+	background: url(../images/Mapsjakarta.svg) center center no-repeat;
+	background-size: cover;
+	background-position: 0 2%;
+	/* display: flex !important; */
+	justify-content: center !important;
+	align-items: center !important;
+	overflow: hidden !important;
+	margin: 0px !important;
+}
+
+.containerlogin:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.571);
+	z-index: 2;
+}
+
+.txtLoginpages {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	z-index: 4 !important;
+	margin-top: -20% !important;
+}
+
+.txtlog {
+	display: block !important;
+	color: #000 !important;
+	font-size: 22px !important;
+	width: 66% !important;
+	z-index: 4 !important;
+}
+
+.txtlog img {
+	display: block !important;
+	margin-top: 10px !important;
+}
+
+.ctnLoginpages {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 0% !important;
+	margin-top: -16% !important;
+	overflow: hidden !important;
+}
+
+.wrapps {
+	width:100%;
+	margin-top: 8.5%;
+	overflow: hidden !important;
+}
+
+.loginform {
+	max-width: 300px;
+	background-color: #999;
+	z-index: 999 !important;
+	margin-top: 100% !important;
+	padding: 30px !important;
+}
+
+.alertDetail {
+	position: absolute !important;
+	width: 38.5% !important;
+	border-radius: 6px !important;
+	text-align: center !important;
+	padding: 16px !important;
+	/* margin-right: 76px !important; */
+	/* margin-top: -4% !important; */
+	z-index: 99999;
+	display: block;
+	top: 0.2%;
+}
+
+.wrpPages {
+	width: 100% !important;
+	z-index: 999;
+}
+
+.formInputUsername {
+	background-color: #f8f8f8 !important;
+	border: none !important;
+}
+
+.formInputPassword {
+	background-color: #f8f8f8 !important;
+}
+
+.fieldUs {
+	width: 80% !important;
+	border-radius: 10px !important;
+	border: 2px solid #000 !important;
+	margin-top: 3% !important;
+}
+
+.fieldPass {
+	width: 80% !important;
+	border-radius: 10px !important;
+	border: 2px solid #000 !important;
+	margin-top: 6% !important;
+	display: block;
+}
+
+.iconEye {
+	transform: translateY(-190%);
+	margin-right: 25%;
+	float: right;
+	position: relative;
+	color: #999 !important;
+}
+
+.iconEye:hover {
+	color: #00fcb6;
+	cursor: pointer;
+}
+
+.captcha {
+	display: inline-block;
+	width: 20% !important;
+}
+
+.btnSubmit {
+	box-shadow: 2px 4px 4px #000 !important;
+	border: none !important;
+	margin-top: 1.5%;
+}
+
+.btnSubmitSpin {
+	box-shadow: 2px 4px 4px #000 !important;
+	border: none !important;
+	margin-top: 1.5%;
+	width: 100%;
+}
+
+.forgotPass {
+	margin-top: 8%;
+	margin-left: 29%;
+}
+
+.forgotPass a {
+	cursor: pointer;
+	color: #19324a !important;
+	text-decoration: none !important;
+}
+
+.forgotPass a:hover {
+	color: #19324a !important;
+}
+
+.forgotPass::after {
+	content: "";
+	background: #9999;
+	color: #000;
+	display: block;
+	height: 2px;
+	position: relative;
+	width: 180%;
+	z-index: 5;
+	align-items: center;
+	right: 41%;
+	margin-top: 10% !important;
+}
+
+.secTit {
+	font-size: 30px;
+	margin-left: 28%;
+}
+
+.Regist {
+	margin-top: 4%;
+	margin-left: 21%;
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+	/* [class*="col"] {
+		display: block;
+		width: 100%;
+	} */
+	.containerlogin {
+		display: block !important;
+		width: none !important;
+		justify-content: center !important;
+		height: fit-content !important;
+	}
+	.txtLoginpages {
+		width: 100% !important;
+		margin-top: 8% !important;
+		margin-left: 5% !important;
+	}
+	.txtlog {
+		display: block !important;
+		width: 96% !important;
+		font-size: 90% !important;
+		text-align: center !important;
+		padding: none !important;
+	}
+
+	.txtlog img {
+		display: block !important;
+		margin-top: 2% !important;
+		width: 20% !important;
+		margin-left: 40% !important;
+	}
+
+	.ctnLoginpages {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		margin-top: 16% !important;
+	}
+
+	.secTit {
+		font-size: 160% !important;
+		margin-left: 41% !important;
+	}
+
+	.formUs {
+		width: 100% !important;
+	}
+
+	.fieldUs {
+		width: 150% !important;
+		margin-left: -15% !important;
+	}
+
+	.fieldUs::placeholder {
+		font-size: 80% !important;
+		margin-left: -15% !important;
+		text-align: center !important;
+	}
+
+	button.btnSubmit {
+		margin-left: 16% !important;
+	}
+
+	.forgotPass {
+		font-size: 80% !important;
+		margin-top: 20% !important;
+		margin-left: 29% !important;
+	}
+
+	.Regist {
+		font-size: 80% !important;
+		margin-left: 23% !important;
+		margin-top: 10% !important;
+		text-align: center !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+	[class*="col"] {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1920px) {
+	.wrapps {
+		width: 50%;
+	}
+
+	.iconEye {
+		/* position: absolute;
+		display: inline;
+		top: 34%;
+		right: 39%;
+		color: #999 !important; */
+	}
+}

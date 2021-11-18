@@ -1,0 +1,60 @@
+{
+    "dataNotif" : [
+        {
+            "userId": 1,
+            "date": "03/11/2020",
+            "name": "iqbalkiboo",
+            "title": "Email",
+            "role": "Vendor",
+            "Message": "Pendaftaran Berhasil"
+        },
+        {
+            "userId": 2,
+            "date": "03/11/2020",
+            "name": "iqbalkiboo",
+            "title": "Email",
+            "role": "Vendor",
+            "Message": "Telah Verifikasi berhasil"
+        },
+        {
+            "userId": 3,
+            "date": "04/11/2020",
+            "name": "iqbalkiboo",
+            "title": "Notification Personala",
+            "role": "Vendor",
+            "Message": "Telah Mengajukan Penawaran"
+        },
+        {
+            "userId": 4,
+            "date": "04/11/2020",
+            "name": "Cici",
+            "role": "Vendor",
+            "title": "Email",
+            "Message": "Telah Mengajukan Penawaran"
+        },
+        {
+            "userId": 5,
+            "date": "04/11/2020",
+            "name": "Cici",
+            "role": "Vendor",
+            "title": "Notification Personal",
+            "Message": "Telah Mengajukan Penawaran"
+        },
+        {
+            "userId": 6,
+            "date": "04/11/2020",
+            "name": "Mail",
+            "role": "Vendor",
+            "title": "Email",
+            "Message": "Berhasil Mengajukan Tawaran"
+        },
+        {
+            "userId": 7,
+            "date": "04/11/2020",
+            "name": "Mail",
+            "role": "Vendor",
+            "title": "Notification Personal",
+            "Message": "Berhasil Mengajukan Tawaran"
+        }
+    ]
+}

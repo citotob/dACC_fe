@@ -1,0 +1,47 @@
+.buttonUpdate {
+	background-color: transparent !important;
+	color: #0000 !important;
+	border: none !important;
+}
+
+.buttonPDF {
+	background-color: transparent !important;
+	color: #242424 !important;
+	border: none !important;
+}
+
+.buttonPDF:focus {
+	outline: none !important;
+}
+
+.button_pdf_verifp:focus {
+	outline: none !important;
+}
+
+.button_delete {
+	display: block;
+	width: 20px;
+}
+
+.button_verif {
+	width: 20px;
+	margin-right: 10px;
+	display: block;
+}
+
+.button_trash {
+	display: block;
+	width: 20px;
+	font-size: 20px !important;
+}
+
+.tableUser td:nth-child(3) {
+	padding: 13px !important;
+	user-select: none !important;
+}
+.tableUser td:nth-child(3)::first-line {
+	padding: 0 !important;
+	opacity: 0;
+	display: none;
+	color: transparent !important;
+}

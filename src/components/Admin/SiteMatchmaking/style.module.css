@@ -1,0 +1,60 @@
+.containermap {
+	width: 100%;
+	height: 60vh;
+	/* margin-top: 8vh; */
+}
+
+.toolbox {
+	z-index: 99;
+	position: absolute;
+	width: 25%;
+	min-width: 10rem;
+	top: 9%;
+	left: 1%;
+	display: block;
+}
+.baseMap {
+	z-index: 99;
+	position: absolute;
+	width: 10%;
+	min-width: 10rem;
+	top: 9%;
+	left: 27%;
+	display: block;
+}
+
+.cardTable {
+	z-index: 90;
+	position: absolute;
+	width: 98%;
+	min-width: 10rem;
+	bottom: 1%;
+	left: 1%;
+	display: block;
+}
+
+.toolboxheader {
+	width: 100%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.5rem;
+}
+
+.edit {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	cursor: pointer;
+}
+
+.checkbox {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
