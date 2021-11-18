@@ -85,20 +85,20 @@ function LoginPages() {
 				setNotifLoginFail(false);
 				// history.go(0);
 			}, 3000);
-		} else if (verifCaptcha) {
-			setAlertCaptcha(true);
-			setNotifCaptcha(true);
-			setTimeout(() => {
-				setNotifCaptcha(false);
-			}, 1200);
-		}
+		} 
+		// else if (verifCaptcha) {
+		// 	setAlertCaptcha(true);
+		// 	setNotifCaptcha(true);
+		// 	setTimeout(() => {
+		// 		setNotifCaptcha(false);
+		// 	}, 1200);
+		// }
 
-		if (username !== "" && password !== "" && verifCaptcha === false) {
+		if (username !== "" && password !== "") {
 			setLoading(true);
 			API.postLogin({
 				username: username,
 				password: password,
-				"g-recaptcha-response": captcha,
 			})
 				.then(function (response) {
 					// return console.log(response)
@@ -227,13 +227,6 @@ function LoginPages() {
 	return (
 		<>
 			<Row className={styles.containerlogin}>
-				<Col className={styles.txtLoginpages}>
-					<span className={styles.txtlog} style={{ color: "black" }}>
-						Manage Service Sistem Informasi Spasial dan Analisis Teknis
-						Perencanaan Pembangunan Layanan Akses Internet
-						<img src={Logobakti} alt="logoBakti" />
-					</span>
-				</Col>
 				<Col className={styles.ctnLoginpages}>
 					<div className={styles.wrapps}>
 						<div className="d-flex justify-content-center sign">
@@ -335,17 +328,7 @@ function LoginPages() {
 									</div>
 									<FormText color="danger">{errorPassword}</FormText>
 								</AvForm>
-								<div className={styles.captcha}>
-									<ReCAPTCHA
-										sitekey={recaptcha}
-										render="explicit"
-										// theme="dark"
-										onChange={handleCaptcha}
-									/>
-									{/* <GoogleReCaptchaProvider reCaptchaKey="6LcVlugZAAAAAKw_ZiieClMSYgkESEvnq3m0adza"> */}
-									{/* <YourReCaptchaComponent /> */}
-									{/* </GoogleReCaptchaProvider> */}
-								</div>
+								
 
 								<div className="d-flex">
 									{loading ? (
@@ -360,7 +343,7 @@ function LoginPages() {
 											style={{
 												backgroundColor: "#E7883A",
 												borderRadius: "10px",
-												width: "80%",
+												width: "100%",
 											}}
 											type="submit"
 											onClick={onSubmit}
