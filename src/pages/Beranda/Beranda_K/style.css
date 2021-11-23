@@ -1,0 +1,27 @@
+.card-content{
+    width: 100% !important;
+    border-radius: 25px !important;
+    box-shadow: 2px 2px gainsboro !important;
+}
+
+.content-wrapper{
+    padding: 15px !important;
+}
+
+.img-icon{
+    width: 100px;
+    height: 50px;
+}
+
+.content-ticket-wrapper{
+    margin: 15px 0;
+    justify-content: start;
+    padding: 14px;
+    display: flex;
+}
+
+.content-wrapper-curator{
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-around;
+}

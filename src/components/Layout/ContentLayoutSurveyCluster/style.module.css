@@ -1,0 +1,73 @@
+.card {
+  height: fit-content;
+  height: 100%;
+  border: none !important;
+}
+
+/* .wrapperTable{
+    overflow-y: auto;
+} */
+
+.wrapperInnerMenu {
+  height: 87vh !important;
+  overflow: auto !important;
+}
+
+.title {
+  margin: 1rem 1rem 1rem 1rem;
+  font-weight: bold;
+  color: #2a399c;
+}
+
+.top_menu {
+  width: "40%";
+  display: "flex";
+  justify-content: "flex-start";
+}
+
+@media (min-width: 768px) {
+  .top_menu {
+    width: "40%";
+    display: "flex";
+    justify-content: "flex-start";
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .top_menu {
+    width: "40%";
+    display: "flex";
+    justify-content: "flex-start";
+  }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .top_menu {
+    width: "80%";
+    display: "block";
+    justify-content: "flex-start";
+  }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .top_menu {
+    width: "80%";
+    display: "block";
+    justify-content: "flex-start";
+  }
+}

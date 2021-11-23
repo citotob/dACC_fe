@@ -1,0 +1,30 @@
+.title{
+    color: #2C3780;
+    font-weight: bold;
+ 
+}
+
+.sub_title{
+    color: black;
+}
+
+.text{
+    color: black;
+    font-weight: bold;
+}
+
+.btn_cancel{
+    cursor: pointer;
+}
+
+.wrapper{
+    margin-bottom: 100px;
+    display: block !important;
+}
+
+.btn_confirm{
+    background-color: #2C3780 !important;
+    padding: 0 40px !important;
+    color: #fff !important;
+    cursor: pointer;
+}

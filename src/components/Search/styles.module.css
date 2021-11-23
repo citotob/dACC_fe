@@ -1,0 +1,26 @@
+.wrapper_filter{
+    width: 150px;
+    margin-right: 10px;
+}
+
+.input{
+    background-color: #D9DBF9 !important;
+    width: 60% !important;
+    float: right;
+    font-size: 0.8rem !important;
+}
+
+.input:focus{
+    background-color: #fff !important;
+}
+
+.wrapper_input{
+    background-color: #D9DBF9 !important;
+
+    margin-right: 10px;
+}
+
+.label_search{
+    display: block !important;
+    font-size: 0.8rem !important;
+}

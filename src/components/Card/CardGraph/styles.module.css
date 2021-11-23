@@ -1,0 +1,212 @@
+@media (max-width: 576px) {
+    .total_card {
+        width: 100%;
+        border-radius: 10px !important;
+        border: none !important;
+    }
+
+    .jumlah {
+        color: #2C3780;
+        line-height: 50px;
+        display: inline;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .total_card {
+        width: 100%;
+        border-radius: 10px !important;
+        border: none !important;
+    }
+
+    .jumlah {
+        color: #2C3780;
+        font-size: 10px;
+        line-height: 50px;
+        display: inline;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 769px) {
+    .total_card{
+        width: 100%;
+        border-radius: 10px !important;
+        border: none !important;
+    }
+
+    .jumlah{
+        color: #2C3780;
+        font-size: 30px;
+        line-height: 50px;
+        display: inline;
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
+    }
+}
+
+
+
+
+
+
+
+.cardChart {
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+.headChart{
+    width: 100% !important;
+    position: relative !important;
+}
+
+
+.headChart span{
+    text-transform: uppercase;
+    display: block;
+    width: 50%;
+    float: left;
+    font-weight: 600;
+    margin: 4px 40px 0 20px;
+}
+/* 
+.headChart .selectionButton label{
+    border-radius: 10px !important;
+    margin: 6px 0px 0 0 !important;
+    float: left !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.headChart .selectionButton .btnAi{
+    border-radius: 10px !important;
+    margin: 6px 10px 0 0 !important;
+    background-color: #2C3780 !important;
+    border: none !important;
+    color: #999 !important;
+    font-weight: 600;
+}
+
+.headChart .selectionButton .btnAi:focus{
+    background-color: #2C3780 !important;
+    color: #fff;
+}
+
+.headChart .selectionButton .btnAi:active{
+    background-color: #2C3780 !important;
+    color: #fff;
+}
+
+.headChart .selectionButton .btnAi:hover{
+    border-radius: 10px !important;
+    margin: 4px 5.9px 0 0 !important;
+    background-color: #2C3780 !important;
+    border: 2px solid #2C3780 !important;
+    color: #999;
+    font-weight: 600;
+}
+
+.headChart .selectionButton .btnBTS{
+    border-radius: 10px !important;
+    margin: 6px 0 0 10px !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #999;
+    font-weight: 600;
+}
+
+.headChart .selectionButton .btnBTS:focus{
+    background-color: #c24141 !important;
+    color: #fff;
+}
+
+.headChart .selectionButton .btnBTS:active{
+    background-color: #c24141 !important;
+    color: #fff;
+}
+
+.headChart .selectionButton .btnBTS:hover{
+    border-radius: 10px !important;
+    margin: 4px 0 0 5.9px !important;
+    background-color: transparent !important;
+    border: 2px solid #2C3780 !important;
+    color: #999;
+    font-weight: 600;
+} */
+
+.cardDate{
+    display: block;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 6% 0 20px 3% !important;
+    width: 30%;
+    border: 2px solid #2C3780 !important;
+    border-radius: 10px !important;
+    /* transform: translate(0, 50%); */
+}
+
+.cardDate input{
+    border: none !important;
+    background-color: transparent !important;
+    padding: 2px !important;
+}
+
+.chartMain{
+    margin: 10px 0px 0 10px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.chartLine{
+    margin: 10px 0 0 10px;
+    padding: 10px 0px 10px 0px;
+    z-index: 9999;
+    height: 200px;
+    width: 100% !important;
+    /* background-color: #999; */
+}
+
+.dateRange{
+    width: 13rem;
+    border: 2px solid #2C3780;
+    border-radius: 6px;
+    padding: 0.2rem;
+}
+
+.btnAI {
+    background-color: #2C3780 !important;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.btnBTS {
+    background-color: #E57B7B !important;
+    border-radius: 6px;
+    color: #fff;
+}
+
+
+/* .selectionButton label:hover {
+    background-color: #2C3780;
+} */
+
+.selectionButton input[type=radio] {
+    display: none;
+}
+
+/* .selectionButton input[type=radio]:checked ~ label {
+    background-color: green;
+    color: #fff;
+} */

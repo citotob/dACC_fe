@@ -1,0 +1,61 @@
+.menu_item {
+    font-size: 12px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.menu_button {
+    background-color: #39AE53 !important;
+    color: white;
+    border: none !important;
+}
+
+.tab_menu {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panelNotiff{
+    width: 100% !important;
+    display: block !important;
+    border-radius: 6px !important;
+    text-align: center !important;
+    padding: 10px !important;
+    margin: 10px !important;
+}
+
+@media (max-width: 576px) {
+    .selected {
+        color : #333d84;
+        border-bottom: 5px solid #333d84;
+        cursor: pointer;
+    }
+
+    .selection {
+      color: grey;
+      cursor: pointer;
+    }
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 577px) {
+   .selected {
+        color : #333d84;
+        margin-right: 25px;
+        border-bottom: 5px solid #333d84;
+        cursor: pointer;
+    }
+
+    .selection {
+      color: grey;
+      margin-right: 25px;
+      cursor: pointer;
+    }
+}
+

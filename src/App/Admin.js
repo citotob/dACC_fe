@@ -1,63 +1,76 @@
 import React from "react";
-import { Switch, Redirect, Route } from "react-router-dom";
-import Home from "../pages/Home/Admin";
-import profile from "../pages/Authentication/profileAdmin";
-import VendorPerformancePage from "../pages/VendorPerformance/Admin";
-import FaqAdmin from "../pages/FAQ/Admin";
-import ExploreDataAdmin from "../pages/ExploreData/Admin";
-import SiteMatchmakingAdmin from "../pages/SiteMatchmaking/Admin";
-import CreateBatch from "../pages/SiteMatchmaking/Admin/CreateBatch";
-import BatchDetail from "../pages/SiteMatchmaking/Admin/BatchDetail";
-import UserManagementAdmin from "../pages/UserManagement/Admin";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import DashboardLayout from "../components/Layout/DashboardLayout.js";
+import Sidebar from "../components/Sidebar/Sidebar";
+import Pengguna from "../pages/Pengguna/Admin";
+import HasilSurvey from "../pages/HasilSurvey/Admin";
+import SurveyCluster from "../pages/SurveyCluster/Admin";
+import LokasiSurvey from "../pages/LokasiSurvey/Admin";
+import AdminProvider from "../context/AdminProvider";
+import Dashboard from "../pages/Dashboard/DashboardMain";
+import Profile from "../pages/Profile";
+import PenugasanAdmin from "../pages/Penugasan/Admin";
+import NewHasilSurveyDetailBTS from "../pages/HasilSurveyDetail/Admin/BTS/NewHasilSurveyDetailBTS.js";
+import HasilSurveyBtsDetail from "../pages/HasilSurveyDetail/Admin/BTS/HasilSurveyBtsDetail.js";
 
-const AppAdmin = (props) => {
-	return (
-		<Switch>
-			<Redirect
-				exact
-				from={`${props.match.url}`}
-				to={`${props.match.url}admin/home`}
-			/>
-			<Route exeact path={`${props.match.url}admin/home`} component={Home} />
-			<Route
-				exeact
-				path={`${props.match.url}admin/profile`}
-				component={profile}
-			/>
-			<Route
-				exeact
-				path={`${props.match.url}admin/vendor-performance`}
-				component={VendorPerformancePage}
-			/>
-			<Route exeact path={`${props.match.url}admin/faq`} component={FaqAdmin} />
-			{/* <Route
-				exeact
-				path={`${props.match.url}admin/explore-data`}
-				component={ExploreDataAdmin}
-			/> */}
-			<Route
-				exeact
-				path={`${props.match.url}admin/site-matchmaking`}
-				component={SiteMatchmakingAdmin}
-			/>
-			<Route
-				exeact
-				path={`${props.match.url}admin/batch-detail/:id/:judul`}
-				component={BatchDetail}
-			/>
-			<Route
-				exeact
-				path={`${props.match.url}admin/batch`}
-				component={CreateBatch}
-			/>
-			<Route
-				exeact
-				path={`${props.match.url}admin/user-management`}
-				component={UserManagementAdmin}
-			/>
-			<Redirect to="/" />
-		</Switch>
-	);
+//pages
+const DashboardPage = () => {
+  return <DashboardLayout sidebar={<Sidebar active={"DASHBOARD"} />} mainsection={<Dashboard />} />;
 };
 
-export default AppAdmin;
+const PenggunaPage = () => (
+  <DashboardLayout sidebar={<Sidebar active={"PENGGUNA"} />} mainsection={<Pengguna />} />
+);
+
+const LokasiSurveyPage = () => (
+  <DashboardLayout sidebar={<Sidebar active={"LOKASI SURVEY"} />} mainsection={<LokasiSurvey />} />
+);
+
+const PenugasanPage = () => (
+  <DashboardLayout sidebar={<Sidebar active={"PENUGASAN"} />} mainsection={<PenugasanAdmin />} />
+);
+
+const HasilSurveyPage = () => (
+  <DashboardLayout sidebar={<Sidebar active={"HASIL SURVEY"} />} mainsection={<HasilSurvey />} />
+);
+
+const SurveyClusterPage = () => (
+  <DashboardLayout sidebar={<Sidebar active={"SURVEY CLUSTER"} />} mainsection={<SurveyCluster />} />
+);
+
+const FaqPage = () => (
+  // <DashboardLayout sidebar={<Sidebar active={"FAQ"} />} mainsection={<a href="https://pasti.baktikominfo.id/pasti-docs/" />} />
+  <a href="https://smaslab.devlabs.id/faq_admin_bakti/" />
+);
+
+const detailHasilSurveyPage = () => {
+  return (
+    <DashboardLayout
+      sidebar={<Sidebar active={"HASIL SURVEY"} />}
+      mainsection={<HasilSurveyBtsDetail />}
+    />
+  )
+}
+
+const Admin = (props) => {
+  return (
+    <AdminProvider>
+      <Switch>
+        <Redirect exact from={`${props.match.url}`} to={`${props.match.url}/admin/dashboard`} />
+        <Route exeact path={`${props.match.url}/admin/dashboard`} component={DashboardPage} />
+        <Route exact path={`${props.match.url}/admin/pengguna`} component={PenggunaPage} />
+        <Route exact path={`${props.match.url}/admin/lokasisurvey`} component={LokasiSurveyPage} />
+        <Route exact path={`${props.match.url}/admin/penugasan`} component={PenugasanPage} />
+        <Route exact path={`${props.match.url}/admin/hasilsurvey`} component={HasilSurveyPage} />
+        <Route exact path={`${props.match.url}/admin/surveycluster`} component={SurveyClusterPage} />
+        <Route exact path={`${props.match.url}/admin/profile`} component={Profile} />
+        <Route path={`${props.match.url}/admin/hasilsurvey/detail/:kode_survei`} component={detailHasilSurveyPage} />
+        {/* <Route exact path={`${props.match.url}/admin/faq`} component={FaqPage} /> */}
+        <Route exact path={`${props.match.url}/admin/faq`} render={() => (window.location = "https://smaslab.devlabs.id/faq_admin_bakti/")} />
+        <Redirect to="/" />
+      </Switch>
+    </AdminProvider>
+  );
+};
+
+export default Admin;

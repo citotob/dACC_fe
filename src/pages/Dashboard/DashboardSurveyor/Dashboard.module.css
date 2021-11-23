@@ -1,0 +1,102 @@
+.wrapExe{
+    background-color: #f4f5ff;
+}
+
+.total_card{
+    color: #2C3780
+}
+
+.logo_bakti{
+    width: 63px;
+    height: 39px;
+    margin: 20px 40px 20px 40px;
+}
+
+.text_header{
+    color: #2C3780;
+    margin: 20px 40px 20px 48px;
+    font-weight: bold;
+}
+
+.row_nav{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 0 !important;
+}
+
+.notif{
+    position: relative;
+    margin-right: 20%;    
+}
+
+.ellipse{
+    position: absolute;
+    top: 5px;
+    right: -1px;
+    width: 50%;
+}
+
+.wrapper_logo{
+    display: flex;
+    padding-left: 1.4%;
+    width: 40%;
+
+}
+
+.wrapper_profile{
+    display: flex;
+    align-items: center;
+    width: 10%;
+    cursor: pointer;
+    /* transform: translate(190%,0); */
+    /* float: right; */
+    margin: 0 0 0 43%;
+}
+
+.wrapper_profile .imge{
+    /* cursor: pointer; */
+    color: tomato !important;
+}
+
+.wrapper_profile .imge:hover{
+    /* cursor: pointer; */
+    color: tomato !important;
+}
+
+.btnLogout{
+    background-color: lightcoral !important;
+    margin: 0 0 0 30px;
+    border-radius: 20px !important;
+    transform: translate(-110%, 120%);
+}
+
+.dropdown_menu{
+    transform: translate3d(-103px, 50px, 0px) !important;
+}
+
+.card_dashboardAju{
+    padding: 10px !important;
+    text-transform: uppercase;
+    /* width: 59% !important; */
+}
+
+.card_dashboardSur{
+    padding: 10px !important;
+}
+
+.card_dashboardIss{
+    padding: 10px !important;
+    margin: 0 0 0 20px;
+}
+
+.card_dashboardBTSaju{
+    padding: 10px !important;
+}
+
+.card_dashboardBTSsur{
+    padding: 10px !important;
+}
+
+.card_dashboardBTSIss{
+    padding: 10px !important;
+}

@@ -1,0 +1,157 @@
+.wrap-card-home {
+    padding: 20px !important;
+}
+
+.title-card {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 18px;
+    padding-bottom: 1px;
+}
+
+.date-card {
+    color: #A6A6A6;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    padding-bottom: 1px;
+}
+
+.clock-card {
+    color: #2C3280;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    padding-bottom: 1px;
+}
+
+.title-month-card {
+    color: #A6A6A6;
+    font-size: 12px;
+    font-weight: 500c;
+    line-height: 15px;
+}
+
+.title-total-card {
+    color: #A6A6A6;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+.title-left {
+    color: #393939;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.value-month {
+    text-align: left;
+    color: #2C3280;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: center;
+}
+
+.value-percent {
+    width: 200px;
+    color: #2C3280;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.value-provinsi {
+    color: #C42127;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    padding: 8px 40px 8px 40px;
+    border: solid 1px #C42127;
+    border-radius: 25px;
+    margin-top: -15px;
+}
+
+.wrap-total {
+    background-color: #F7F7F7;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.card-chart {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+.dropdown-provinsi-select {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.value-map {
+    width: 200px;
+    color: #2C3280;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.title-map {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.btnAI {
+    background-color: #2C3780 !important;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.btnBTS {
+    background-color: #E57B7B !important;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.modal-open{
+    overflow: auto !important;
+}
+
+.cardInfoMap {
+    z-index: 99;
+    position: absolute;
+    right: 5% !important;
+    left: 4% !important;
+    /* // top: 10%; */
+    width: 90% !important;
+    border: 1.5px solid !important;
+    border-radius: 15px !important;
+    border-color: #2C3280 !important;
+    background-color: white !important;
+    /* // opacity:'0.5'; */
+}
+
+@media only screen and (max-width: 768px) {
+    .cardInfoMap {
+        /* z-index: 99 !important; */
+        position: block !important;
+        right: 5% !important;
+        left: 4% !important;
+        /* // top: 10%; */
+        width: 90% !important;
+        border: 1.5px solid !important;
+        border-radius: 15px !important;
+        border-color: #2C3280 !important;
+        /* // opacity:'0.5'; */
+        background-color: white !important;
+    }
+  }
+

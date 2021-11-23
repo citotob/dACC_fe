@@ -1,0 +1,121 @@
+/* .modal-content{
+    border-radius: 12px !important;
+} */
+
+.titleModal {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333d84;
+    padding: 26px;
+    transform: translate(34%, 0);
+}
+
+.lbUnduh {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    padding: 10px 0 16px 0;
+    margin: 16px 0 -2px 0;
+    transform: translate(41.5%, 0);
+}
+
+.btnAi {
+    box-sizing: border-box;
+    width: 40%;
+    padding: 6px 20px !important;
+    color: #000 !important;
+    background-color: transparent !important;
+    border: 2px solid #333d84 !important;
+    border-radius: 8px !important;
+    margin: 0 20px -8px 0;
+    justify-content: center !important;
+    transform: translate(76%, 0);
+}
+
+.btnAi .btnlink {
+    text-decoration: none;
+    color: #333d84;
+    font-weight: 600;
+}
+
+.btnAi:hover {
+    background-color: rgba(51, 61, 132, 0.1) !important;
+}
+
+/* .btnBTS{
+    box-sizing: border-box;
+    padding: 10px 30px !important;
+    color: #000 !important;
+    background-color: transparent !important;
+    border: 2px solid #E67B7B !important;
+    border-radius: 8px !important;
+    margin: 0 0 40px 30px;
+    transform: translate(86%,0);
+}
+
+.btnBTS .btnlink{
+    text-decoration: none;
+}
+
+.btnBTS:hover{
+    background-color: rgba(230, 123, 123, 0.1) !important;
+} */
+
+.lbUnggah {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    padding: 0 0 10px 0;
+    margin: -16px 0 70px 0;
+    transform: translate(33.5%, 0);
+}
+
+.btn_tambah {
+    width: 24%;
+    background-color: #333d84 !important;
+    font-weight: bold !important;
+    padding: 4px 40px !important;
+    border-radius: 10px !important;
+    margin: 0 0 30px 20px;
+}
+
+.btn_tambah:hover {
+    background-color: rgba(51, 61, 132, 0.8) !important;
+}
+
+.btn_modal {
+    justify-content: center;
+}
+
+.btnCancel {
+    border: none;
+    font-weight: bold !important;
+    color: #999 !important;
+    padding: 6px 40px !important;
+    margin: 0 0 30px 8px;
+    background: transparent !important;
+}
+
+.btnCancel:hover {
+    color: #000 !important;
+}
+
+.input {
+    background-color: #f4f5ff !important;
+    border-color: none;
+    width: 60% !important;
+    padding: 10px;
+    margin: 10px 0 20px 0 !important;
+    border-radius: 8px;
+    transform: translate(34%, -40%);
+}
+
+.formHR {
+    border: 0.0625px solid rgba(230, 123, 123, 0.2) !important;
+    margin: 40px 0 50px 0;
+    width: 796px !important;
+    transform: translate(-2%, 0);
+}

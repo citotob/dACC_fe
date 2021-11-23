@@ -1,0 +1,214 @@
+.total_card {
+    width: 100%;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+.btnAI {
+    background-color: #2C3780 !important;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.btnBTS {
+    background-color: #E57B7B !important;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.cardMap{
+    /* display: flex; */
+    /* flex-direction: row !important;  */
+    width: 100%;
+    height: 25rem;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+.headMap{
+    height: 15%;
+    width: 100% !important;
+    position: relative !important;
+}
+
+
+.headMap span{
+    text-transform: uppercase;
+    display: block;
+    width: 50%;
+    float: left;
+    font-weight: 600;
+    margin: 4px 40px 0 20px;
+}
+
+/* .headMap .btnAi{
+    border-radius: 10px !important;
+    margin: 6px 10px 0 0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #999;
+    font-weight: 600;
+}
+
+.headMap .btnAi:hover{
+    border-radius: 10px !important;
+    margin: 4px 5.9px 0 0 !important;
+    background-color: transparent !important;
+    border: 2px solid #2C3780 !important;
+    color: #999;
+    font-weight: 600;
+}
+
+.headMap .btnBTS{
+    border-radius: 10px !important;
+    margin: 6px 0 0 10px !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #999;
+    font-weight: 600;
+}
+
+.headMap .btnBTS:hover{
+    border-radius: 10px !important;
+    margin: 4px 0 0 5.9px !important;
+    background-color: transparent !important;
+    border: 2px solid #2C3780 !important;
+    color: #999;
+    font-weight: 600;
+} */
+
+.cardDate{
+    display: block;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 6% 0 20px 3% !important;
+    width: 30%;
+    border: 2px solid #2C3780 !important;
+    border-radius: 10px !important;
+    /* transform: translate(0, 50%); */
+}
+
+.cardDate input{
+    border: none !important;
+    background-color: transparent !important;
+    padding: 2px !important;
+}
+
+.chartMain{
+    margin: 10px 0px 0 10px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.chartLine{
+    margin: 10px 0 0 10px;
+    padding: 10px 0px 10px 0px;
+    z-index: 9999;
+    height: 200px;
+    width: 100%;
+    /* background-color: #999; */
+}
+
+.dateRange{
+    width: 36%;
+    border: 2px solid #2C3780;
+    border-radius: 6px;
+    margin: 2% 0 0 30%;
+    top: 50%;
+    padding: 6px 10px 6px 14px;
+}
+
+.text{
+    font-size: 10px;
+}
+
+.text_province{
+    font-weight: bold;
+}
+
+.wrapper_map{
+    height: 75%;
+}
+
+/* .selectionButtonMap label {
+    display: inline-block;
+    width: 19%;
+    background-color: transparent;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    float: left;
+    margin: 0 7px 0 0;
+    text-align: center;
+} */
+
+.selectionButtonMap .btnAi {
+    display: inline-block;
+    width: 19%;
+    background-color: #2C3780;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    float: left;
+    margin: 0 7px 0 0;
+    text-align: center;
+}
+
+.selectionButtonMap .btnAinon {
+    display: inline-block;
+    width: 19%;
+    background-color: transparent;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    float: left;
+    margin: 0 7px 0 0;
+    text-align: center;
+}
+
+.selectionButtonMap .btnBTS {
+    display: inline-block;
+    width: 19%;
+    background-color: #E57B7B;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    float: left;
+    margin: 0 7px 0 0;
+    text-align: center;
+}
+
+.selectionButtonMap .btnBTSnon {
+    display: inline-block;
+    width: 19%;
+    background-color: transparent;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 600;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+    float: left;
+    margin: 0 7px 0 0;
+    text-align: center;
+}
+
+/* .selectionButtonMap label:hover {
+    background-color: #2C3780;
+} */
+
+.selectionButtonMap input[type=radio] {
+    display: none;
+}
+
+/* .selectionButtonMap input[type=radio]:checked ~ label {
+    background-color: #2C3780;
+    color: #fff;
+} */

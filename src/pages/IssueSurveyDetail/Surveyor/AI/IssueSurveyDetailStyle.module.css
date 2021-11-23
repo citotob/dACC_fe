@@ -1,0 +1,281 @@
+.title {
+    color: #333d84;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.title_sub {
+    color: #333d84;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.row {
+    display: block;
+}
+
+.row_detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.row_top {
+    padding: 3% 2%;
+}
+
+.collapse_btn {
+    float: right;
+    padding-right: 20px;
+    background: none;
+    border: none;
+}
+
+.collapse_btn:focus {
+    outline: none;
+}
+
+.card {
+    padding: 2% 5%;
+}
+
+.wrapper_title_sub {
+    padding-left: 1.4%;
+}
+
+.row_below {
+    margin-top: 15px;
+    display: flex;
+}
+
+.wrapper_left {
+    flex-basis: 100%;
+    margin: 5px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.title_titik_lokasi_text {
+    margin: 0 !important;
+}
+
+.detail_titik_lokasi {
+    width: 50%;
+    background-color: #d9dbf9;
+    color: #333d84;
+    padding: 12px;
+    align-items: center;
+    font-size: 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail_titik_lokasi_text {
+    margin: 0 !important;
+}
+
+.detail_titik_lokasi_text_data {
+    width: 50%;
+    margin: 0 !important;
+    color: #000;
+}
+
+.row_data {
+    margin-bottom: 10px;
+    padding-left: 2%;
+}
+
+.row_data_foto {
+    margin-bottom: 20px;
+    padding-left: 2%;
+}
+
+.wrapper_collap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_titik_lokasi {
+    /* width: 100px; */
+    margin-right: 15px;
+}
+
+.desc {
+    margin-left: 3.6%;
+}
+
+.row_data_collapse {
+    display: flex;
+    justify-content: space-between;
+}
+
+.collapse_btn {
+    float: right;
+}
+
+.bordered {
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.btn_validasi {
+    background-color: #333d84 !important;
+    color: #fff !important;
+}
+
+.btn_decline {
+    background-color: #c42127 !important;
+    color: #fff !important;
+    margin-right: 10px;
+}
+
+.btn_approve {
+    background-color: #333d84 !important;
+    color: #fff !important;
+    margin-right: 10px;
+}
+
+.row_bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.container_validasi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_bottom {
+    width: 100%;
+    padding: 4%;
+}
+
+.btn_back {
+    background-color: transparent !important;
+    color: #999 !important;
+    margin-right: 10px;
+}
+
+.btn_back:hover {
+    background-color: transparent !important;
+    color: #000 !important;
+    margin-right: 10px;
+}
+
+.wrapper_section {
+    margin-right: 5%;
+}
+
+.data_gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+
+.image_capt {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.text_section {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.arrow_back {
+    background-color: #333d84 !important;
+}
+
+.wrapper_title {
+    display: flex;
+    flex-direction: row;
+}
+
+/* .img_wrapper {
+    height: 200px;
+  } */
+
+.btn_img {
+    display: block !important;
+}
+
+.data_gallery {
+    display: block;
+}
+
+/* btn download */
+
+.btnDownloadPDF {
+    float: left !important;
+    display: block;
+    color: #333d84 !important;
+    border: 2px solid #333d84 !important;
+    /* background-color: rgba(51, 61, 132, 0.8) !important; */
+    background-color: transparent !important;
+    /* transform: translate(112vh, -2vh); */
+    font-weight: 600 !important;
+    margin: 0 20px 0 0;
+}
+
+.btnDownloadPDF a {
+    text-decoration: none !important;
+    color: #333d84 !important;
+}
+
+.btnDownloadPDF:hover {
+    border: 2px solid rgba(51, 61, 132, 0.8) !important;
+    background-color: rgba(51, 61, 132, 0.05) !important;
+}
+
+.btnDownloadCSV {
+    float: right !important;
+    display: block;
+    color: #333d84 !important;
+    border: 2px solid #333d84 !important;
+    /* background-color: rgba(51, 61, 132, 0.8) !important; */
+    background-color: transparent !important;
+    font-weight: 600 !important;
+    margin: 0 10px 0 0;
+}
+
+.btnDownloadCSV a {
+    text-decoration: none !important;
+    color: #333d84 !important;
+}
+
+.btnDownloadCSV:hover {
+    border: 2px solid rgba(51, 61, 132, 0.8) !important;
+    background-color: rgba(51, 61, 132, 0.05) !important;
+}
+
+.btnDownloadExcel {
+    float: right !important;
+    display: block;
+    color: #333d84 !important;
+    border: 2px solid #333d84 !important;
+    /* background-color: rgba(51, 61, 132, 0.8) !important; */
+    background-color: transparent !important;
+    font-weight: 600 !important;
+    margin: 0 20px 0 0;
+}
+
+.btnDownloadExcel a {
+    text-decoration: none !important;
+    color: #333d84 !important;
+}
+
+.btnDownloadExcel:hover {
+    border: 2px solid rgba(51, 61, 132, 0.8) !important;
+    background-color: rgba(51, 61, 132, 0.05) !important;
+}
