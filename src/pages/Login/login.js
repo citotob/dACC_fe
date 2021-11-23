@@ -57,7 +57,7 @@ const Login = (props) => {
   // );
 
   const handleFromClick = () => {
-    let formData = new FormData();
+    let formData = new URLSearchParams();
     formData.append("username", username);
     formData.append("password", password);
 
@@ -70,7 +70,8 @@ const Login = (props) => {
       .then((response) => {
         // console.log("response dari postlogin ",response);
         if (response.status === 200) {
-          let role = response.data.values.role.name
+          console.log(response.data)
+          let role = response.data.values.role_name
             .replace(/\s/g, "")
             .toLowerCase();
           // if (role == "staffsurveyor") {
@@ -141,7 +142,7 @@ const Login = (props) => {
             >
               <CardBody className={`pt-0 ${styles.cardBody}`}>
                 <div className='p-2'>
-                  <img src={logoBakti} className={styles.logo}></img>
+                  <img src="" className={styles.logo}></img>
                   <AvForm
                     className='form-horizontal'
                     onValidSubmit={() => handleFromClick()}
