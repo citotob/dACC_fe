@@ -1,0 +1,395 @@
+/* background-color: Transparent;
+background-repeat: no-repeat;
+border: none;
+cursor: pointer;
+overflow: hidden;
+outline: none; */
+
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+th,
+td,
+.tugaskanButton,
+.toggleTableButtonWrapper button {
+  font-family: DM Sans;
+}
+
+th {
+  font-weight: 700;
+  font-size: 16px;
+}
+td {
+  /* text-transform: uppercase; */
+}
+
+.aksiButtonsWrapper button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.dataAksiPenggunaDitolak {
+  color: rgb(187, 187, 187);
+  font-style: italic;
+}
+
+.dataAksiPenggunaAktif {
+  color: rgb(124, 211, 121);
+}
+
+.tableSearchWrapper {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.tableSearchBar {
+  border: solid #40434d 1px;
+  border-radius: 100px;
+  padding: 4px 12px;
+}
+
+.searchInput {
+  padding: 0px;
+  margin-left: 8px;
+  border: none;
+  width: 300px;
+}
+@media (max-width: 670px) {
+  .searchInput {
+    padding: 0px;
+    margin-left: 8px;
+    border: none;
+    width: 200px;
+  }
+}
+.searchInput:focus {
+  outline: none;
+}
+
+.tableSearchButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 12px;
+}
+.tableSearchButton {
+  background: rgba(216, 232, 232, 0.5);
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  text-transform: uppercase;
+  color: #2f3a56;
+}
+
+.tugaskanButton {
+  font-weight: 700;
+  background-color: #406d96 !important;
+  color: white !important;
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+
+.toggleTableButtonWrapper {
+  background-color: #fff;
+  width: fit-content;
+  margin-bottom: 32px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0px 4px 20px rgba(47, 58, 86, 0.1);
+}
+
+.toggleTableButtonWrapper button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 8px 24px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: #a5a5a5;
+}
+
+.togActiveBtn {
+  background-color: #406d96 !important;
+  color: white !important;
+}
+/* untuk search select */
+.searchSelect {
+  border: none;
+  outline: none;
+  background: #ffffff;
+  /* Drop Shadow Default (Light Grey) */
+  box-shadow: 0px 4px 20px rgba(47, 58, 86, 0.1);
+  border-radius: 30px;
+  /* padding: 10px 24px; */
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.selectWrapper select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.selectWrapper::after {
+  content: url(../../../assets/icons/select-arrow-icon.svg);
+  top: 6px;
+  right: 16px;
+  position: absolute;
+}
+
+/* ================= MODAL STYLING START ==============  */
+.modalBody h2,
+.modalBody h3,
+.modalBody h4,
+.modalBody p,
+.modalBody button {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin: 36px auto;
+}
+.modalContentWrapper {
+  gap: 14px;
+}
+
+.jenisPenugasan {
+  border: 1px black solid;
+  border-radius: 2px;
+  padding: 0px 10px;
+}
+
+.detailItemWrapper {
+}
+.detailItemLabel {
+  width: 220px;
+}
+
+.formWrapper {
+  width: 100%;
+}
+.modalButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalButtonWrapper button {
+  background-repeat: no-repeat !important;
+  border: none !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  outline: none !important;
+  height: 36px !important;
+  width: 116px !important;
+}
+
+.noButton {
+  background-color: white !important;
+  color: #406d96 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96 !important;
+}
+
+.yesButton {
+  background-color: #406d96 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+}
+
+.yesButton:disabled {
+  background-color: #c0c0c0 !important;
+  color: #686868 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  cursor: not-allowed !important;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185 !important;
+}
+
+.yesButton:hover:disabled {
+  background-color: #c0c0c0 !important;
+  cursor: not-allowed !important;
+}
+
+.textAreaRequiredText {
+  font-size: 12px;
+  font-weight: lighter;
+  color: #af2e2e;
+}
+
+/* ================= MODAL STYLING END ==============  */
+
+/* ================= ALERT STYLING START ==============  */
+.alertOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertOff {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  .alertVerifyOn,
+  .alertRejectOn {
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+/* ================= ALERT STYLING END ==============  */
+
+/* ~~~~~~~~~~~~~~~~~~~ Custom Pagination ~~~~~~~~~~~~~~~~~~~~~  */
+.paginationWrapper {
+  /* background-color: rgb(219, 186, 186); */
+  width: 200px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  background-color: #406d96;
+  cursor: pointer;
+  border-radius: 0.25em;
+  color: #fff;
+}
+
+.paginationButton:disabled {
+  padding: 8px 16px;
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+  border-radius: 0.25em;
+  color: #686868;
+}
+
+/* ================= SELECT DROPDOWN STYLING START ==============  */
+.selectDropdown select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #406d96;
+  background-image: none;
+  flex: 1;
+  padding: 0 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100px !important;
+  font-family: "DM Sans", sans-serif;
+}
+
+.selectDropdown select::-ms-expand {
+  display: none;
+}
+
+.selectDropdown {
+  position: relative;
+  display: flex;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 0.25em;
+  width: 80px;
+}
+
+.selectDropdown::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #406d96;
+  color: white;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+}
+.selectDropdown:hover::after {
+  color: #1d3d5a;
+}
+/* ================= SELECT DROPDOWN STYLING END ==============  */
+
+.input {
+  background-color: #d9dbf9 !important;
+  width: 60% !important;
+  float: right;
+  font-size: 0.8rem !important;
+  border: none;
+}
+
+/* ================= FILTER AND SEARCH START ==============  */
+.filterSearchWrapper {
+  gap: 16px;
+  /* display: none; */
+}
+.filterSearchInput {
+  border: #406d96 1px solid;
+  border-radius: 4px;
+}
+.searchFieldDropDown {
+  border: none;
+  outline: none;
+}
+.filterSearchSelect {
+  border: #406d96 1px solid;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.filterSearchButtons button {
+  width: 100px;
+}
+
+.filterSearchSelect:focus {
+  outline: none;
+}
+.searchButton {
+  color: #406d96;
+  border: #406d96 1px solid;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
+.filterSearchButtons button:first-child:hover {
+  color: #fff;
+  background-color: #406d96;
+}
+/* ================= FILTER AND SEARCH END ==============  */

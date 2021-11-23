@@ -1,95 +1,84 @@
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import React from "react";
-import Login from "./pages/Login";
-import Register from "./pages/SignUp";
-import AdminApp from "./app/Admin";
-import StaffAdminApp from "./app/StaffAdmin";
-import AdminSurveyorApp from "./app/AdminSurveyor";
-import { GlobalProvider } from "./context/GlobalState";
-import ExecutiveApp from "./app/Executive";
-import Error from "./pages/Error";
-import ForgotPassPages from "./pages/ForgotPass";
-import resetPasswordPages from "./pages/ResetPass";
 
-const Entry = () => <Redirect to="/app" />;
-const NotFound = () => <Error />;
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-function PublicRoute({ component: Component, ...rest }) {
-  const role = window.localStorage.getItem("role"); // comment to disable auth
-  const { path } = { ...rest };
+// Import Routes all
+import { userRoutes, authRoutes } from "./routes/allRoutes";
 
-  return (
+// Import all middleware
+import Authmiddleware from "./routes/middleware/Authmiddleware";
+
+// layouts Format
+import VerticalLayout from "./components/Layout/";
+// import HorizontalLayout from "./components/HorizontalLayout/";
+import NonAuthLayout from "./components/Layout/NonAuthLayout";
+import ScrollToTop from "./ScrollToTop";
+
+// Import scss
+import "./assets/scss/theme.scss";
+
+const App = (props) => {
+  function getLayout() {
+    let layoutCls = VerticalLayout;
+
+    switch (props.layout.layoutType) {
+      //   case "horizontal":
+      //     layoutCls = HorizontalLayout;
+      //     break;
+      default:
+        layoutCls = VerticalLayout;
+        break;
+    }
+    return layoutCls;
+  }
+
+  const Layout = getLayout();
+
+  const NonAuthmiddleware = ({ component: Component, layout: Layout }) => (
     <Route
-      {...rest}
       render={(props) => {
-        if (role) {
-          return <Redirect to={"/app"} />;
-        } else {
-          return <Component {...props} />;
-        }
+        return (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        );
       }}
     />
   );
-}
 
-function EntryRoute({ component: Component, ...rest }) {
-  let role = window.localStorage.getItem("role"); // comment to disable auth
   return (
-    <Route
-      {...rest}
-      render={(props) => {
-        let role = window.localStorage.getItem("role");
-        if (role) {
-          role = role.replace(/\s+/g, "").toString();
-          switch (role) {
-            case "admin":
-              return <AdminApp {...props} />;
-              break;
-            case "adminsurveyor":
-              return <AdminSurveyorApp {...props} />;
-              break;
-            case "staffadmin":
-              return <StaffAdminApp {...props} />;
-              break;
-            case "executive":
-            console.log("executive")
-              return <ExecutiveApp {...props} />;
-              break;
-            default:
-            // code block
-          }
-        } else {
-          return (
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: props.location },
-              }}
-            />
-          );
-        }
-      }}
-    />
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <GlobalProvider>
+    <React.Fragment>
+      <Router>
+        <ScrollToTop />
         <Switch>
-          <EntryRoute path="/app" />
-          <PublicRoute path="/login" exact component={Login} />
-          <PublicRoute path="/register" exact component={Register} />
-          <PublicRoute path="/forgotpassword" exact component={ForgotPassPages} />
-          <PublicRoute path="/resetpassword/:token" exact component={resetPasswordPages} />
-          <Route path="/error" exact component={NotFound} />
-          <Route exact path="/" component={Entry} />
-          <Redirect to="/error" />
-        </Switch>
-      </GlobalProvider>
-    </Router>
-  );
-}
+          {authRoutes.map((route, idx) => (
+            <NonAuthmiddleware
+              path={route.path}
+              layout={NonAuthLayout}
+              component={route.component}
+              key={idx}
+            />
+          ))}
 
-export default App;
+          {userRoutes.map((route, idx) => (
+            <Authmiddleware
+              path={route.path}
+              layout={Layout}
+              component={route.component}
+              key={idx}
+            />
+          ))}
+        </Switch>
+      </Router>
+    </React.Fragment>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    layout: state.Layout,
+  };
+};
+
+export default connect(mapStateToProps, null)(App);

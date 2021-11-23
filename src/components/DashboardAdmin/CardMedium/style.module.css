@@ -1,0 +1,151 @@
+.cardMediumWrapper {
+  height: auto;
+  min-height: 400px;
+  max-height: 400px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  padding: 16px 28px 16px 28px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+  padding: 1rem;
+  /* font styles */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: #40434d;
+  overflow: visible;
+}
+
+.cardMediumTitle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cardMediumLabel {
+  max-width: 300px;
+  /* background-color: firebrick; */
+  word-wrap: break-word;
+}
+
+.cardMediumButtonsWrapper {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.cardMediumButtons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+.cardMediumButtons button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.cardMediumButtons .active {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #40434d;
+  border-bottom: solid black 1px;
+  padding-bottom: 3px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.cardMediumButtons .inactive {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: #a5a5a5;
+}
+
+.cardMediumChartFilter {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.containerVerticalBar {
+  /* height: 300px; */
+}
+
+.chartWrapper {
+  max-height: 500px;
+  width: 100%;
+  max-width: 580px;
+}
+
+@media (max-width: 670px) {
+  .cardMediumTitle {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cardMediumButtonsWrapper {
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .cardMediumButtons {
+    justify-content: flex-start;
+  }
+}
+
+/* ========== Dashboard Map  */
+.mapInfoWrapper {
+  background: rgb(221, 84, 84);
+}
+
+.mapInfotext {
+  color: green;
+}
+
+/* ========== from module filter date range picker  */
+.containerPageModuleFilter {
+  margin-top: 10vh;
+  height: 70vh;
+}
+
+.inputWrapper {
+  width: 200px !important;
+  border-color: #2c3280 !important;
+  background-color: #f8f9fa !important;
+  border-radius: 30px !important;
+
+  /* text-align: end; */
+}
+
+.btnTanggal {
+  min-height: 40px !important;
+  max-height: fit-content !important;
+  text-align: left !important;
+  padding-left: 10px !important;
+}
+/* ========== from module filter date range picker  */

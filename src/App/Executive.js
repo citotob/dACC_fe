@@ -1,32 +1,55 @@
-import React from 'react';
-import DashboardLayout from "../components/Layout/DashboardLayout.js";
-import ExecutiveDashboard from "../pages/Dashboard/Executive"
-import Sidebar from "../components/Sidebar/Sidebar";
-import Profile from '../pages/Profile/index.js';
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import React from "react";
+import { Switch, Redirect, Route } from "react-router-dom";
 
+import AsyncDashboardExecutive from "../asyncPages/AsyncDashboardExecutive";
+// import Home from "../pages/Home/Executive";
+// import profile from "../pages/Authentication/profileExe";
+// import FaqExecutive from "../pages/FAQ/Executive";
+// import ExploreDataExecutive from "../pages/ExploreData/Executive";
+// import SiteMatchmakingExecutive from "../pages/SiteMatchmaking/Executive";
 
-import ExecutiveProvider from "../context/ExecutiveProvider"
+const AppExecutive = (props) => {
+  return (
+    <Switch>
+      <Route
+        exact
+        path={`${props.match.url}executive/dashboard`}
+        component={AsyncDashboardExecutive}
+      />
 
-// const ExecutivePage = () => <DashboardLayout mainsection={ <MainSectionViewer item={menu} /> } />
+      {/* <Redirect
+				exact
+				from={`${props.match.url}`}
+				to={`${props.match.url}executive/home`}
+			/> */}
+      {/* <Route
+				exeact
+				path={`${props.match.url}executive/home`}
+				component={Home}
+			/>
+			<Route
+				exeact
+				path={`${props.match.url}executive/profile`}
+				component={profile}
+			/>
+			<Route
+				exeact
+				path={`${props.match.url}executive/faq`}
+				component={FaqExecutive}
+			/>
+			<Route
+				exeact
+				path={`${props.match.url}executive/explore-data`}
+				component={ExploreDataExecutive}
+			/> */}
+      {/* <Route
+				exeact
+				path={`${props.match.url}executive/site-matchmaking`}
+				component={SiteMatchmakingExecutive}
+			/> */}
+      <Redirect to='/executive/dashboard' />
+    </Switch>
+  );
+};
 
-const DashboardPage = () => {
-	return <DashboardLayout sidebar={<Sidebar active={"DASHBOARD"} />} mainsection={<ExecutiveDashboard />} />;
-  };
-
-const Executive = (props) => {
-	return(
-		<ExecutiveProvider>
-		<Switch>
-
-			<Redirect exact from={`${props.match.url}`} to={`${props.match.url}/executive/dashboard`} />
-			<Route exact path={`${props.match.url}/executive/dashboard`} component={DashboardPage} />
-			<Route exact path={`${props.match.url}/executive/profile`} component={Profile} />
-			<Redirect to="" />
-        </Switch>
-		</ExecutiveProvider>
-
-	)
-}
-
-export default Executive
+export default AppExecutive;

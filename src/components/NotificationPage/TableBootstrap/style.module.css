@@ -1,0 +1,322 @@
+/* background-color: Transparent;
+background-repeat: no-repeat;
+border: none;
+cursor: pointer;
+overflow: hidden;
+outline: none; */
+
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+th,
+td,
+.tugaskanButton,
+.toggleTableButtonWrapper button {
+  font-family: DM Sans;
+  font-weight: 700;
+}
+
+th {
+  font-weight: 700;
+  font-size: 16px;
+}
+td {
+  /* text-transform: capitalize; */
+}
+
+.aksiButtonsWrapper button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.dataAksiPenggunaDitolak {
+  color: rgb(187, 187, 187);
+  font-style: italic;
+}
+
+.dataAksiPenggunaAktif {
+  color: rgb(124, 211, 121);
+}
+
+.tableSearchWrapper {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.tableSearchBar {
+  border: solid #40434d 1px;
+  border-radius: 100px;
+  padding: 4px 12px;
+  width: fit-content;
+}
+
+.searchInput {
+  padding: 0px;
+  margin-left: 8px;
+  border: none;
+  width: 300px;
+}
+@media (max-width: 670px) {
+  .searchInput {
+    padding: 0px;
+    margin-left: 8px;
+    border: none;
+    width: 200px;
+  }
+}
+.searchInput:focus {
+  outline: none;
+}
+
+.tableSearchButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 12px;
+}
+.tableSearchButton {
+  background: rgba(216, 232, 232, 0.5);
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  text-transform: uppercase;
+  color: #2f3a56;
+}
+
+.searchFieldDropDown {
+  border: none;
+  outline: none;
+}
+
+.searchFieldDropDown:hover,
+.searchFieldDropDown:focus {
+  border: none;
+  outline: none;
+}
+
+.tugaskanButton {
+  font-weight: 700;
+  background-color: #406d96 !important;
+  color: white !important;
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+
+.toggleTableButtonWrapper {
+  background-color: #fff;
+  width: fit-content;
+  margin-bottom: 32px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0px 4px 20px rgba(47, 58, 86, 0.1);
+}
+
+.toggleTableButtonWrapper button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 8px 24px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: #a5a5a5;
+}
+
+.toggleActiveButton {
+  background-color: #406d96 !important;
+  color: white !important;
+}
+
+/* ================= MODAL STYLING START ==============  */
+.modalBody h2,
+.modalBody h3,
+.modalBody h4,
+.modalBody p,
+.modalBody button {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin: 36px auto;
+}
+.modalContentWrapper {
+  gap: 14px;
+}
+
+.jenisPenugasan {
+  border: 1px black solid;
+  border-radius: 2px;
+  padding: 0px 10px;
+}
+
+.detailItemWrapper {
+}
+.detailItemLabel {
+  width: 220px;
+}
+
+.formWrapper {
+  width: 100%;
+}
+.modalButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalButtonWrapper button {
+  background-repeat: no-repeat !important;
+  border: none !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  outline: none !important;
+  height: 36px !important;
+  width: 116px !important;
+}
+
+.noButton {
+  background-color: white !important;
+  color: #406d96 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96 !important;
+}
+
+.yesButton {
+  background-color: #406d96 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185 !important;
+}
+
+.textAreaRequiredText {
+  font-size: 12px;
+  font-weight: lighter;
+  color: #af2e2e;
+}
+
+/* ================= MODAL STYLING END ==============  */
+
+/* ================= ALERT STYLING START ==============  */
+.alertVerifyOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertVerifyOff {
+  display: none;
+}
+
+.alertRejectOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertRejectOff {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  .alertVerifyOn,
+  .alertRejectOn {
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+/* ================= ALERT STYLING END ==============  */
+
+/* ================= FILTER AND SEARCH START ==============  */
+.filterSearchWrapper {
+  gap: 16px;
+}
+.filterSearchInput {
+  border: #406d96 1px solid;
+  border-radius: 4px;
+}
+
+.filterSearchSelect {
+  border: #406d96 1px solid;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.filterSearchButtons button {
+  width: 100px;
+}
+
+.filterSearchSelect:focus {
+  outline: none;
+}
+.searchButton {
+  color: #406d96;
+  border: #406d96 1px solid;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
+.filterSearchButtons button:first-child:hover {
+  color: #fff;
+  background-color: #406d96;
+}
+/* ================= FILTER AND SEARCH END ==============  */
+
+/* ================= PAGINATION STYLING END ==============  */
+
+.paginationWrapper {
+  /* background-color: rgb(219, 186, 186); */
+  width: 200px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  background-color: #406d96;
+  cursor: pointer;
+  border-radius: 0.25em;
+  color: #fff;
+}
+
+.paginationButton:disabled {
+  padding: 8px 16px;
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+  border-radius: 0.25em;
+  color: #686868;
+}
+/* ================= PAGINATION STYLING END ==============  */

@@ -1,0 +1,63 @@
+.cardBody {
+  background: #ffffff;
+
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.cardTitleWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.cardTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.detailSurvey {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0px 20px;
+  padding-bottom: 20px;
+
+  /* Text Dark Grey */
+
+  color: #40434d;
+}
+
+.jenisSurveyButton {
+  // button reset
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: default;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  border: 1px solid #2f3a56;
+  border-radius: 2px;
+  width: 132px;
+  height: 18px;
+  // font styling
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 13px;
+  /* identical to box height */
+  text-align: center;
+  color: #2f3a56;
+}

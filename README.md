@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# refactoring-smaslab-web
 
-## Available Scripts
+New Design for Smaslab Web frontend repository
 
-In the project directory, you can run:
+## Technologies used
 
-### `yarn start`
+### Linter:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Prettier
+- ESlint
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Boilerplate
 
-### `yarn test`
+- Skote template
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `yarn build`
+1. Installing all packages listed on `package.json`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+2. Run repository on browser
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm start
+```
 
-### `yarn eject`
+3. Formatting all `js|jsx|css|md` files with prettier automatically
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm run format
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Create a production build
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm run build
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## How to Contribute:
 
-## Learn More
+### Get Ready
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Make sure to use same prettier configuration as on `.prettierrc` at your `setting.json`
+2. Make sure to create a `feature branch` from **develop** and name the branch (with format **{your_name}-{feature_name}**)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Commit
 
-### Code Splitting
+3. Commit often! with short explanation about the commit or the file updated when commit
+   i.e. `fix dashboard`,`updated Dashboard.js`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Pull Request
 
-### Analyzing the Bundle Size
+4. Make PR to **develop**, `npm run format` before that due to formatting using prettier automatically.
+5. Name PR with Card number based on Trello
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Release
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+6. Make Release from develop branch each sprint

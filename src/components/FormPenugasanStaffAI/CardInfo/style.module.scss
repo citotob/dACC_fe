@@ -1,0 +1,240 @@
+.cardBody {
+  background: #ffffff;
+
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+}
+
+.cardTitleWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 20px;
+  padding-bottom: 10px;
+}
+
+.cardTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.titikLokasi {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  min-width: 100px;
+
+  /* identical to box height */
+  color: #000000;
+}
+
+.titikLokasiItems {
+  margin: 0px 5px;
+  text-transform: uppercase;
+}
+
+.titikLokasiButton {
+  // button reset
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  border: 1px solid #406d96;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  height: 37px;
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  /* Dark Blue */
+  color: #406d96;
+}
+
+.mapButton {
+  // button reset
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  background-color: #406d96;
+  box-sizing: border-box;
+  border-radius: 2px;
+  min-width: 37px;
+  height: 37px;
+  margin-left: 0px;
+  color: white;
+  max-width: 100px;
+}
+
+.lihatDetailButton {
+  // text-decoration: underline;
+  background-color: #406d96;
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: white;
+  font-size: 12px;
+}
+
+.buttonKembali {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 37px;
+
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  /* Dark Blue */
+  color: #406d96;
+  margin: 0 5px;
+}
+
+.buttonIssue {
+  background-color: #e2474b;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 37px;
+  width: 114px;
+  border-radius: 5px;
+
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
+  margin: 0 5px;
+}
+
+.buttonSetuju {
+  background-color: #406d96;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  width: 252px;
+  height: 37px;
+  border-radius: 5px;
+
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
+  margin: 0 5px;
+}
+
+/* ================= MODAL STYLING START ==============  */
+.modalBody {
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin: 36px auto;
+}
+
+.name {
+  /* margin: 40px 0px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 47px;
+  color: #2f3a56;
+}
+
+.title {
+  /* margin-top: 20px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  color: #2f3a56;
+}
+
+.confirmation {
+  font-family: DM Sans;
+  font-style: normal;
+  font-size: 16px;
+  text-align: center;
+  color: #a5a5a5;
+}
+
+.modalButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalButtonWrapper button {
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 36px;
+  width: 116px;
+}
+
+.noButton {
+  background-color: white;
+  color: #406d96;
+  border-radius: 5px;
+  margin: 0px 5px;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96;
+}
+.yesButton {
+  background-color: #406d96;
+  color: white;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185;
+}
+
+.textAreaRequiredText {
+  font-size: 12px;
+  font-weight: lighter;
+  color: #af2e2e;
+}
+
+/* ================= MODAL STYLING END ==============  */

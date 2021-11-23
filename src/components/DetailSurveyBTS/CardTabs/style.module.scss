@@ -1,0 +1,85 @@
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+.cardBody {
+  background: #ffffff;
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+}
+
+.cardBodyNoScroll {
+  background: #ffffff;
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+}
+
+.cardBody::-webkit-scrollbar-track {
+  display: none;
+}
+
+.cardBody::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cardBody::-webkit-scrollbar-thumb {
+  background-color: #406d96;
+}
+
+.section {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  /* Dark Blue */
+  color: #406d96;
+}
+
+.items {
+  font-size: 14px;
+  line-height: 18px;
+  /* Text Dark Grey */
+  color: #40434d;
+}
+
+// ======================= NAV LINK SCROLL BAR START ======================
+.navLinkScrollBar {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.navLinkScrollBar::-webkit-scrollbar-track {
+  display: none;
+}
+
+.navLinkScrollBar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navLinkScrollBar::-webkit-scrollbar-thumb {
+  background-color: #406d96;
+}
+// ======================= NAV LINK SCROLL BAR END ======================
+
+.mapButton {
+  // button reset
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  background-color: #406d96;
+  box-sizing: border-box;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  margin-left: 0px;
+  color: white;
+  max-width: 100px;
+}

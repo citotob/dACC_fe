@@ -1,0 +1,372 @@
+/* background-color: Transparent;
+background-repeat: no-repeat;
+border: none;
+cursor: pointer;
+overflow: hidden;
+outline: none; */
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+th,
+td,
+.tugaskanButton {
+  font-family: DM Sans;
+}
+.tugaskanButton:disabled {
+  background-color: #c0c0c0 !important;
+  color: #686868 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  cursor: not-allowed !important;
+}
+
+th {
+  font-weight: 700;
+  font-size: 16px;
+}
+td {
+  /* text-transform: uppercase; */
+}
+
+.aksiButtonsWrapper button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.dataAksiPenggunaDitolak {
+  color: rgb(187, 187, 187);
+  font-style: italic;
+}
+
+.dataAksiPenggunaAktif {
+  color: rgb(124, 211, 121);
+}
+
+.tableSearchButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  gap: 12px;
+}
+.tableSearchButton {
+  background: rgba(216, 232, 232, 0.5);
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  text-transform: uppercase;
+  color: #2f3a56;
+}
+
+.tugaskanButton {
+  font-weight: 700;
+  background-color: #406d96 !important;
+  color: white !important;
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+
+/* ================= MODAL STYLING START ==============  */
+.modalBody h2,
+.modalBody h3,
+.modalBody h4,
+.modalBody p,
+.modalBody button {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.modalBody {
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin: 36px 0px;
+  width: 100%;
+}
+
+.modalContentWrapper {
+  gap: 14px;
+}
+
+.modalContentWrapper select {
+  width: 370px;
+}
+.jenisPenugasan {
+  border: 1px black solid;
+  border-radius: 2px;
+  padding: 0px 10px;
+}
+
+.detailItemWrapper {
+}
+.detailItemLabel {
+  width: 220px;
+}
+
+.formWrapper {
+  width: 100%;
+}
+.name {
+  /* margin: 40px 0px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 47px;
+  color: #2f3a56;
+}
+
+.title {
+  /* margin-top: 20px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  color: #2f3a56;
+}
+
+.confirmation {
+  font-family: DM Sans;
+  font-style: normal;
+  font-size: 16px;
+  text-align: center;
+  color: #a5a5a5;
+}
+
+.modalButtonWrapper button {
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 36px;
+  width: 116px;
+}
+
+.noButton {
+  background-color: white;
+  color: #406d96;
+  border-radius: 5px;
+  margin: 0px 5px;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96;
+}
+.yesButton {
+  background-color: #406d96;
+  color: white;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+.disabledButton {
+  background-color: #d1d1d1;
+  color: rgb(165, 165, 165);
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185;
+}
+
+.textAreaRequiredText {
+  font-size: 12px;
+  font-weight: lighter;
+  color: #af2e2e;
+}
+
+/* ================= MODAL STYLING END ==============  */
+
+/* ================= ALERT STYLING START ==============  */
+.alertOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertOff {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  .alertVerifyOn,
+  .alertRejectOn {
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+/* ================= ALERT STYLING END ==============  */
+
+/* ================= SELECT DROPDOWN STYLING START ==============  */
+.selectDropdown select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #406d96;
+  background-image: none;
+  flex: 1;
+  padding: 0 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100px !important;
+  font-family: "DM Sans", sans-serif;
+}
+
+.selectDropdown select::-ms-expand {
+  display: none;
+}
+
+.selectDropdown {
+  position: relative;
+  display: flex;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 0.25em;
+  width: 80px;
+}
+
+.selectDropdown::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #406d96;
+  color: white;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+}
+.selectDropdown:hover::after {
+  color: #1d3d5a;
+}
+/* ================= SELECT DROPDOWN STYLING END ==============  */
+
+/* ================= PAGINATION STYLING START ==============  */
+.nextLink,
+.prevlink,
+.paginationStyle {
+  margin: 12px;
+}
+
+.nextLink {
+  color: #a5a5a5;
+  font-weight: bold;
+}
+
+.prevlink {
+  color: #a5a5a5;
+  font-weight: bold;
+}
+
+.pagination {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(47, 58, 86, 0.1);
+  border-radius: 5px;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a5a5a5;
+}
+
+.paginationStyle {
+  color: #a5a5a5;
+}
+.pageLink {
+  color: #a5a5a5;
+}
+
+.activePage {
+  color: #0b2569 !important;
+  font-weight: bold;
+  text-decoration: underline 1px #2f3a56 !important;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~ Custom Pagination ~~~~~~~~~~~~~~~~~~~~~  */
+.paginationWrapper {
+  /* background-color: rgb(219, 186, 186); */
+  width: 200px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  background-color: #406d96;
+  cursor: pointer;
+  border-radius: 0.25em;
+  color: #fff;
+}
+
+.paginationButton:disabled {
+  padding: 8px 16px;
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+  border-radius: 0.25em;
+  color: #686868;
+}
+/* ================= PAGINATION STYLING END ==============  */
+
+/* ================= FILTER AND SEARCH START ==============  */
+.filterSearchWrapper {
+  gap: 16px;
+  display: none;
+}
+.filterSearchInput {
+  border: #406d96 1px solid;
+  border-radius: 4px;
+}
+
+.filterSearchSelect {
+  border: #406d96 1px solid;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.filterSearchSelect:focus {
+  outline: none;
+}
+
+.filterSearchButtons button {
+  width: 100px;
+}
+
+.searchButton {
+  padding: 0 10px;
+  color: #406d96;
+  border: #406d96 1px solid;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
+.filterSearchButtons button:first-child:hover {
+  color: #fff;
+  background-color: #406d96;
+}
+/* ================= FILTER AND SEARCH END ==============  */

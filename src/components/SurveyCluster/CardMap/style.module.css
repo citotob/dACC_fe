@@ -1,0 +1,259 @@
+.containerMapPolygon {
+  width: 100%;
+  height: 330px;
+  max-height: 330px;
+}
+
+/* =========== dari map clustering smaslab ====== */
+
+.total_card {
+  width: 100%;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+.btnAI {
+  background-color: #2c3780 !important;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.btnBTS {
+  background-color: #e57b7b !important;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.cardMap {
+  /* display: flex; */
+  /* flex-direction: row !important;  */
+  width: 100%;
+  height: 25rem;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+.headMap {
+  height: 15%;
+  width: 100% !important;
+  position: relative !important;
+}
+
+.headMap span {
+  text-transform: uppercase;
+  display: block;
+  width: 50%;
+  float: left;
+  font-weight: 600;
+  margin: 4px 40px 0 20px;
+}
+
+.cardDate {
+  display: block;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 6% 0 20px 3% !important;
+  width: 30%;
+  border: 2px solid #2c3780 !important;
+  border-radius: 10px !important;
+  /* transform: translate(0, 50%); */
+}
+
+.cardDate input {
+  border: none !important;
+  background-color: transparent !important;
+  padding: 2px !important;
+}
+
+.chartMain {
+  margin: 10px 0px 0 10px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.chartLine {
+  margin: 10px 0 0 10px;
+  padding: 10px 0px 10px 0px;
+  z-index: 9999;
+  height: 200px;
+  width: 100%;
+  /* background-color: #999; */
+}
+
+.dateRange {
+  width: 36%;
+  border: 2px solid #2c3780;
+  border-radius: 6px;
+  margin: 2% 0 0 30%;
+  top: 50%;
+  padding: 6px 10px 6px 14px;
+}
+
+.text {
+  font-size: 10px;
+}
+
+.text_province {
+  font-weight: bold;
+}
+
+.wrapper_map {
+  height: 75%;
+}
+
+.selectionButtonMap .btnAi {
+  display: inline-block;
+  width: 19%;
+  background-color: #2c3780;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 0 10px 0;
+  cursor: pointer;
+  float: left;
+  margin: 0 7px 0 0;
+  text-align: center;
+}
+
+.selectionButtonMap .btnAinon {
+  display: inline-block;
+  width: 19%;
+  background-color: transparent;
+  border-radius: 6px;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 0 10px 0;
+  cursor: pointer;
+  float: left;
+  margin: 0 7px 0 0;
+  text-align: center;
+}
+
+.selectionButtonMap .btnBTS {
+  display: inline-block;
+  width: 19%;
+  background-color: #e57b7b;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 0 10px 0;
+  cursor: pointer;
+  float: left;
+  margin: 0 7px 0 0;
+  text-align: center;
+}
+
+.selectionButtonMap .btnBTSnon {
+  display: inline-block;
+  width: 19%;
+  background-color: transparent;
+  border-radius: 6px;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 0 10px 0;
+  cursor: pointer;
+  float: left;
+  margin: 0 7px 0 0;
+  text-align: center;
+}
+
+/* .selectionButtonMap label:hover {
+  background-color: #2C3780;
+} */
+
+.selectionButtonMap input[type="radio"] {
+  display: none;
+}
+
+/* .selectionButtonMap input[type=radio]:checked ~ label {
+  background-color: #2C3780;
+  color: #fff;
+} */
+
+/* dari styling survey cluster safira  */
+
+.selectorButtonA {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.selectorButtonB {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.select {
+  /* -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none; */
+  width: 300px !important;
+  height: 30px !important;
+  text-indent: 0.01px !important;
+  text-overflow: "" !important;
+  position: relative !important;
+  border: none !important;
+  border-radius: 5px !important;
+  color: white !important;
+  text-align-last: center !important;
+  font-family: DM Sans !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  padding: 0px 10px !important;
+}
+
+.selectorButtonContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+}
+
+.kategoriSizeContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+}
+
+.categoryTitle {
+  width: 250px;
+  height: 30px;
+  border: none;
+  background: #406d96;
+  border-radius: 15px;
+  color: white;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.categoryWrapper {
+  /* min-height: 300px; */
+  /* height: 100%; */
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-content: flex-start; */
+  align-items: center;
+  padding: 20px;
+}
+
+.categoryBody {
+  text-align: center;
+  width: 200px;
+  /* min-height: 200px; */
+  overflow-x: hidden;
+  overflow-y: auto;
+  li {
+    padding: 3px;
+  }
+}

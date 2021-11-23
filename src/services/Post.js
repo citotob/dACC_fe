@@ -1,67 +1,43 @@
-import { rootPathDev } from './Config';
+import { url } from "./Config";
+import instance from "axios";
+const axios = instance.create();
 
-const notifPost = (path, username, isSubscribed) => {
-    const promise = new Promise((resolve, reject) => {
-        fetch(`${rootPathDev}/${path}`, {
-            method: "POST",
-            body: JSON.stringify({
-                "user": username
-            })
-        }).then(res => {
-            if (isSubscribed) {
-                resolve(res);
-            }
-        }, (err) => {
-            reject(err);
-        })
-    })
-    return promise;
-}
-
-const loginPost = (path, requestOptions) => {
-    const promise = new Promise((resolve, reject) => {
-        fetch(`${rootPathDev}/${path}`, requestOptions)
-            .then(res => {
-                resolve(res)
-            }, (err) => {
-                reject(err)
-            })
-    })
-
-    return promise;
-}
-
-const forgotPost = (path, requestOptions) => {
-    const promise = new Promise((resolve, reject) => {
-        fetch(`${rootPathDev}/${path}`, requestOptions)
-            .then(res => {
-                resolve(res)
-            }, (err) => {
-                reject(err)
-            })
-    })
-
-    return promise;
-}
-
-const resetPost = (path, requestOptions) => {
-    const promise = new Promise((resolve, reject) => {
-        fetch(`${rootPathDev}/${path}`, requestOptions)
-            .then(res => {
-                resolve(res)
-            }, (err) => {
-                reject(err)
-            })
-    })
-
-    return promise;
-}
-
-const Post = {
-    notifPost,
-    loginPost,
-    forgotPost,
-    resetPost
-}
+const Post = (path, params) => {
+  // console.log("-->", params);
+  const promise = new Promise((resolve, reject) => {
+    axios.post(`${url}/${path}/`, params).then(
+      (res) => {
+        resolve(res);
+      },
+      (err) => {
+        reject(err);
+      }
+    );
+  });
+  return promise;
+};
 
 export default Post;
+
+// console.log('--->', params)
+//     const promise = new Promise((resolve, reject) => {
+//         axios.post(`${url}/${path}/`, params).then(res => {
+//             resolve(res)
+//         }, (err) => {
+//             reject(err)
+//         })
+//     })
+//     return promise;
+
+// const registerPost = (path, requestOptions) =>{
+//     const promise = new Promise((resolve, reject) =>{
+//         fetch(`${rootPathDev}/${path}`, requestOptions)
+//             .then(res => {
+//                 resolve(res)
+//             }, (err) => {
+//                 reject(err)
+//             })
+//     })
+
+//     return promise;
+// }

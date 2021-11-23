@@ -1,0 +1,23 @@
+/* .image {
+  min-width: 465px;
+  width: 764px;
+  height: 100%;
+} */
+
+@media (min-width: 975px) {
+  .image {
+    width: 764px;
+    height: 100%;
+  }
+}
+
+@media (max-width: 975px) {
+  .image {
+    width: 465px;
+    height: 100%;
+  }
+}
+.customModalStyle {
+  min-width: max-content;
+  max-height: max-content;
+}

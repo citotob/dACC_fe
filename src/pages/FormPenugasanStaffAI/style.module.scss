@@ -1,0 +1,72 @@
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+.pageTitle {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  text-transform: capitalize;
+  /* identical to box height */
+  color: #2f3a56;
+}
+
+.addDataButton i {
+  font-size: 16px;
+  color: white;
+  margin-right: 12px;
+}
+
+.addDataButton span {
+  color: white;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 2px;
+}
+
+.addDataButton {
+  background-color: #2f3a56;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border-radius: 100px;
+  padding: 4px 20px 4px 20px;
+  box-shadow: 0px 4px 20px rgba(133, 175, 213, 0.5);
+  border-radius: 30px;
+  transition: border 2s ease;
+}
+
+.addDataButton:hover {
+  border: #2f3a56 solid 1px;
+}
+
+/* ================= ALERT STYLING START ==============  */
+.alertOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertOff {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  .alertVerifyOn,
+  .alertRejectOn {
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+/* ================= ALERT STYLING END ==============  */

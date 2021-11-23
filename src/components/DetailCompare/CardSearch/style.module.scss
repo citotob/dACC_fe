@@ -1,0 +1,145 @@
+.cardBody {
+  background: #ffffff;
+
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.cardTitleWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.cardTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.unduhButton {
+  // button reset
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  background: rgba(216, 232, 232, 0.5);
+  border-radius: 3px;
+  width: 132px;
+  height: 18px;
+  // font styling
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 13px;
+  /* identical to box height */
+  text-align: center;
+  color: #2f3a56;
+}
+
+.detailSurvey {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 0px 20px;
+  padding-bottom: 20px;
+
+  /* Text Dark Grey */
+
+  color: #40434d;
+}
+
+.jenisSurveyButton {
+  // button reset
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: default;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  border: 1px solid #2f3a56;
+  border-radius: 2px;
+  width: 132px;
+  height: 18px;
+  // font styling
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 13px;
+  /* identical to box height */
+  text-align: center;
+  color: #2f3a56;
+}
+
+// untuk search select
+.searchSelect {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: #ffffff;
+  /* Drop Shadow Default (Light Grey) */
+  box-shadow: 0px 4px 20px rgba(47, 58, 86, 0.1);
+  border-radius: 30px;
+  padding: 10px 24px;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.selectWrapper::after {
+  content: url(../../../assets/icons/select-arrow-icon.svg);
+  top: 12px;
+  right: 42px;
+  position: absolute;
+}
+
+.noButton {
+  background-color: white;
+  color: #406d96;
+  border-radius: 5px;
+  margin: 0px 5px;
+  transition: border 2s ease;
+}
+
+.cardBody button {
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 36px;
+  width: 116px;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96;
+}
+.yesButton {
+  background-color: #406d96;
+  color: white;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185;
+}

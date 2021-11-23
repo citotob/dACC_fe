@@ -1,0 +1,159 @@
+// untuk hilangin arrow input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+.cardBody {
+  background: #ffffff;
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+}
+
+.cardBodyNoScroll {
+  background: #ffffff;
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+}
+
+.cardBody::-webkit-scrollbar-track {
+  display: none;
+}
+
+.cardBody::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cardBody::-webkit-scrollbar-thumb {
+  background-color: #406d96;
+}
+
+.section {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  /* Dark Blue */
+  color: #406d96;
+}
+
+.items {
+  font-size: 14px;
+  line-height: 18px;
+  /* Text Dark Grey */
+  color: #40434d;
+}
+
+.noButton {
+  background-color: white !important;
+  color: #406d96 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96 !important;
+}
+
+.yesButton {
+  background-color: #406d96 !important;
+  color: white !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+}
+
+.yesButton:disabled {
+  background-color: #c0c0c0 !important;
+  color: #686868 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  cursor: not-allowed !important;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185 !important;
+}
+
+.yesButton:hover:disabled {
+  background-color: #c0c0c0 !important;
+  cursor: not-allowed !important;
+}
+
+.modalButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalButtonWrapper button,
+.simpanButton {
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 36px;
+  width: 116px;
+}
+
+// ======================= NAV LINK SCROLL BAR START ======================
+
+.navLinkScrollBar {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.navLinkScrollBar::-webkit-scrollbar-track {
+  display: none;
+}
+
+.navLinkScrollBar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navLinkScrollBar::-webkit-scrollbar-thumb {
+  background-color: #406d96;
+}
+// ======================= NAV LINK SCROLL BAR END ======================
+
+.pagingButtons {
+  color: #406d96;
+}
+.pagingButtons:disabled {
+  color: #b1b1b1 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  cursor: not-allowed !important;
+}
+
+// button autofill
+.buttonAutofill {
+  background-color: lightblue;
+  height: fit-content;
+  border-radius: 5px;
+  margin: 0 0 20px 0;
+  width: 180px;
+}
+
+// =========== untuk detail input
+.detailinput:disabled {
+  background-color: white;
+}

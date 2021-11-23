@@ -1,0 +1,231 @@
+.containerlogin {
+	/* width: 100%; */
+	height: 100vh;
+	position: relative;
+	background: url(../images/Mapsjakarta.svg) center center no-repeat;
+	background-size: cover;
+	background-position: 0 2%;
+	/* display: flex !important; */
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.containerlogin:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.571);
+	z-index: 2;
+}
+
+.txtLoginpages {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	z-index: 4 !important;
+	margin-top: -20% !important;
+}
+
+.txtlog {
+	display: block !important;
+	color: #000 !important;
+	font-size: 22px !important;
+	width: 66% !important;
+	z-index: 4 !important;
+}
+
+.txtlog img {
+	display: block !important;
+	margin-top: 10px !important;
+}
+
+.ctnLoginpages {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 50% !important;
+	margin-top: -16% !important;
+}
+
+.wrapps {
+	width: 50% !important;
+}
+
+.loginform {
+	max-width: 300px;
+	background-color: #999;
+	z-index: 999 !important;
+	margin-top: 100% !important;
+	padding: 30px !important;
+}
+
+.wrpPages {
+	width: 100%;
+	z-index: 999;
+}
+
+.formInputUsername {
+	background-color: #f8f8f8 !important;
+	border: none !important;
+}
+
+.formInputPassword {
+	background-color: #f8f8f8 !important;
+}
+
+.fieldUs {
+	width: 80% !important;
+	border-radius: 10px !important;
+	border: 2px solid #000 !important;
+	margin-top: 6% !important;
+}
+
+.btnSubmit {
+	box-shadow: 2px 4px 4px #000 !important;
+	border: none !important;
+	margin-top: 1.5%;
+}
+
+.forgotPass {
+	margin-top: 8%;
+	margin-left: 25%;
+}
+
+.forgotPass a {
+	cursor: pointer;
+	color: #19324a !important;
+	text-decoration: none !important;
+}
+
+.forgotPass a:hover {
+	color: #19324a !important;
+}
+
+.forgotPass::after {
+	content: "";
+	background: #9999;
+	color: #000;
+	display: block;
+	height: 2px;
+	position: relative;
+	width: 180%;
+	z-index: 5;
+	align-items: center;
+	right: 41%;
+	margin-top: 10% !important;
+}
+
+.secTit {
+	display: block;
+	font-size: 30px;
+	justify-content: left;
+	text-align: center;
+	margin-right: 22% !important;
+}
+
+.txtTit {
+	width: 80% !important;
+	text-align: center !important;
+}
+
+.Regist {
+	margin-top: 8%;
+	margin-left: -20%;
+	font-size: 14px;
+	text-decoration: none !important;
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+	/* [class*="col"] {
+		display: block;
+		width: 100%;
+	} */
+	.containerlogin {
+		display: block !important;
+		width: none !important;
+		justify-content: center !important;
+		height: fit-content !important;
+	}
+	.txtLoginpages {
+		width: 100% !important;
+		margin-top: 8% !important;
+		margin-left: 5% !important;
+	}
+	.txtlog {
+		display: block !important;
+		width: 96% !important;
+		font-size: 90% !important;
+		text-align: center !important;
+		padding: none !important;
+	}
+
+	.txtlog img {
+		display: block !important;
+		margin-top: 2% !important;
+		width: 20% !important;
+		margin-left: 40% !important;
+	}
+
+	.ctnLoginpages {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		margin-top: 16% !important;
+	}
+
+	.secTit {
+		width: 100% !important;
+		font-size: 160% !important;
+		margin-left: 10% !important;
+	}
+
+	.txtTit {
+		width: 100% !important;
+		text-align: center !important;
+		margin-left: 10% !important;
+	}
+
+	.formUs {
+		width: 100% !important;
+	}
+
+	.fieldUs {
+		width: 120% !important;
+		margin-right: 20% !important;
+	}
+
+	.fieldUs::placeholder {
+		font-size: 80% !important;
+		margin-left: -15% !important;
+		text-align: center !important;
+	}
+
+	button.btnSubmit {
+		margin-left: 18% !important;
+	}
+
+	.forgotPass {
+		font-size: 80% !important;
+		margin-top: 20% !important;
+		margin-left: 27% !important;
+	}
+
+	.Regist {
+		font-size: 80% !important;
+		margin-left: 16% !important;
+		margin-top: 10% !important;
+		text-align: center !important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+	[class*="col"] {
+		display: block;
+		width: 100%;
+	}
+}

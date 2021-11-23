@@ -1,0 +1,5 @@
+export const DATA_NOTIF = "DATA_NOTIF";
+export const DATA_CLUSTER = "DATA_CLUSTER";
+export const DATA_RECOMMEND = "DATA_RECOMMEND";
+export const DATA_TEKNOLOGI = "DATA_TEKNOLOGI";
+export const GOOGLE_OAUTH2 = "GOOGLE_OAUTH2";

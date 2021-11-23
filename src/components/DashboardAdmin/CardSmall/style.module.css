@@ -1,0 +1,53 @@
+.cardSmallContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+  padding: 1rem;
+
+  /* font styles */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #40434d;
+}
+
+.cardSmallContainer .cardSmallInfo {
+  display: flex;
+  font-size: 20;
+  font-weight: bold;
+  justify-content: space-between;
+
+  /* font styling */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 33px;
+  /* identical to box height */
+  color: #a8d0da;
+}
+
+.cardTitle {
+  min-height: 36px;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 18px;
+  background-color: #a8d0da;
+}
+
+.icon {
+  color: white;
+}

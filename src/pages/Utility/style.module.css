@@ -1,0 +1,20 @@
+.backToDashboardButton {
+  font-family: "DM SANS" !important;
+  font-weight: 700 !important;
+  background-color: #406d96 !important;
+  border: none !important;
+  padding: 8px 64px !important;
+}
+
+.errorImageContainer {
+  margin-top: -150px;
+}
+.errorImageWrapper {
+  /* background-color: rgb(122, 69, 69); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.errorImage {
+  /* width: 150%; */
+}

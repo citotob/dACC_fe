@@ -1,0 +1,20 @@
+.containerPageModuleFilter {
+  margin-top: 10vh;
+  height: 70vh;
+}
+
+.inputWrapper {
+  border-color: #2c3280 !important;
+  background-color: #f8f9fa !important;
+  border-radius: 30px !important;
+
+  width: 100%;
+  /* text-align: end; */
+}
+
+.btnTanggal {
+  min-height: 40px !important;
+  max-height: fit-content !important;
+  text-align: left !important;
+  padding-left: 10px !important;
+}

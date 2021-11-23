@@ -1,90 +1,260 @@
-import React, { useState, useEffect } from 'react';
-//component
-import CollapseFAQComponent from '../../components/Collapse/CollapseFAQ';
-import HeaderComponent from '../../components/Header/HeaderDashboard';
-import SidebarComponent from '../../components/Sidebar/Sidebar';
-//package
-import { Container, Card, ListGroupItem, Input, Col, Spinner } from 'reactstrap';
-//assets
-import './style.css'
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { changeBreadcrumbItem } from "../../store/breadcrumb/action";
+import {
+  Row,
+  Card,
+  CardBody,
+  Nav,
+  NavItem,
+  NavLink,
+  TabContent,
+  TabPane,
+  Media,
+} from "reactstrap";
 
-const faqDataList = [
-    {
-        id: 1,
-        pertanyaan: '1Tata Cara Penggunaan Seluruh Menu Content Patner',
-        jawaban: '1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Egestas sed sed risus pretium. Lorem dolor sed viverra ipsum. Gravida rutrum quisque non tellus. Rutrum tellus pellentesque eu tincidunt tortor. Sed blandit libero volutpat sed cras ornare. Et netus et malesuada fames ac. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Lacus sed viverra tellus in. Sollicitudin ac orci phasellus egestas. Purus in mollis nunc sed. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Interdum consectetur libero id faucibus nisl tincidunt eget.'
-    },
-    {
-        id: 2,
-        pertanyaan: '1Tata Cara Penggunaan Seluruh Menu Content Patner',
-        jawaban: '1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Egestas sed sed risus pretium. Lorem dolor sed viverra ipsum. Gravida rutrum quisque non tellus. Rutrum tellus pellentesque eu tincidunt tortor. Sed blandit libero volutpat sed cras ornare. Et netus et malesuada fames ac. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Lacus sed viverra tellus in. Sollicitudin ac orci phasellus egestas. Purus in mollis nunc sed. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Interdum consectetur libero id faucibus nisl tincidunt eget.'
-    },
-    {
-        id: 3,
-        pertanyaan: '2Tata Cara Penggunaan Seluruh Menu Content Patner',
-        jawaban: '2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Egestas sed sed risus pretium. Lorem dolor sed viverra ipsum. Gravida rutrum quisque non tellus. Rutrum tellus pellentesque eu tincidunt tortor. Sed blandit libero volutpat sed cras ornare. Et netus et malesuada fames ac. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Lacus sed viverra tellus in. Sollicitudin ac orci phasellus egestas. Purus in mollis nunc sed. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Interdum consectetur libero id faucibus nisl tincidunt eget.'
-    },
-    {
-        id: 4,
-        pertanyaan: '3Tata Cara Penggunaan Seluruh Menu Content Patner',
-        jawaban: '3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Egestas sed sed risus pretium. Lorem dolor sed viverra ipsum. Gravida rutrum quisque non tellus. Rutrum tellus pellentesque eu tincidunt tortor. Sed blandit libero volutpat sed cras ornare. Et netus et malesuada fames ac. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Lacus sed viverra tellus in. Sollicitudin ac orci phasellus egestas. Purus in mollis nunc sed. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Interdum consectetur libero id faucibus nisl tincidunt eget.'
-    },
-    {
-        id: 5,
-        pertanyaan: '4Tata Cara Penggunaan Seluruh Menu Content Patner',
-        jawaban: '4Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Egestas sed sed risus pretium. Lorem dolor sed viverra ipsum. Gravida rutrum quisque non tellus. Rutrum tellus pellentesque eu tincidunt tortor. Sed blandit libero volutpat sed cras ornare. Et netus et malesuada fames ac. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Lacus sed viverra tellus in. Sollicitudin ac orci phasellus egestas. Purus in mollis nunc sed. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Interdum consectetur libero id faucibus nisl tincidunt eget.'
-    },
-    {
-        id: 6,
-        pertanyaan: '5Tata Cara Penggunaan Seluruh Menu Content Patner',
-        jawaban: '5Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dapibus ultrices in iaculis nunc sed augue lacus. Quam nulla porttitor massa id neque aliquam. Ultrices mi tempus imperdiet nulla malesuada. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Egestas sed sed risus pretium. Lorem dolor sed viverra ipsum. Gravida rutrum quisque non tellus. Rutrum tellus pellentesque eu tincidunt tortor. Sed blandit libero volutpat sed cras ornare. Et netus et malesuada fames ac. Ultrices eros in cursus turpis massa tincidunt dui ut ornare. Lacus sed viverra tellus in. Sollicitudin ac orci phasellus egestas. Purus in mollis nunc sed. Sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Interdum consectetur libero id faucibus nisl tincidunt eget.'
+//style
+import styles from "./style.module.scss";
+
+//Import Breadcrumb
+import Breadcrumbs from "../../components/Common/Breadcrumb";
+
+// Tabs functions
+import classnames from "classnames";
+
+//DUMMY DATA
+const pertanyaanUmum = () => {
+  return (
+    <div>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>What is Lorem Ipsum?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            New common language will be more simple and regular than the
+            existing European languages. It will be as simple as occidental.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Where does it come from?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            Everyone realizes why a new common language would be desirable one
+            could refuse to pay expensive translators.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Where can I get some?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            If several languages coalesce, the grammar of the resulting language
+            is more simple and regular than that of the individual languages.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Why do we use it?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            Their separate existence is a myth. For science, music, sport, etc,
+            Europe uses the same vocabulary.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Where can I get some?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            To an English person, it will seem like simplified English, as a
+            skeptical Cambridge friend of mine told me what Occidental
+          </p>
+        </Media>
+      </Media>
+    </div>
+  );
+};
+
+const support = () => {
+  return (
+    <div>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>What is Support Ipsum?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            New common language will be more simple and regular than the
+            existing European languages. It will be as simple as occidental.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Where can I get support?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            Everyone realizes why a new common language would be desirable one
+            could refuse to pay expensive translators.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Where can I get more?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            If several languages coalesce, the grammar of the resulting language
+            is more simple and regular than that of the individual languages.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box mb-4'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Why do we use support?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            Their separate existence is a myth. For science, music, sport, etc,
+            Europe uses the same vocabulary.
+          </p>
+        </Media>
+      </Media>
+      <Media className='faq-box'>
+        <div className='faq-icon mr-3'>
+          <i className='bx bx-help-circle font-size-20 text-success'></i>
+        </div>
+        <Media body>
+          <h5 className='font-size-15'>Where can I get some?</h5>
+          <p className={`${styles.faqAnswer} text-muted`}>
+            To an English person, it will seem like simplified English, as a
+            skeptical Cambridge friend of mine told me what Occidental
+          </p>
+        </Media>
+      </Media>
+    </div>
+  );
+};
+
+function FAQ() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const PageTitle = () => {
+    return location.pathname
+      .substr(location.pathname.lastIndexOf("/") + 1)
+      .replace("-", " ")
+      .replaceAll("%20", " ")
+      .replaceAll("%24", "/");
+    // .toUpperCase();
+  };
+
+  // Tabs functions (verifikasi, aktif, ditolak)
+  const [customActiveTab, setcustomActiveTab] = useState("1");
+  const [tabName, setTabName] = useState("Pertanyaan Umum");
+  function toggleCustom(tab) {
+    if (customActiveTab !== tab) {
+      setcustomActiveTab(tab);
     }
-]
+  }
 
-const FAQSupportCenterPage = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
+  useEffect(() => {
+    dispatch(changeBreadcrumbItem(tabName));
+  }, [tabName]);
 
-    const handleChange = (e) => {
-        setSearchTerm(e.target.value)
-    }
-    useEffect(() => {
-        let results = faqDataList.filter(data =>
-            data.pertanyaan.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setSearchResults(results);
-    }, [searchTerm])
+  return (
+    <div className={styles.pageFont}>
+      <div className='page-content px-4'>
+        {/* ======================== HEADER ======================= */}
+        <div className='d-flex flex-row justify-content-between'>
+          <div className='d-flex flex-row align-items-center'>
+            <div className='align-self-center'>
+              <span className={`${styles.pageTitle} mr-4 `}>{PageTitle()}</span>
+            </div>
+          </div>
+          <div>
+            {/* //change breadcrumb item depending on which tab is open */}
+            <Breadcrumbs title='FAQ' breadcrumbItem={tabName} />
+          </div>
+        </div>
+        {/* ======================== CONTENT ======================= */}
+        <Card>
+          <CardBody>
+            <Nav tabs className='nav-tabs-custom'>
+              <NavItem>
+                <NavLink
+                  style={{ cursor: "pointer" }}
+                  className={classnames({
+                    active: customActiveTab === "1",
+                  })}
+                  onClick={() => {
+                    toggleCustom("1");
+                    setTabName("Pertanyaan Umum");
+                  }}
+                >
+                  <span className='d-none d-sm-block'>Pertanyaan Umum</span>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  style={{ cursor: "pointer" }}
+                  className={classnames({
+                    active: customActiveTab === "2",
+                  })}
+                  onClick={() => {
+                    toggleCustom("2");
+                    setTabName("Support");
+                  }}
+                >
+                  <span className='d-none d-sm-block'>Support</span>
+                </NavLink>
+              </NavItem>
+              <div className={`${styles.tableSearchWrapper} ml-auto`}>
+                {/* INSERT SOMETHING HERE IF YOU WANT TO PUT ITEMS IN THE RIGHT SIDE OF THE TABLE TAB */}
+              </div>
+            </Nav>
 
-    return (
-        <Container>
-            <header>
-                <HeaderComponent title={"FAQ"} />
-            </header>
-            <main>
-                <div className="search-bar-div">
-                    <Input
-                        className="search-bar"
-                        aria-label="search bar"
-                        placeholder="Cari..."
-                        value={searchTerm}
-                        onChange={handleChange}
-                    />
-                </div>
-                <Card className="card-faq">
-                    <Container fluid="md" className="faq-container" >
-                        <h3 className="title-faq">Panduan Pengguna BAKTI Online</h3>
-                        {searchResults.map((item, index) => (
-                            <CollapseFAQComponent pertanyaan={item.pertanyaan} jawaban={item.jawaban} key={index} />
-                        ))}
-                        <div className="clearfix">
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </Container>
-                </Card>
-            </main>
-        </Container>
-    )
+            <TabContent activeTab={customActiveTab}>
+              <TabPane tabId='1' className='p-3'>
+                <Row>
+                  <h1>{pertanyaanUmum()}</h1>
+                </Row>
+              </TabPane>
+              <TabPane tabId='2' className='p-3'>
+                <Row>
+                  <h1>{support()}</h1>
+                </Row>
+              </TabPane>
+              <TabPane tabId='3' className='p-3'>
+                <Row>{/* <Col sm="12">{tableDitolak()}</Col> */}</Row>
+              </TabPane>
+            </TabContent>
+          </CardBody>
+        </Card>
+      </div>
+    </div>
+  );
 }
 
-export default FAQSupportCenterPage
+export default FAQ;

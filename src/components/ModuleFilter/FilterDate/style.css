@@ -1,0 +1,46 @@
+.btnCekJam {
+    background-color: #2c3280 !important;
+    color: #fff !important;
+  }
+  
+  .rdrDefinedRangesWrapper {
+    display: none !important;
+  }
+  
+  .displayContent .modal-title {
+    display: contents !important;
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .containerCalendar {
+      overflow-x: hidden;
+    }
+    .rowCalendar {
+      overflow-x: auto;
+    }
+    .rdrCalendarWrapper {
+      position: relative;
+      left: -8px !important;
+    }
+    .rdrDateDisplayWrapper {
+      margin-left: 19px;
+      width: fit-content !important;
+    }
+  
+    .rdrDateDisplay {
+      display: block !important;
+    }
+  
+    .rdrMonthAndYearWrapper {
+      width: fit-content !important;
+      margin-left: 19px;
+    }
+  
+    .rdrMonths.rdrMonthsHorizontal {
+      display: block !important;
+    }
+    .rdrDateDisplayItem + .rdrDateDisplayItem {
+      margin-left: 0 !important;
+    }
+  }
+  

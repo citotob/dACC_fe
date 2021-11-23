@@ -1,0 +1,56 @@
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+.cardBody {
+  background: #ffffff;
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+  // flex-grow: 1;
+}
+
+.section {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+  /* Dark Blue */
+  color: #406d96;
+}
+
+.sectionTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  padding-left: 20px;
+  /* Dark Blue */
+  color: #406d96;
+}
+
+.items {
+  font-size: 14px;
+  line-height: 18px;
+  /* Text Dark Grey */
+  color: #40434d;
+}
+
+// ======================= NAV LINK SCROLL BAR START ======================
+.navLinkScrollBar {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.navLinkScrollBar::-webkit-scrollbar-track {
+  display: none;
+}
+
+.navLinkScrollBar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navLinkScrollBar::-webkit-scrollbar-thumb {
+  background-color: #406d96;
+}
+// ======================= NAV LINK SCROLL BAR END ======================

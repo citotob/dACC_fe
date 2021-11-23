@@ -1,0 +1,200 @@
+/* button reset 
+background-color: Transparent;
+background-repeat: no-repeat;
+border: none;
+cursor: pointer;
+overflow: hidden;
+outline: none; */
+
+.pageFont {
+  font-family: DM Sans;
+  font-style: normal;
+}
+
+.pageHeaderWrapper {
+}
+
+.addDataButton i {
+  font-size: 16px;
+  color: white;
+  margin-right: 12px;
+}
+
+.addDataButton span {
+  color: white;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.addDataButton {
+  background-color: #2f3a56;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  border-radius: 100px;
+  padding: 4px 20px 4px 20px;
+  box-shadow: 0px 4px 20px rgba(133, 175, 213, 0.5);
+  border-radius: 30px;
+  transition: border 2s ease;
+}
+
+.addDataButton:hover {
+  border: #2f3a56 solid 1px;
+}
+
+.pageTitle {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  text-transform: capitalize;
+  /* identical to box height */
+  color: #2f3a56;
+}
+
+/* ====== styling modal tambah data start ====== */
+.modalBody {
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin: 36px auto;
+}
+
+.name {
+  /* margin: 40px 0px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 47px;
+  color: #2f3a56;
+}
+
+.title {
+  /* margin-top: 20px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  color: #2f3a56;
+}
+
+.confirmation {
+  font-family: DM Sans;
+  font-style: normal;
+  font-size: 16px;
+  text-align: center;
+  color: #a5a5a5;
+}
+
+.modalButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0px 0px 0px;
+}
+
+.modalButtonWrapper button {
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 36px;
+  width: 116px;
+}
+
+.noButton {
+  background-color: white;
+  color: #406d96;
+  border-radius: 5px;
+  margin: 0px 5px;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96;
+}
+.yesButton {
+  background-color: #406d96;
+  color: white;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185;
+}
+/* ====== styling modal tambah data end ====== */
+
+/* ================= ALERT STYLING START ==============  */
+.alertAddDataOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertAddDataOff {
+  display: none;
+}
+
+.alertRejectOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertRejectOff {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  .alertVerifyOn,
+  .alertRejectOn {
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+/* ================= ALERT STYLING END ==============  */
+/* ================= PAGINATION STYLING END ==============  */
+
+.paginationWrapper {
+  /* background-color: rgb(219, 186, 186); */
+  width: 200px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+}
+
+.paginationButton {
+  padding: 8px 16px;
+  background-color: #406d96;
+  cursor: pointer;
+  border-radius: 0.25em;
+  color: #fff;
+}
+
+.paginationButton:disabled {
+  padding: 8px 16px;
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+  border-radius: 0.25em;
+  color: #686868;
+}
+/* ================= PAGINATION STYLING END ==============  */

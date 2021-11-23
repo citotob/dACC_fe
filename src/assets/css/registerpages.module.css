@@ -1,0 +1,319 @@
+.containerlogin {
+	/* width: 100%; */
+	height: 100vh;
+	position: relative;
+	background: url(../images/Mapsjakarta.svg) center center no-repeat;
+	background-size: cover;
+	background-position: 0 2%;
+	/* display: flex !important; */
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.containerlogin:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.571);
+	z-index: 2;
+}
+
+.alertDetail {
+	width: 80% !important;
+	border-radius: 6px !important;
+	text-align: center !important;
+	padding: 6px !important;
+	margin-right: 76px !important;
+	margin-top: 20% !important;
+}
+
+.txtLoginpages {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	z-index: 4 !important;
+	margin-top: -20% !important;
+}
+
+.txtlog {
+	display: block !important;
+	color: #000 !important;
+	font-size: 22px !important;
+	width: 66% !important;
+	z-index: 4 !important;
+}
+
+.txtlog img {
+	display: block !important;
+	margin-top: 10px !important;
+}
+
+.ctnRegistpages {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 50% !important;
+	margin-top: -16% !important;
+}
+
+.wrapps {
+	width: 80%;
+}
+
+.loginform {
+	max-width: 300px;
+	background-color: #999;
+	z-index: 999 !important;
+	margin-top: 100% !important;
+	padding: 30px !important;
+}
+
+.wrpPages {
+	width: 100%;
+	z-index: 999;
+	margin-top: 25vh !important;
+}
+
+.formInputUsername {
+	background-color: #f8f8f8 !important;
+	border: none !important;
+}
+
+.formInputPassword {
+	background-color: #f8f8f8 !important;
+}
+
+.fieldUs {
+	width: 80% !important;
+	border-radius: 10px !important;
+	border: 2px solid #000 !important;
+	margin-top: 6% !important;
+	outline: 0 !important;
+}
+
+.fieldUpload {
+	width: 80% !important;
+	border-radius: 10px !important;
+	margin-top: 0% !important;
+	margin-bottom: 4% !important;
+	padding: 4px;
+}
+
+.btnSubmit {
+	box-shadow: 2px 4px 4px #000 !important;
+	border: none !important;
+	margin-top: 8% !important;
+	margin-left: 15% !important;
+	background-color: #e7883a !important;
+	border-radius: 10px !important;
+	width: 50% !important;
+}
+
+.forgotPass {
+	margin-top: 8%;
+	margin-left: 25%;
+}
+
+.Regist::before {
+	content: "";
+	background: #9999;
+	color: #000;
+	display: block;
+	height: 2px;
+	position: relative;
+	width: 142%;
+	z-index: 5;
+	align-items: center;
+	right: 22%;
+	margin-top: 4% !important;
+	margin-bottom: 10% !important;
+}
+
+.secTit {
+	font-size: 28px;
+	margin-left: 19%;
+}
+
+.txtTit {
+	width: 40%;
+}
+
+.Regist {
+	margin-top: 6%;
+	margin-left: 14%;
+}
+
+.lblDok {
+	display: block;
+	font-weight: bold;
+	color: rgba(32, 31, 31, 0.698);
+	text-align: start;
+	font-size: 12px;
+	padding: 6px 0 0 0;
+	margin-top: 4px !important;
+	/* margin-bottom: 20px !important; */
+	margin-left: 4px;
+}
+.lblDokErr {
+	display: block;
+	font-weight: bold;
+	color: #c42127 !important;
+	text-align: start;
+	font-size: 12px;
+	padding: 6px 0 0 0;
+	margin-top: 4px !important;
+	/* margin-bottom: 20px !important; */
+	margin-left: 4px;
+}
+
+.iconEye {
+	position: absolute;
+	display: inline;
+	top: 59.5%;
+	right: 37%;
+	color: #999 !important;
+}
+
+/* button.btnSubmit {
+	margin-top: 4% !important;
+	background-color: #E7883A;
+	border-radius: 10px;
+	width: 80% !important;
+} */
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+	/* [class*="col"] {
+		display: block;
+		width: 100%;
+	} */
+	.containerlogin {
+		display: block !important;
+		width: none !important;
+		justify-content: center !important;
+		height: fit-content !important;
+	}
+	.txtLoginpages {
+		width: 100% !important;
+		margin-top: 8% !important;
+		margin-left: 5% !important;
+	}
+	.txtlog {
+		display: block !important;
+		width: 96% !important;
+		font-size: 90% !important;
+		text-align: center !important;
+		padding: none !important;
+	}
+
+	.txtlog img {
+		display: block !important;
+		margin-top: 2% !important;
+		width: 20% !important;
+		margin-left: 40% !important;
+	}
+
+	.ctnRegistpages {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		width: 100% !important;
+		margin-top: -28% !important;
+	}
+
+	.secTit {
+		font-size: 100% !important;
+		margin-left: 38% !important;
+	}
+
+	.formUs {
+		width: 100% !important;
+	}
+
+	.fieldUs {
+		width: 150% !important;
+		margin-left: -15% !important;
+		display: block;
+		position: relative;
+	}
+
+	.fieldUs::placeholder {
+		font-size: 80% !important;
+		margin-left: -15% !important;
+		text-align: center;
+	}
+
+	.lblDok {
+		font-size: 80% !important;
+		width: 100% !important;
+		margin-left: 26% !important;
+		margin-top: 6% !important;
+	}
+
+	.labLog {
+		display: block;
+		font-weight: bold;
+		color: grey;
+		text-align: center;
+		font-size: 12px;
+		padding: 6px 0 0 0;
+		margin: 0 auto;
+	}
+
+	.fieldUpload {
+		width: 150% !important;
+		margin-left: -15% !important;
+	}
+
+	button.btnSubmit {
+		/* margin: none !important; */
+		width: 100% !important;
+		margin-left: 16% !important;
+		margin-top: 10% !important;
+	}
+
+	.forgotPass {
+		font-size: 80% !important;
+		margin-top: 20% !important;
+		margin-left: 27% !important;
+	}
+
+	.Regist {
+		font-size: 80% !important;
+		margin-left: 14% !important;
+		margin-top: 10% !important;
+		text-align: center !important;
+	}
+}
+
+.iconEyePass {
+	transform: translateY(-132%);
+	margin-right: 26%;
+	float: right;
+	position: relative;
+	color: #999 !important;
+}
+
+.iconEyeRepeat {
+	transform: translateY(-132%);
+	margin-right: 26%;
+	float: right;
+	position: relative;
+	color: #999 !important;
+}
+
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+	[class*="col"] {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 920px) {
+	.wrapps {
+		width: 40%;
+	}
+}

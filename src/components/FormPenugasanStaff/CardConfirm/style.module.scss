@@ -1,0 +1,257 @@
+.cardBody {
+  background: #ffffff;
+
+  /* Drop Shadow Light Blue */
+  box-shadow: 0px 4px 20px rgba(168, 208, 218, 0.5);
+  border-radius: 5px;
+}
+
+.cardTitleWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(165, 165, 165, 0.2);
+}
+
+.cardTitle {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.titikLokasi {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 21px;
+
+  /* identical to box height */
+  color: #000000;
+}
+
+.titikLokasiItems {
+  margin: 0px 5px;
+}
+
+.titikLokasiButton {
+  // button reset
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  border: 1px solid #406d96;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 297px;
+  height: 37px;
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  /* Dark Blue */
+  color: #406d96;
+}
+
+.mapButton {
+  // button reset
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  //   button styling
+  background-color: #406d96;
+  box-sizing: border-box;
+  border-radius: 2px;
+  width: 37px;
+  height: 37px;
+  margin-left: 0px;
+}
+
+.buttonKembali {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 37px;
+
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  /* Dark Blue */
+  color: #406d96;
+  margin: 0 5px;
+}
+
+.buttonIssue {
+  background-color: #e2474b;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 37px;
+  width: 114px;
+  border-radius: 5px;
+
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
+  margin: 0 5px;
+}
+
+.buttonSetuju {
+  background-color: #406d96;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  width: 150px;
+  height: 37px;
+  border-radius: 5px;
+
+  // font styling
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: white;
+  margin: 0 5px;
+}
+
+.buttonSetuju:disabled {
+  background-color: #c0c0c0 !important;
+  color: #686868 !important;
+  border-radius: 5px !important;
+  margin: 0px 5px !important;
+  cursor: not-allowed !important;
+}
+
+/* ================= MODAL STYLING START ==============  */
+.modalBody {
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  margin: 36px auto;
+}
+
+.name {
+  /* margin: 40px 0px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #2f3a56;
+}
+
+.title {
+  /* margin-top: 20px; */
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 26px;
+  color: #2f3a56;
+}
+
+.confirmation {
+  font-family: DM Sans;
+  font-style: normal;
+  font-size: 16px;
+  text-align: center;
+  color: #a5a5a5;
+}
+
+.modalButtonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalButtonWrapper button {
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  height: 36px;
+  width: 116px;
+}
+
+.noButton {
+  background-color: white;
+  color: #406d96;
+  border-radius: 5px;
+  margin: 0px 5px;
+  transition: border 2s ease;
+}
+
+.noButton:hover,
+.noButton:focus {
+  border: 1px solid #406d96;
+}
+.yesButton {
+  background-color: #406d96;
+  color: white;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+.yesButton:hover,
+.yesButton:focus {
+  background-color: #3a6185;
+}
+
+.textAreaRequiredText {
+  font-size: 12px;
+  font-weight: lighter;
+  color: #af2e2e;
+}
+
+/* ================= MODAL STYLING END ==============  */
+
+/* ================= ALERT STYLING START ==============  */
+.alertOn {
+  position: fixed;
+  top: 18px;
+  left: 310px;
+  z-index: 2000;
+  width: 600px;
+}
+
+.alertOff {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  .alertSetujuiOn {
+    width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+/* ================= ALERT STYLING END ==============  */

@@ -1,0 +1,126 @@
+{
+  "success": true,
+  "count": 248,
+  "data": [
+    {
+      "date_taken": "1614045047791",
+      "location": ["PENDIDIKAN"],
+      "proposed_date": ["24-02-2021"],
+      "proposed_time": [["00.00"]],
+      "proposed_duration": "1",
+      "date_recommendation": "none",
+      "time_recommendation": "none",
+      "localDetails": [
+        {
+          "resolution": "144",
+          "url": "assets/upload/adm2baktionline/video/compressed-144-20210223-c9df125e58e54ed724d338cc6edbf76d.mp4"
+        },
+        {
+          "resolution": "240",
+          "url": "assets/upload/adm2baktionline/video/compressed-240-20210223-c9df125e58e54ed724d338cc6edbf76d.mp4"
+        },
+        {
+          "resolution": "360",
+          "url": "assets/upload/adm2baktionline/video/compressed-360-20210223-c9df125e58e54ed724d338cc6edbf76d.mp4"
+        }
+      ],
+      "list_provinsi": [
+        {
+          "_id": "5c048b737fddb13f493b0cbc",
+          "name": "ACEH"
+        }
+      ],
+      "status": "canceled",
+      "_id": "60346508e9fd2064ab7f962f",
+      "type": "lokal",
+      "details": {
+        "title": "20210223.0911",
+        "url": "assets/upload/adm2baktionline/video/20210223-c9df125e58e54ed724d338cc6edbf76d.mp4",
+        "thumbnail": "assets/upload/adm2baktionline/thumbnail/thumbnails-20210223-e37f71346aaf3a7c3d24a5891b5a9427.png",
+        "original-thumbnail": "assets/upload/adm2baktionline/thumbnail/20210223-e37f71346aaf3a7c3d24a5891b5a9427.png"
+      },
+      "category": "Kesehatan",
+      "status_kurator": [
+        {
+          "status": "Belum Kurasi",
+          "date": "2021-02-23T02:14:31.826Z"
+        },
+        {
+          "status": "Lolos Kurasi",
+          "date": "2021-02-23T02:14:31.827Z"
+        }
+      ],
+      "requested_by": {
+        "_id": "5fc74869705b772f78101c8f",
+        "name": "adm2baktionline",
+        "organization": {
+          "_id": "5fc74869705b772f78101c48",
+          "name": "ADM BAKTIONLINE 2"
+        }
+      },
+      "tanggal_pembuatan": "2021-02-23T02:14:32.119Z",
+      "tanggal_perubahan": "2021-02-23T02:17:19.036Z",
+      "__v": 0
+    },
+    {
+      "date_taken": "1613635158525",
+      "location": ["PENDIDIKAN"],
+      "proposed_date": ["20-02-2021"],
+      "proposed_time": [["00.00"]],
+      "proposed_duration": "1",
+      "date_recommendation": "none",
+      "time_recommendation": "none",
+      "localDetails": [
+        {
+          "resolution": "144",
+          "url": "assets/upload/adm2baktionline/video/compressed-144-20210219-82d07eec0c094b426774798c4cb28a17.mp4"
+        },
+        {
+          "resolution": "240",
+          "url": "assets/upload/adm2baktionline/video/compressed-240-20210219-82d07eec0c094b426774798c4cb28a17.mp4"
+        },
+        {
+          "resolution": "360",
+          "url": "assets/upload/adm2baktionline/video/compressed-360-20210219-82d07eec0c094b426774798c4cb28a17.mp4"
+        }
+      ],
+      "list_provinsi": [
+        {
+          "_id": "5c048b737fddb13f493b0cbc",
+          "name": "ACEH"
+        }
+      ],
+      "status": "canceled",
+      "_id": "602f6c1a0719e27a50359ecc",
+      "type": "youtube",
+      "details": {
+        "title": "20210219.1442",
+        "url": "HnzLUKn7960",
+        "thumbnail": "assets/upload/adm2baktionline/thumbnail/thumbnails-20210219-f117e241f7719897c3b9215f4ce1836a.png",
+        "original-thumbnail": "assets/upload/adm2baktionline/thumbnail/20210219-f117e241f7719897c3b9215f4ce1836a.png"
+      },
+      "category": "Kesehatan",
+      "status_kurator": [
+        {
+          "status": "Belum Kurasi",
+          "date": "2021-02-19T07:43:22.526Z"
+        },
+        {
+          "status": "Lolos Kurasi",
+          "date": "2021-02-19T07:43:22.526Z"
+        }
+      ],
+      "requested_by": {
+        "_id": "5fc74869705b772f78101c8f",
+        "name": "adm2baktionline",
+        "organization": {
+          "_id": "5fc74869705b772f78101c48",
+          "name": "ADM BAKTIONLINE 2"
+        }
+      },
+      "tanggal_pembuatan": "2021-02-19T07:43:22.618Z",
+      "tanggal_perubahan": "2021-02-19T07:43:58.385Z",
+      "__v": 0
+    }
+  ]
+}

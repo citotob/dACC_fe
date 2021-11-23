@@ -1,0 +1,21 @@
+/* .bgSideColor {
+  background-image: linear-gradient(#0045ad, #488bf0, #94b3e3) !important;
+  
+
+   background-color: white !important;
+} 
+*/
+
+.bgSideColor {
+  /* background-image: linear-gradient(#0045ad, #488bf0, #94b3e3) !important; */
+
+  background-color: #ffffff !important;
+}
+
+.title {
+  color: #406d97;
+}
+
+.boxPadding {
+  margin: 20px;
+}
