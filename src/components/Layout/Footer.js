@@ -11,8 +11,7 @@ const Footer = (props) => {
         <Container fluid={true}>
           <Row>
             <Col md={12}>
-              © {new Date().getFullYear()} SMASLAB by Badan Aksesibilitas
-              Telekomunikasi dan Informasi
+              © {new Date().getFullYear()} dACC : Sistem Akuntasi
             </Col>
             <Col md={12}></Col>
           </Row>
