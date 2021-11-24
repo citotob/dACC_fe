@@ -47,7 +47,7 @@ class Layout extends Component {
     window.scrollTo(0, 0);
     // let currentage = this.capitalizeFirstLetter(this.props.location.pathname);
 
-    document.title = "SMASLAB Bakti Kominfo";
+    document.title = "dACC";
     if (this.props.leftSideBarTheme) {
       this.props.changeSidebarTheme(this.props.leftSideBarTheme);
     }

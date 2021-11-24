@@ -184,7 +184,7 @@ const Login = (props) => {
                   <div className='p-2'>
                     {/* LOGO */}
 
-                    <img src={logoBakti} className={styles.logo}></img>
+                    <img src="" className={styles.logo}></img>
 
                     {/* FORM START */}
 
