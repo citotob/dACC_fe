@@ -62,7 +62,7 @@ function TableBootstrap() {
   const [alasanTolak, setalasanTolak] = useState("");
 
   // endpoint query status
-  const [queryStatus, setqueryStatus] = useState("status=requested");
+  const [queryStatus, setqueryStatus] = useState("status=belumterverifikasi");
 
   // filter states
   const [filterShow, setfilterShow] = useState("d-none");
@@ -86,52 +86,54 @@ function TableBootstrap() {
           //   res.data
           // );
           settableData(res.data.values);
-          // console.table(res.data.values);
+          console.table(res.data.values);
           if (res.data.values.length < usersPerPage) {
             setdisabledNext(true);
           } else {
             setdisabledNext(false);
           }
         } else {
-          settableData(null);
+          // settableData(null);
+          settableData([]);
         }
         setloading(false);
       })
       .catch((err) => {
-        settableData(null);
+        // settableData(null);
+        settableData([]);
         setloading(false);
         console.error(err);
       });
   };
 
   // initial data for dropdown role and organization list
-  const getInitData = () => {
-    API.getRole()
-      .then((res) => {
-        const roleData = res?.data?.values ?? "";
+  // const getInitData = () => {
+    // API.getRole()
+    //   .then((res) => {
+    //     const roleData = res?.data?.values ?? "";
 
-        if (res.status === 200) {
-          setroleList(roleData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    const params = {
-      surveyor: "all",
-      jenis: "ai/bts",
-    };
-    API.getSurveyor(params)
-      .then((res) => {
-        const organizationData = res?.data?.values ?? "";
-        if (res.status === 200) {
-          setorgList(organizationData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    //     if (res.status === 200) {
+    //       setroleList(roleData);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // const params = {
+    //   surveyor: "all",
+    //   jenis: "ai/bts",
+    // };
+    // API.getSurveyor(params)
+    //   .then((res) => {
+    //     const organizationData = res?.data?.values ?? "";
+    //     if (res.status === 200) {
+    //       setorgList(organizationData);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  // };
 
   // useeffect
 
@@ -150,7 +152,7 @@ function TableBootstrap() {
         handleFilterSearch(selectedFilter);
       }
     }
-    getInitData();
+    // getInitData();
 
     if (pageNumber > 1) {
       setdisabledPrev(false);
@@ -272,16 +274,19 @@ function TableBootstrap() {
             setdisabledNext(false);
           }
         } else {
-          settableData(null);
+          // settableData(null);
+          settableData([]);
         }
         setloading(false);
       })
       .catch((err) => {
         console.error("API FAIL :  > ", err);
-        settableData(null);
+        // settableData(null);
+        settableData([]);
       });
   };
 
+  console.log("ok--",tableData);
   // Table components
   const tableVerifikasi = () => {
     return (
@@ -295,9 +300,6 @@ function TableBootstrap() {
                 <th>Username</th>
                 <th>Tipe</th>
                 <th>Email</th>
-                <th>No Telp.</th>
-                <th>Instansi</th>
-                <th>Dok. Penunjang</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -309,22 +311,8 @@ function TableBootstrap() {
                       <td>{i + 1}</td>
                       <td>{data?.name}</td>
                       <td>{data?.username}</td>
-                      <td>{data?.role.name}</td>
+                      <td>{data?.role_name}</td>
                       <td>{data?.email}</td>
-                      <td>{data?.phone}</td>
-                      <td>{data?.organization.name}</td>
-                      <td>
-                        <a
-                          href={`${url}/${data?.doc.path}`}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          <img
-                            src={DokPenunjangIcon}
-                            alt='Icon Dok. Penunjang'
-                          />
-                        </a>
-                      </td>
                       <td className={`${style.aksiButtonsWrapper}`}>
                         <button
                           type='button'
@@ -372,9 +360,6 @@ function TableBootstrap() {
                 <th>Username</th>
                 <th>Tipe</th>
                 <th>Email</th>
-                <th>No Telp.</th>
-                <th>Instansi</th>
-                <th>Dok. Penunjang</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -386,22 +371,9 @@ function TableBootstrap() {
                       <td>{i + 1}</td>
                       <td>{data?.name}</td>
                       <td>{data?.username}</td>
-                      <td>{data?.role.name}</td>
+                      <td>{data?.role_name}</td>
                       <td>{data?.email}</td>
                       <td>{data?.phone}</td>
-                      <td>{data?.organization.name}</td>
-                      <td>
-                        <a
-                          href={`${url}/${data?.doc.path}`}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          <img
-                            src={DokPenunjangIcon}
-                            alt='Icon Dok. Penunjang'
-                          />
-                        </a>
-                      </td>
                       <td className={`${style.aksiButtonsWrapper}`}>
                         <button
                           type='button'
@@ -438,9 +410,6 @@ function TableBootstrap() {
                 <th>Username</th>
                 <th>Tipe</th>
                 <th>Email</th>
-                <th>No Telp.</th>
-                <th>Instansi</th>
-                <th>Dok. Penunjang</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -452,22 +421,8 @@ function TableBootstrap() {
                       <td>{i + 1}</td>
                       <td>{data?.name ?? ""}</td>
                       <td>{data?.username ?? ""}</td>
-                      <td>{data?.role.name ?? ""}</td>
+                      <td>{data?.role_name ?? ""}</td>
                       <td>{data?.email ?? ""}</td>
-                      <td>{data?.phone ?? ""}</td>
-                      <td>{data?.organization.name ?? ""}</td>
-                      <td>
-                        <a
-                          href={`${url}/${data?.doc.path}`}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
-                          <img
-                            src={DokPenunjangIcon}
-                            alt='Icon Dok. Penunjang'
-                          />
-                        </a>
-                      </td>
                       <td className={`${style.aksiButtonsWrapper}`}>
                         <button
                           type='button'
@@ -661,7 +616,7 @@ function TableBootstrap() {
                     onClick={() => {
                       toggleCustom("1");
                       dispatch(changeBreadcrumbItem("Verifikasi"));
-                      setqueryStatus("status=requested");
+                      setqueryStatus("status=belumterverifikasi");
                       setpageNumber(1);
                     }}
                   >
@@ -677,7 +632,7 @@ function TableBootstrap() {
                     onClick={() => {
                       toggleCustom("2");
                       dispatch(changeBreadcrumbItem("Pengguna Aktif"));
-                      setqueryStatus("status=verified");
+                      setqueryStatus("status=aktif");
                       setpageNumber(1);
                     }}
                   >
@@ -693,7 +648,7 @@ function TableBootstrap() {
                     onClick={() => {
                       toggleCustom("3");
                       dispatch(changeBreadcrumbItem("Pengguna Ditolak"));
-                      setqueryStatus("status=declined");
+                      setqueryStatus("status=tolak");
                       setpageNumber(1);
                     }}
                   >
@@ -774,7 +729,6 @@ function TableBootstrap() {
                     <option value='name'>Nama</option>
                     <option value='username'>Username</option>
                     <option value='email'>Email</option>
-                    <option value='phone'>Telepon</option>
                   </select>
                 </div>
                 <button
@@ -814,7 +768,6 @@ function TableBootstrap() {
                   }}
                 >
                   <option value=''>Pilih</option>
-                  <option value='organization'>Instansi</option>
                   <option value='role'>Tipe Pengguna</option>
                 </select>
                 {/* --- dropdown select value search input */}
@@ -827,20 +780,6 @@ function TableBootstrap() {
                     setactiveSearch("filter");
                   }}
                 >
-                  <option value=''>Pilih Instansi</option>
-                  {selectedField === "organization" &&
-                  orgList &&
-                  orgList.length !== 0 ? (
-                    orgList?.map((org, index) => {
-                      return (
-                        <option value={org?.name} key={index}>
-                          {org?.name ?? "Pilih Instansi"}
-                        </option>
-                      );
-                    })
-                  ) : (
-                    <></>
-                  )}
                   {selectedField === "role" &&
                   roleList &&
                   roleList.length !== 0 ? (

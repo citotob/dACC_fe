@@ -131,7 +131,7 @@ function TableBootstrap() {
 
   const getDataPenggunaTableVerified = () => {
     setloadingAktif(true);
-    API.getDataPenggunaTable("status=verified")
+    API.getDataPenggunaTable("status=aktif")
       .then((res) => {
         if (res.status === 200) {
           console.log("API Table Verified : ", res.data.values);

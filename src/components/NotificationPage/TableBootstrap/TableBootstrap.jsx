@@ -62,46 +62,46 @@ function TableBootstrap() {
   };
 
   // API fetch
-  const getNotifPerPage = () => {
-    let params = {
-      user: username,
-      page: pageNumber,
-      row: usersPerPage,
-    };
+  // const getNotifPerPage = () => {
+  //   let params = {
+  //     user: username,
+  //     page: pageNumber,
+  //     row: usersPerPage,
+  //   };
 
-    setloading(true);
-    API.getNotifPerPage(params)
-      .then((res) => {
-        if (res.status === 200) {
-          console.log("API SUCCESS Fetch Notification Table :  > ", res);
-          setnotifList(res.data.values);
-          if (res.data.values.length < usersPerPage) {
-            setdisabledNext(true);
-          } else {
-            setdisabledNext(false);
-          }
-        }
-        setloading(false);
-      })
-      .catch((err) => {
-        setloading(false);
-        console.log(err.response);
-      });
-  };
+  //   setloading(true);
+  //   API.getNotifPerPage(params)
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         console.log("API SUCCESS Fetch Notification Table :  > ", res);
+  //         setnotifList(res.data.values);
+  //         if (res.data.values.length < usersPerPage) {
+  //           setdisabledNext(true);
+  //         } else {
+  //           setdisabledNext(false);
+  //         }
+  //       }
+  //       setloading(false);
+  //     })
+  //     .catch((err) => {
+  //       setloading(false);
+  //       console.log(err.response);
+  //     });
+  // };
 
-  useEffect(() => {
-    if (selectedDate === "Filter Tanggal") {
-      getNotifPerPage();
-    } else {
-      handleSearchNotif();
-    }
+  // useEffect(() => {
+  //   if (selectedDate === "Filter Tanggal") {
+  //     getNotifPerPage();
+  //   } else {
+  //     handleSearchNotif();
+  //   }
 
-    if (pageNumber > 1) {
-      setdisabledPrev(false);
-    } else {
-      setdisabledPrev(true);
-    }
-  }, [pageNumber, usersPerPage, refresh]);
+  //   if (pageNumber > 1) {
+  //     setdisabledPrev(false);
+  //   } else {
+  //     setdisabledPrev(true);
+  //   }
+  // }, [pageNumber, usersPerPage, refresh]);
 
   const handleSelectedDate = (date) => {
     let startDate = moment(date[0].startDate);
