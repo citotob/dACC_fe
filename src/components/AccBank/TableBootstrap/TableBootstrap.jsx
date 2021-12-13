@@ -24,7 +24,6 @@ import style from "./style.module.css";
 // import "./style.css";
 
 // IMPORT ASSETS
-import DokPenunjangIcon from "../../../assets/icons/dok-penunjang-icon.svg";
 import AksiNoIcon from "../../../assets/icons/aksi-no.svg";
 import AksiYesIcon from "../../../assets/icons/aksi-yes.svg";
 
@@ -76,13 +75,13 @@ function TableBootstrap() {
   const [selectStateField, setSelectStateField] = useState(true);
 
   // fetch api
-  const getDataBankTable = () => {
+  const getDataAccBankTable = () => {
     setloading(true);
-    API.getDataBankTable(queryStatus, pageNumber, dataPerPage)
+    API.getDataAccBankTable(queryStatus, pageNumber, dataPerPage)
       .then((res) => {
         if (res.status === 200) {
           settableData(res.data.values);
-          console.table(res.data.values);
+          // console.table(res.data.values);
           if (res.data.values.length < dataPerPage) {
             setdisabledNext(true);
           } else {
@@ -108,7 +107,7 @@ function TableBootstrap() {
 
   useEffect(() => {
     if (!selectedField) {
-      getDataBankTable();
+      getDataAccBankTable();
     } else {
       if (activeSearch === "search") {
         handleFilterSearch(searchInput);
@@ -228,9 +227,9 @@ function TableBootstrap() {
             <thead>
               <tr>
                 <th>No.</th>
+                <th>Bank</th>
+                <th>Rekening</th>
                 <th>Nama</th>
-                <th>Code</th>
-                <th>Currency</th>
               </tr>
             </thead>
             <tbody>
@@ -239,9 +238,9 @@ function TableBootstrap() {
                   return (
                     <tr key={i}>
                       <td>{i + 1}</td>
+                      <td>{data?.bank_name}</td>
+                      <td>{data?.account}</td>
                       <td>{data?.name}</td>
-                      <td>{data?.code}</td>
-                      <td>{data?.currency}</td>
                     </tr>
                   );
                 })}
@@ -269,12 +268,12 @@ function TableBootstrap() {
                     })}
                     onClick={() => {
                       toggleCustom("2");
-                      dispatch(changeBreadcrumbItem("Bank Aktif"));
+                      dispatch(changeBreadcrumbItem("AccBank Aktif"));
                       setqueryStatus();
                       setpageNumber(1);
                     }}
                   >
-                    <span className='d-none d-sm-block'>Bank Aktif</span>
+                    <span className='d-none d-sm-block'>AccBank Aktif</span>
                   </NavLink>
                 </NavItem>
                 <div className={`${style.tableSearchWrapper} ml-auto`}>
@@ -348,8 +347,9 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
+                    <option value='bank_name'>Bank</option>
+                    <option value='account'>Akun</option>
                     <option value='name'>Nama</option>
-                    <option value='code'>Code</option>
                   </select>
                 </div>
                 <button
@@ -389,34 +389,9 @@ function TableBootstrap() {
                   }}
                 >
                   <option value=''>Pilih</option>
-                  <option value='name'>Bank</option>
-                  <option value='code'>Code</option>
+                  <option value='account'>Akun</option>
+                  <option value='name'>Nama</option>
                 </select>
-                {/* --- dropdown select value search input */}
-                <select
-                  name='fieldvalue'
-                  className={`${style.filterSearchSelect} w-75`}
-                  value={selectedFilter}
-                  onChange={(e) => {
-                    setselectedFilter(e.target.value);
-                    setactiveSearch("filter");
-                  }}
-                >
-                  {selectedField === "role" &&
-                  roleList &&
-                  roleList.length !== 0 ? (
-                    roleList?.map((role, index) => {
-                      return (
-                        <option value={role?.name} key={index}>
-                          {role?.name ?? "Pilih Bank"}
-                        </option>
-                      );
-                    })
-                  ) : (
-                    <></>
-                  )}
-                </select>
-
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {

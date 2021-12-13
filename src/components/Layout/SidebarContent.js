@@ -127,7 +127,7 @@ const SidebarContent = (props) => {
                   <Link to="/admin/bank">{props.t("BANK")}</Link>
                 </li>
                 <li>
-                  <Link to="/admin/rek-bank">{props.t("REKENING")}</Link>
+                  <Link to="/admin/accbank">{props.t("REKENING")}</Link>
                 </li>
                 <li>
                   <Link to="/admin/whitelabel">{props.t("WHITELABEL")}</Link>

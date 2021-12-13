@@ -9,6 +9,13 @@ import Get from "./Get";
 // cito
 const postAddBank = (data) => Post("datas/addBank", data, true);
 const postAddAccBank = (data) => Post("datas/addAccBank", data, true);
+
+const getDataRoleTable = (query, pageNumber, row) =>
+  Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getDataBankTable = (query, pageNumber, row) =>
+  Get(`datas/getBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getDataAccBankTable = (query, pageNumber, row) =>
+  Get(`datas/getAccBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -50,12 +57,6 @@ const getSurveyByDateAI = (data) =>
 // ============== PAGE : PENGGUNA
 const getDataPenggunaTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
-// cito
-const getDataRoleTable = (query, pageNumber, row) =>
-  Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
-const getDataBankTable = (query, pageNumber, row) =>
-  Get(`datas/getBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
-// 
 const postUserVerify = (data) => Post("user/verify", data, true);
 const postUserDecline = (data) => Post("user/decline", data, true);
 // ********** PENGUNA SEARCH
@@ -217,6 +218,8 @@ const createSurveyBTSPart10 = (data) =>
 // ====
 const API = {
   // cito
+  getDataBankTable,
+  getDataAccBankTable,
   postAddBank,
   postAddAccBank,
   // 
@@ -230,7 +233,6 @@ const API = {
   getDashboard,
   getDashboardSurveyor,
   getDataPenggunaTable,
-  getDataBankTable,
   getSurveyStatusAI,
   getSurveyStatusBTS,
   getSurveyIssue,
