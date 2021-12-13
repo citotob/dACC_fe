@@ -17,6 +17,11 @@ import AsyncHome from '../asyncPages/AsyncHome';
 
 import AsyncDashboardAdmin from '../asyncPages/AsyncDashboardAdmin';
 import AsyncPengguna from '../asyncPages/AsyncPengguna';
+// tambahan gw
+import AsyncRole from '../asyncPages/AsyncRole';
+import AsyncBank from '../asyncPages/AsyncBank';
+import AsyncAccBank from '../asyncPages/AsyncAccBank';
+// 
 import AsyncProfile from '../asyncPages/AsyncProfile';
 import AsyncLokasiSurvey from '../asyncPages/AsyncLokasiSurvey';
 import AsyncHasilSurvey from '../asyncPages/AsyncHasilSurvey';
@@ -59,6 +64,23 @@ const AppAdmin = (props) => {
         path={`${props.match.url}admin/data-pengguna`}
         component={AsyncPengguna}
       />
+      {/* tambahan gw */}
+      <Route
+        exact
+        path={`${props.match.url}admin/role`}
+        component={AsyncRole}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/bank`}
+        component={AsyncBank}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/accbank`}
+        component={AsyncAccBank}
+      />
+      {/*  */}
       <Route
         exact
         path={`${props.match.url}admin/profile`}
