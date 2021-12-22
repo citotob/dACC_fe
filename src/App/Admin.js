@@ -21,6 +21,9 @@ import AsyncPengguna from '../asyncPages/AsyncPengguna';
 import AsyncRole from '../asyncPages/AsyncRole';
 import AsyncBank from '../asyncPages/AsyncBank';
 import AsyncAccBank from '../asyncPages/AsyncAccBank';
+import AsyncWL from '../asyncPages/AsyncWL';
+import AsyncDeposit from '../asyncPages/AsyncDeposit';
+import AsyncWD from '../asyncPages/AsyncWD';
 // 
 import AsyncProfile from '../asyncPages/AsyncProfile';
 import AsyncLokasiSurvey from '../asyncPages/AsyncLokasiSurvey';
@@ -79,6 +82,21 @@ const AppAdmin = (props) => {
         exact
         path={`${props.match.url}admin/accbank`}
         component={AsyncAccBank}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/whitelabel`}
+        component={AsyncWL}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/deposit`}
+        component={AsyncDeposit}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/withdrawal`}
+        component={AsyncWD}
       />
       {/*  */}
       <Route

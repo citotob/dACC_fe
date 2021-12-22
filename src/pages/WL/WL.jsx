@@ -13,12 +13,12 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import style from "./style.module.css";
 
 // Import Components
-import Table from "../../components/AccBank/TableBootstrap/TableBootstrap";
+import Table from "../../components/WL/TableBootstrap/TableBootstrap";
 
 //import API
 import API from "../../services";
 
-function AccBank() {
+function WL() {
   let roleName = window.localStorage.getItem("roleName");
   let userId = window.localStorage.getItem("userid");
   const location = useLocation();
@@ -38,10 +38,11 @@ function AccBank() {
   const [docUpload, setDocUpload] = useState();
   const [errorDocFormat, setErrorDocFormat] = useState();
   // cito
+  const [id_wl, setId_wl] = useState("");
   const [name, setName] = useState("");
-  const [code, setCode] = useState("");
-  // const [currency, setCurrency] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState([]);
+  const [url_website, setUrl_website] = useState([]);
+  const [url_admin, setUrl_admin] = useState([]);
+  const [account_bank, setAccount_bank] = useState([]);
   // 
 
   // modal error messages
@@ -56,24 +57,28 @@ function AccBank() {
   // submit new Acc bank
   function handleValidSubmit(event, values) {
     if (
+      id_wl &&
       name &&
-      code &&
-      selectedCurrency
+      url_website &&
+      url_admin &&
+      account_bank
     ) {
-      postAddAccBank();
+      postAddWL();
     } else {
       // sweet alert 2 "data belum lengkap!"
     }
   }
 
-  const postAddAccBank = () => {
+  const postAddWL = () => {
     let formData = new URLSearchParams();
 
+    formData.append("id_wl", id_wl);
     formData.append("name", name);
-    formData.append("code", code);
-    formData.append("currency", selectedCurrency);
+    formData.append("url_website", url_website);
+    formData.append("url_admin", url_admin);
+    formData.append("account_bank", account_bank);
     formData.append("userid", userId);
-    API.postAddAccBank(formData)
+    API.postAddWL(formData)
       .then((res) => {
         if (res.status === 200) {
           settoggleAlert(true);
@@ -82,12 +87,14 @@ function AccBank() {
             settoggleAlert(false);
           }, 3000);
         }
+        setId_wl("");
         setName("");
-        setCode("");
-        selectedCurrency("");
+        setUrl_website([]);
+        setUrl_admin([]);
+        setAccount_bank([]);
       })
       .catch((err) => {
-        setErrorMessage(err?.response?.data?.message ?? "Tambah AccBank Gagal");
+        setErrorMessage(err?.response?.data?.message ?? "Tambah Whitelabel Gagal");
         settoggleFailedAlert(true);
         setTimeout(() => {
           settoggleFailedAlert(false);
@@ -97,7 +104,7 @@ function AccBank() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      postAddAccBank();
+      postAddWL();
     }
   };
 
@@ -150,7 +157,7 @@ function AccBank() {
               isOpen={toggleAlert}
               className={style.alertDetail}
             >
-              Tambah AccBank berhasil
+              Tambah Whitelabel berhasil
             </Alert>
             <Alert
               color={"danger"}
@@ -159,16 +166,35 @@ function AccBank() {
             >
               {errorMessage &&
                 errorMessage?.includes("name") &&
-                "Nama AccBank Sudah Ada"}
-              {errorMessage &&
-                errorMessage?.includes("currency") &&
-                "Currency Sudah Ada"}
+                "Nama WhiteLabel Sudah Ada"}
             </Alert>
           </div>
-          <h5 className={style.title}>Tambahkan AccBank</h5>
+          <h5 className={style.title}>Tambahkan WL</h5>
           {/* ============================== form start  */}
 
-          <AvForm className='form-horizontal' onValidSubmit={() => postAddAccBank()}>
+          <AvForm className='form-horizontal' onValidSubmit={() => postAddWL()}>
+            <AvField
+              name='id_wlCustomMessage'
+              label='Id_wl'
+              type='text'
+              placeholder='Id_wl'
+              onChange={(e) => setId_wl(e.target.value)}
+              className={`${style.placeholder} form-control`}
+              validate={{
+                required: {
+                  value: true,
+                  errorMessage: "Please enter a id_wl",
+                },
+                pattern: {
+                  value: "^[A-Za-z0-9]+$",
+                  errorMessage: "Nama hanya berisi huruf dan angka",
+                },
+                minLength: {
+                  value: 1,
+                  errorMessage: "Nama harus lebih dari 1 karakter",
+                },
+              }}
+            />
             <AvField
               name='nameCustomMessage'
               label='Name'
@@ -192,16 +218,16 @@ function AccBank() {
               }}
             />
             <AvField
-              name='codeCustomMessage'
-              label='Code'
+              name='url_websiteCustomMessage'
+              label='Url_website'
               type='text'
-              placeholder='Code'
-              onChange={(e) => setCode(e.target.value)}
+              placeholder='url_website'
+              onChange={(e) => setUrl_website(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
                   value: true,
-                  errorMessage: "Please enter a code",
+                  errorMessage: "Please enter a Url_website",
                 },
                 pattern: {
                   value: "^[A-Za-z0-9]+$",
@@ -213,18 +239,28 @@ function AccBank() {
                 },
               }}
             />
-            <label className='col-form-label'>Pilih Currency</label>
-            <div>
-              <select
-                name='Currency'
-                onChange={(e) => setSelectedCurrency(e.target.value)}
-                className={`form-control form-group ${style.placeholder}`}
-              >
-                <option value=''>Pilih</option>
-                <option value='IDR'>IDR</option>
-                <option value='USD'>USD</option>
-              </select>
-            </div>
+            <AvField
+              name='url_adminCustomMessage'
+              label='Url_admin'
+              type='text'
+              placeholder='Url_admin'
+              onChange={(e) => setUrl_admin(e.target.value)}
+              className={`${style.placeholder} form-control`}
+              validate={{
+                required: {
+                  value: true,
+                  errorMessage: "Please enter a Url_admin",
+                },
+                pattern: {
+                  value: "^[A-Za-z0-9]+$",
+                  errorMessage: "Code hanya berisi huruf dan angka",
+                },
+                minLength: {
+                  value: 1,
+                  errorMessage: "Code harus lebih dari 1 karakter",
+                },
+              }}
+            />
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
@@ -256,7 +292,7 @@ function AccBank() {
   return (
     <div>
       <div className={`${alertAddDataStatus}`}>
-        <Alert color='success'>AccBank berhasil di Ditambahkan!</Alert>
+        <Alert color='success'>WhiteLabel berhasil di Ditambahkan!</Alert>
       </div>
       <div className='page-content px-4'>
         {modalAddData()}
@@ -284,7 +320,7 @@ function AccBank() {
             </div>
           </div>
           <div>
-            <Breadcrumbs title='Data AccBank' breadcrumbItem='Aktif' />
+            <Breadcrumbs title='Data WhiteLabel' breadcrumbItem='Aktif' />
           </div>
         </div>
         {/* ======================== CONTENT ======================= */}
@@ -296,4 +332,4 @@ function AccBank() {
   );
 }
 
-export default AccBank;
+export default WL;

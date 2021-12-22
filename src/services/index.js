@@ -9,6 +9,9 @@ import Get from "./Get";
 // cito
 const postAddBank = (data) => Post("datas/addBank", data, true);
 const postAddAccBank = (data) => Post("datas/addAccBank", data, true);
+const postAddWL = (data) => Post("datas/addWL", data, true);
+const postAddDeposit = (data) => Post("depo/add", data, true);
+const postAddWD = (data) => Post("withdrawal/add", data, true);
 
 const getDataRoleTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
@@ -16,6 +19,17 @@ const getDataBankTable = (query, pageNumber, row) =>
   Get(`datas/getBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getDataAccBankTable = (query, pageNumber, row) =>
   Get(`datas/getAccBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getDataWLTable = (query, pageNumber, row) =>
+  Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getDataDepositTable = (query, userId, pageNumber, row) =>
+  Get(`depo/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
+const getAccBank = (query, pageNumber, row) =>
+  Get(`datas/getAccBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getWL = (query, pageNumber, row) =>
+  Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
+
+const getDataWDTable = (query, userId, pageNumber, row) =>
+  Get(`withdrawal/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -220,8 +234,17 @@ const API = {
   // cito
   getDataBankTable,
   getDataAccBankTable,
+  getDataWLTable,
+  getDataDepositTable,
+  getAccBank,
+  getWL,
+  getDataWDTable,
+
   postAddBank,
   postAddAccBank,
+  postAddWL,
+  postAddDeposit,
+  postAddWD,
   // 
   getRole,
   getVPAll,

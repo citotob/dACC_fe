@@ -13,12 +13,12 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import style from "./style.module.css";
 
 // Import Components
-import Table from "../../components/AccBank/TableBootstrap/TableBootstrap";
+import Table from "../../components/Deposit/TableBootstrap/TableBootstrap";
 
 //import API
 import API from "../../services";
 
-function AccBank() {
+function Deposit() {
   let roleName = window.localStorage.getItem("roleName");
   let userId = window.localStorage.getItem("userid");
   const location = useLocation();
@@ -38,10 +38,14 @@ function AccBank() {
   const [docUpload, setDocUpload] = useState();
   const [errorDocFormat, setErrorDocFormat] = useState();
   // cito
-  const [name, setName] = useState("");
-  const [code, setCode] = useState("");
-  // const [currency, setCurrency] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState([]);
+  const [ticket_id, setTicket_id] = useState("");
+  const [member, setMember] = useState("");
+  const [bank_member, setBank_member] = useState("");
+  const [bank_destination, setBank_destination] = useState([]);
+  const [selectedBank_destination, setSelectedBank_destination] = useState([]);
+  const [amount, setAmount] = useState("");
+  const [whitelabel, setWhitelabel] = useState([]);
+  const [selectedWhitelabel, setSelectedWhitelabel] = useState([]);
   // 
 
   // modal error messages
@@ -49,31 +53,63 @@ function AccBank() {
   const [toggleAlert, settoggleAlert] = useState(false);
   const [toggleFailedAlert, settoggleFailedAlert] = useState(false);
 
+  // initial data for modal tambah pengguna
+  const getInitData = () => {
+    API.getAccBank()
+      .then((res) => {
+        const accBankData = res?.data?.values ?? "";
+        // console.log("iniroledata", roleData)
+        if (res.status === 200) {
+          setBank_destination(accBankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    API.getWL()
+      .then((res) => {
+        const wlData = res?.data?.values ?? "";
+        if (res.status === 200) {
+          setWhitelabel(wlData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
+    getInitData();
   }, []);
 
   // modal functions
   // submit new Acc bank
   function handleValidSubmit(event, values) {
     if (
-      name &&
-      code &&
-      selectedCurrency
+      ticket_id &&
+      member &&
+      bank_member &&
+      selectedBank_destination &&
+      amount &&
+      selectedWhitelabel
     ) {
-      postAddAccBank();
+      postAddDeposit();
     } else {
       // sweet alert 2 "data belum lengkap!"
     }
   }
 
-  const postAddAccBank = () => {
+  const postAddDeposit = () => {
     let formData = new URLSearchParams();
 
-    formData.append("name", name);
-    formData.append("code", code);
-    formData.append("currency", selectedCurrency);
+    formData.append("ticket_id", ticket_id);
+    formData.append("member", member);
+    formData.append("bank_member", bank_member);
+    formData.append("bank_destination", selectedBank_destination);
+    formData.append("amount", amount);
+    formData.append("whitelabel", selectedWhitelabel);
     formData.append("userid", userId);
-    API.postAddAccBank(formData)
+    API.postAddDeposit(formData)
       .then((res) => {
         if (res.status === 200) {
           settoggleAlert(true);
@@ -82,12 +118,17 @@ function AccBank() {
             settoggleAlert(false);
           }, 3000);
         }
-        setName("");
-        setCode("");
-        selectedCurrency("");
+        setTicket_id("");
+        setMember("");
+        setBank_member("");
+        setBank_destination([]);
+        setSelectedBank_destination([]);
+        setAmount("");
+        setWhitelabel([]);
+        setSelectedWhitelabel([]);
       })
       .catch((err) => {
-        setErrorMessage(err?.response?.data?.message ?? "Tambah AccBank Gagal");
+        setErrorMessage(err?.response?.data?.message ?? "Tambah Deposit Gagal");
         settoggleFailedAlert(true);
         setTimeout(() => {
           settoggleFailedAlert(false);
@@ -97,7 +138,7 @@ function AccBank() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      postAddAccBank();
+      postAddDeposit();
     }
   };
 
@@ -150,7 +191,7 @@ function AccBank() {
               isOpen={toggleAlert}
               className={style.alertDetail}
             >
-              Tambah AccBank berhasil
+              Tambah Deposit berhasil
             </Alert>
             <Alert
               color={"danger"}
@@ -159,27 +200,56 @@ function AccBank() {
             >
               {errorMessage &&
                 errorMessage?.includes("name") &&
-                "Nama AccBank Sudah Ada"}
+                "Nama Deposit Sudah Ada"}
               {errorMessage &&
                 errorMessage?.includes("currency") &&
                 "Currency Sudah Ada"}
             </Alert>
           </div>
-          <h5 className={style.title}>Tambahkan AccBank</h5>
+          <h5 className={style.title}>Tambahkan Deposit</h5>
           {/* ============================== form start  */}
 
-          <AvForm className='form-horizontal' onValidSubmit={() => postAddAccBank()}>
+          <AvForm className='form-horizontal' onValidSubmit={() => postAddDeposit()}>
+            <label className='col-form-label'>Pilih White Label</label>
+            <div>
+              <select
+                name='whitelabel'
+                onChange={(e) => setSelectedWhitelabel(e.target.value)}
+                className={`form-control form-group ${style.placeholder}`}
+              >
+                <option className={style.placeholder}>
+                  Pilih White Label
+                </option>
+                {whitelabel && whitelabel.length !== 0 ? (
+                  whitelabel?.map((whitelabel, index) => {
+                    return (
+                      <option
+                        className={style.placeholder}
+                        value={whitelabel?.id}
+                        key={index}
+                      >
+                        {whitelabel?.name ?? "Pilih White Label"}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option className={style.placeholder}>
+                    Pilih White Label
+                  </option>
+                )}
+              </select>
+            </div>
             <AvField
-              name='nameCustomMessage'
-              label='Name'
+              name='ticketCustomMessage'
+              label='Ticket'
               type='text'
-              placeholder='Nama'
-              onChange={(e) => setName(e.target.value)}
+              placeholder='Ticket'
+              onChange={(e) => setTicket_id(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
                   value: true,
-                  errorMessage: "Please enter a name",
+                  errorMessage: "Please enter a tiket",
                 },
                 pattern: {
                   value: "^[A-Za-z0-9]+$",
@@ -192,16 +262,16 @@ function AccBank() {
               }}
             />
             <AvField
-              name='codeCustomMessage'
-              label='Code'
+              name='memberCustomMessage'
+              label='Member'
               type='text'
-              placeholder='Code'
-              onChange={(e) => setCode(e.target.value)}
+              placeholder='Member'
+              onChange={(e) => setMember(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
                   value: true,
-                  errorMessage: "Please enter a code",
+                  errorMessage: "Please enter a member",
                 },
                 pattern: {
                   value: "^[A-Za-z0-9]+$",
@@ -213,18 +283,80 @@ function AccBank() {
                 },
               }}
             />
-            <label className='col-form-label'>Pilih Currency</label>
+            <AvField
+              name='bank_memberCustomMessage'
+              label='Bank Member'
+              type='text'
+              placeholder='Bank Member'
+              onChange={(e) => setBank_member(e.target.value)}
+              className={`${style.placeholder} form-control`}
+              validate={{
+                required: {
+                  value: true,
+                  errorMessage: "Please enter a Bank Member",
+                },
+                pattern: {
+                  value: "^[A-Za-z0-9]+$",
+                  errorMessage: "Code hanya berisi huruf dan angka",
+                },
+                minLength: {
+                  value: 1,
+                  errorMessage: "Code harus lebih dari 1 karakter",
+                },
+              }}
+            />
+            <label className='col-form-label'>Pilih Bank Destination</label>
             <div>
               <select
-                name='Currency'
-                onChange={(e) => setSelectedCurrency(e.target.value)}
+                name='bank_destination'
+                onChange={(e) => setSelectedBank_destination(e.target.value)}
                 className={`form-control form-group ${style.placeholder}`}
               >
-                <option value=''>Pilih</option>
-                <option value='IDR'>IDR</option>
-                <option value='USD'>USD</option>
+                <option className={style.placeholder}>
+                  Pilih Bank Destination
+                </option>
+                {bank_destination && bank_destination.length !== 0 ? (
+                  bank_destination?.map((bank_destination, index) => {
+                    return (
+                      <option
+                        className={style.placeholder}
+                        value={bank_destination?.id}
+                        key={index}
+                      >
+                        {/* {bank_destination?.name ?? "Pilih Bank Destination"} */}
+                        {bank_destination?.bank_name}-{bank_destination?.account}-{bank_destination?.name}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option className={style.placeholder}>
+                    Pilih Bank Destination
+                  </option>
+                )}
               </select>
             </div>
+            <AvField
+              name='amountCustomMessage'
+              label='Amount'
+              type='text'
+              placeholder='Amount'
+              onChange={(e) => setAmount(e.target.value)}
+              className={`${style.placeholder} form-control`}
+              validate={{
+                required: {
+                  value: true,
+                  errorMessage: "Please enter a Amount",
+                },
+                pattern: {
+                  value: "^[A-Za-z0-9]+$",
+                  errorMessage: "hanya berisi huruf dan angka",
+                },
+                minLength: {
+                  value: 1,
+                  errorMessage: "harus lebih dari 1 karakter",
+                },
+              }}
+            />
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
@@ -256,7 +388,7 @@ function AccBank() {
   return (
     <div>
       <div className={`${alertAddDataStatus}`}>
-        <Alert color='success'>AccBank berhasil di Ditambahkan!</Alert>
+        <Alert color='success'>Deposit berhasil di Ditambahkan!</Alert>
       </div>
       <div className='page-content px-4'>
         {modalAddData()}
@@ -284,7 +416,7 @@ function AccBank() {
             </div>
           </div>
           <div>
-            <Breadcrumbs title='Data AccBank' breadcrumbItem='Aktif' />
+            <Breadcrumbs title='Data Deposit' breadcrumbItem='Aktif' />
           </div>
         </div>
         {/* ======================== CONTENT ======================= */}
@@ -296,4 +428,4 @@ function AccBank() {
   );
 }
 
-export default AccBank;
+export default Deposit;
