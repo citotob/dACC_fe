@@ -150,7 +150,7 @@ const SidebarContent = (props) => {
               </ul>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="bx bx-line-chart-down"></i>
                 <span>{props.t("REPORT")}</span>
@@ -163,7 +163,7 @@ const SidebarContent = (props) => {
                   <Link to="/admin/report-withdrawal">{props.t("WITHDRAWAL")}</Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
         )}
 
