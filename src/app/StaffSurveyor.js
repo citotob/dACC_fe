@@ -8,8 +8,6 @@ import AsyncNotificationPage from "../asyncPages/AsyncNotificationPage";
 import AsyncHasilSurvey from "../asyncPages/AsyncHasilSurvey";
 import AsyncFormPenugasanStaff from "../asyncPages/AsyncFormPenugasanStaff";
 import AsyncFormPenugasanStaffAI from "../asyncPages/AsyncFormPenugasanStaffAI";
-// import AsyncDetailIssue from "../asyncPages/AsyncDetailIssue";
-// import AsyncDetailSurveyBTS from "../asyncPages/AsyncDetailSurveyBTS";
 import AsyncProfile from "../asyncPages/AsyncProfile";
 import AsyncFAQ from "../asyncPages/AsyncFAQ";
 // import Home from "../pages/Home/Executive";
