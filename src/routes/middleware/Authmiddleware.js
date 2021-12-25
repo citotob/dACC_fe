@@ -4,7 +4,7 @@ import AppAdmin from "../../App/Admin";
 import AppVendor from "../../App/Vendor";
 import AppExecutive from "../../App/Executive";
 import AppSurveyor from "../../App/Surveyor";
-// import AppStaffSurveyor from "../../App/StaffSurveyor";
+import AppStaffSurveyor from "../../App/StaffSurveyor";
 
 const Authmiddleware = ({ component: Component, layout: Layout }) => (
   <Route
@@ -37,12 +37,12 @@ const Authmiddleware = ({ component: Component, layout: Layout }) => (
                   <AppSurveyor {...props} />
                 </Layout>
               );
-            // case "staffsurveyor":
-            //   return (
-            //     <Layout>
-            //       <AppStaffSurveyor {...props} />
-            //     </Layout>
-            //   );
+            case "staffsurveyor":
+              return (
+                <Layout>
+                  <AppStaffSurveyor {...props} />
+                </Layout>
+              );
             case "Penyedia":
               return (
                 <Layout>
