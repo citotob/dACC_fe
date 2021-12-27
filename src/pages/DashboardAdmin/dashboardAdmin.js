@@ -45,11 +45,8 @@ const DashboardAdmin = ({ title }) => {
   const [loadingCard, setloadingCard] = useState(false);
 
   const getDashboardCard = () => {
-    let params = {
-      userid: userId
-    };
     setloadingCard(true);
-    API.getDashboard(params)
+    API.getDashboard()
       .then((res) => {
         if (res.status === 200) {
           // console.log("res dari get DASHBOARD : ", res.data.values);
