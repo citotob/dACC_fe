@@ -30,6 +30,8 @@ const getWL = (query, pageNumber, row) =>
 
 const getDataWDTable = (query, userId, pageNumber, row) =>
   Get(`withdrawal/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
+
+const getDashboard = () => Get("dashboard/getAdmin/", "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -60,7 +62,7 @@ const getStaffSurveyor = (id_surveyor) =>
 const changePassword = (data) => Post("user/changepassword", data, true);
 
 // ============== PAGE : DASHBOARD
-const getDashboard = () => Get("survey/getpenugasan/count/", "", false);
+// const getDashboard = () => Get("survey/getpenugasan/count/", "", false);
 const getPenugasanCountProvinsi = () =>
   Get("survey/getpenugasan/count/provinsi", "", false); // DASHBOARD CARD MAP
 const getSurveyByDateBTS = (data) =>

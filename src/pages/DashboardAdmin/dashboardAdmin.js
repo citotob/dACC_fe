@@ -26,6 +26,7 @@ import styles from "./style.module.css";
 import API from "../../services";
 
 const DashboardAdmin = ({ title }) => {
+  let userId = window.localStorage.getItem("userid");
   // Page title
   const location = useLocation();
   const url = window.location.href;
@@ -44,8 +45,11 @@ const DashboardAdmin = ({ title }) => {
   const [loadingCard, setloadingCard] = useState(false);
 
   const getDashboardCard = () => {
+    let params = {
+      userid: userId
+    };
     setloadingCard(true);
-    API.getDashboard()
+    API.getDashboard(params)
       .then((res) => {
         if (res.status === 200) {
           // console.log("res dari get DASHBOARD : ", res.data.values);
@@ -70,63 +74,34 @@ const DashboardAdmin = ({ title }) => {
   // Data Dashboard
   const cardSmall = [
     {
-      title: "Total Lokasi Akses Internet Diajukan",
+      title: "Total Deposit",
       amount: loadingCard ? (
         <Skeleton width={100} />
       ) : (
-        `${dashboardData?.penugasan_ai ?? ""}`
+        `${dashboardData?.count_dp ?? ""}`
       ),
       icon: `${DiajukanMedBlue}`,
     },
     {
-      title: "Total Lokasi Akses Internet Sudah Disurvey",
+      title: "Total WD",
       amount: loadingCard ? (
         <Skeleton width={100} />
       ) : (
-        `${dashboardData?.penugasan_ai_surveyed ?? ""}`
+        `${dashboardData?.count_wd ?? ""}`
       ),
       icon: `${DisurveyMedBlue}`,
     },
     {
-      title: "Total Issue Temuan Dari Hasil Survey Akses Internet",
+      title: "Total WL",
       amount: loadingCard ? (
         <Skeleton width={100} />
       ) : (
-        `${dashboardData?.penugasan_ai_issue ?? ""}`
+        `${dashboardData?.count_wl ?? ""}`
       ),
       icon: `${IsuMedBlue}`,
     },
   ];
 
-  const cardSmallDarkBlue = [
-    {
-      title: "Total Lokasi BTS Diajukan",
-      amount: loadingCard ? (
-        <Skeleton width={100} />
-      ) : (
-        `${dashboardData?.penugasan_bts ?? ""}`
-      ),
-      icon: `${DiajukanDarkBlue}`,
-    },
-    {
-      title: "Total Lokasi BTS Sudah Disurvey",
-      amount: loadingCard ? (
-        <Skeleton width={100} />
-      ) : (
-        `${dashboardData?.penugasan_bts_surveyed ?? ""}`
-      ),
-      icon: `${DisurveyDarkBlue}`,
-    },
-    {
-      title: "Total Issue Temuan Dari Hasil Survey BTS",
-      amount: loadingCard ? (
-        <Skeleton width={100} />
-      ) : (
-        `${dashboardData?.penugasan_bts_issue ?? ""}`
-      ),
-      icon: `${IsuDarkBlue}`,
-    },
-  ];
 
   return (
     <div className='page-content px-4 overflow-auto'>
@@ -150,28 +125,6 @@ const DashboardAdmin = ({ title }) => {
             );
           })}
         </ul>
-      </div>
-      <div className={styles.container}>
-        <ul className={`row ${styles.ul}`}>
-          {cardSmallDarkBlue.map((e, i) => {
-            return (
-              <li
-                key={i}
-                className={`col-lg-4 col-m-12 col-s-12 mb-2 ${styles.li}`}
-              >
-                <CardSmallDarkBlue
-                  title={e.title}
-                  amount={e.amount}
-                  icon={e.icon}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div className='row'>
-        <CardChart />
-        <CardMap />
       </div>
     </div>
   );
