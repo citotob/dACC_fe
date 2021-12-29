@@ -42,7 +42,7 @@ const getVPAll = () => Get("vendorperformance/all/", "", false);
 const getNotif = (data) => Post("user/getnotif", data, true); // NOTIFICATION
 const searchNotif = (data) => Post("user/searchNotif", data, true); // SEARCH NOTIFICATION
 const getNotifPerPage = (data) => Post("user/getnotifPerPage", data, true);
-const getRole = () => Get("user/getrole", "", false); // ROLE LIST
+const getRole = () => Get("user/getRole", "", false); // ROLE LIST
 const getSurveyor = (data) => Post("survey/getsurveyor", data, true); // ORGANISATION LIST
 const getLokasiProvinsi = () => Get("location/provinsi/", "", false);
 const getLokasiKabKota = (data) =>

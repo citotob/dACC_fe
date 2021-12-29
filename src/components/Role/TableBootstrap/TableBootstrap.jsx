@@ -286,7 +286,6 @@ function TableBootstrap() {
       });
   };
 
-  console.log("ok--",tableData);
   // Table components
   const tableVerifikasi = () => {
     return (

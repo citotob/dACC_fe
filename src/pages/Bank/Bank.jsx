@@ -73,7 +73,6 @@ function Bank() {
     formData.append("code", code);
     formData.append("currency", selectedCurrency);
     formData.append("userid", userId);
-    console.log("ok--",name,code,selectedCurrency)
     API.postAddBank(formData)
       .then((res) => {
         if (res.status === 200) {

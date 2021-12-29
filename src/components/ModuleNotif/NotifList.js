@@ -42,15 +42,15 @@ const NotifList = (props) => {
       // 	setIsLoad(false);
       // });
     }
-    setTimeout(() => {
-      //Notif = Type of notif
-      if (Notif === "batchoffersubmitted") {
-        history.push("/Pages404");
-      }
-      if (Notif === "newuser") {
-        history.push("/Pages404");
-      }
-    }, 200);
+    // setTimeout(() => {
+    //   //Notif = Type of notif
+    //   if (Notif === "batchoffersubmitted") {
+    //     history.push("/Pages404");
+    //   }
+    //   if (Notif === "newuser") {
+    //     history.push("/Pages404");
+    //   }
+    // }, 200);
   };
 
   const getNotif = () => {

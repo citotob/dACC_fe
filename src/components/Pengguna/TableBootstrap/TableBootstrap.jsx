@@ -59,7 +59,6 @@ function TableBootstrap() {
   // modal states
   const [modalVerifyOpen, setmodalVerifyOpen] = useState(false);
   const [modalRejectOpen, setmodalRejectOpen] = useState(false);
-  const [alasanTolak, setalasanTolak] = useState("");
 
   // endpoint query status
   const [queryStatus, setqueryStatus] = useState("status=belumterverifikasi");
@@ -107,18 +106,19 @@ function TableBootstrap() {
   };
 
   // initial data for dropdown role and organization list
-  // const getInitData = () => {
-    // API.getRole()
-    //   .then((res) => {
-    //     const roleData = res?.data?.values ?? "";
+  const getInitData = () => {
+    API.getRole()
+      .then((res) => {
+        const roleData = res?.data?.values ?? "";
 
-    //     if (res.status === 200) {
-    //       setroleList(roleData);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+        if (res.status === 200) {
+          console.log(roleData);
+          setroleList(roleData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // const params = {
     //   surveyor: "all",
     //   jenis: "ai/bts",
@@ -133,7 +133,7 @@ function TableBootstrap() {
     //   .catch((err) => {
     //     console.log(err);
     //   });
-  // };
+  };
 
   // useeffect
 
@@ -152,7 +152,7 @@ function TableBootstrap() {
         handleFilterSearch(selectedFilter);
       }
     }
-    // getInitData();
+    getInitData();
 
     if (pageNumber > 1) {
       setdisabledPrev(false);
@@ -168,7 +168,6 @@ function TableBootstrap() {
   }
   function tog_reject() {
     setmodalRejectOpen(!modalRejectOpen);
-    settextarearequiredtext(false);
     removeBodyCss();
   }
   function removeBodyCss() {
@@ -211,23 +210,11 @@ function TableBootstrap() {
 
   // Text Area Functions
   const [textcount, settextcount] = useState(0);
-  const [textareabadge, settextareabadge] = useState(0);
-  const [textarearequiredtext, settextarearequiredtext] = useState(false);
-  function textareachange(event) {
-    var count = event.target.value.length;
-    if (count > 0) {
-      settextareabadge(true);
-    } else {
-      settextareabadge(false);
-    }
-    settextcount(event.target.value.length);
-  }
 
   // Action Button Functions
   const handleVerifyAction = (data) => {
-    let params = {
-      id: data,
-    };
+    let params = new URLSearchParams();
+    params.append("id", data);
     API.postUserVerify(params)
       .then((res) => {
         if (res.status === 200) {
@@ -240,10 +227,8 @@ function TableBootstrap() {
   };
 
   const handleDeclineAction = (data) => {
-    let params = {
-      id: data,
-      comment: alasanTolak,
-    };
+    let params = new URLSearchParams();
+    params.append("id", data);
     API.postUserDecline(params)
       .then((res) => {
         if (res.status === 200) {
@@ -286,7 +271,6 @@ function TableBootstrap() {
       });
   };
 
-  console.log("ok--",tableData);
   // Table components
   const tableVerifikasi = () => {
     return (
@@ -482,7 +466,7 @@ function TableBootstrap() {
                 className={`bln-block waves-effect waves-light ${style.yesButton}`}
                 onClick={() => {
                   tog_verfiy();
-                  handleVerifyAction(selectedTableData._id);
+                  handleVerifyAction(selectedTableData?.id);
                   setrefresh(!refresh);
                   setalertVerifyStatus(style.alertOn);
                   setTimeout(() => {
@@ -517,25 +501,6 @@ function TableBootstrap() {
           </div>
           <div className={`d-flex flex-column align-items-center gap16`}>
             <p className={style.confirmation}>Tolak pendaftaran akun?</p>
-            <div style={{ width: "360px" }}>
-              <Input
-                type='textarea'
-                id='textarea'
-                onChange={(e) => {
-                  textareachange(e);
-                  setalasanTolak(e.target.value);
-                }}
-                maxLength='225'
-                rows='3'
-                placeholder='Tuliskan alasan penolakan'
-              />
-              {textareabadge ? (
-                <span className='badgecount badge badge-success '>
-                  {textcount} / 225{" "}
-                </span>
-              ) : null}
-            </div>
-
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
@@ -547,45 +512,23 @@ function TableBootstrap() {
               >
                 Tutup
               </button>
-              {textcount !== 0 ? (
-                <button
-                  type='button'
-                  className={`bln-block waves-effect waves-light ${style.yesButton}`}
-                  onClick={() => {
-                    tog_reject();
-                    settextcount(0);
-                    handleDeclineAction(selectedTableData._id);
-                    setrefresh(!refresh);
-                    settextarearequiredtext(false);
-                    setalertRejectStatus(style.alertOn);
-                    setTimeout(() => {
-                      setalertRejectStatus(style.alertOff);
-                      setselectedTableData(null);
-                      setalasanTolak("");
-                    }, 2000);
-                  }}
-                >
-                  Iya
-                </button>
-              ) : (
-                <button
-                  type='button'
-                  className={`bln-block waves-effect waves-light ${style.yesButton}`}
-                  onClick={() => {
-                    settextarearequiredtext(true);
-                  }}
-                >
-                  Iya
-                </button>
-              )}
+              <button
+                type='button'
+                className={`bln-block waves-effect waves-light ${style.yesButton}`}
+                onClick={() => {
+                  tog_reject();
+                  handleDeclineAction(selectedTableData?.id);
+                  setrefresh(!refresh);
+                  setalertRejectStatus(style.alertOn);
+                  setTimeout(() => {
+                    setalertRejectStatus(style.alertOff);
+                    setselectedTableData(null);
+                  }, 2000);
+                }}
+              >
+                Iya
+              </button>
             </div>
-            {textarearequiredtext && textcount === 0 ? (
-              <span className={`${style.textAreaRequiredText}`}>
-                Tolong diisi alasan penolakan
-              </span>
-            ) : (
-              <></>
-            )}
           </div>
         </div>
       </Modal>

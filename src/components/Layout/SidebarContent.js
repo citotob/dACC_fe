@@ -117,9 +117,9 @@ const SidebarContent = (props) => {
                 <span>{props.t("DATA")}</span>
               </Link>
               <ul className="sub-menu" aria-expanded="false">
-                <li>
+                {/* <li>
                   <Link to="/admin/role">{props.t("ROLE")}</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/admin/data-pengguna">{props.t("PENGGUNA")}</Link>
                 </li>

@@ -33,13 +33,9 @@ function Pengguna() {
 
   // modal states
   const [modalAddDataOpen, setmodalAddDataOpen] = useState(false);
-  const [docUpload, setDocUpload] = useState();
   const [errorDocFormat, setErrorDocFormat] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [organization, setOrganization] = useState([]);
-  const [selectedOrganization, setSelectedOrganization] = useState();
   const [role, setRole] = useState([]);
   const [selectedRole, setSelectedRole] = useState([]);
   const [username, setUsername] = useState("");
@@ -63,22 +59,6 @@ function Pengguna() {
       .catch((err) => {
         console.log(err);
       });
-    const params = {
-      surveyor: "all",
-      jenis: "ai/bts",
-    };
-    API.getSurveyor(params)
-      .then((res) => {
-        // console.log("ini res data getsurveyor :", res.data)
-        const organizationData = res?.data?.values ?? "";
-        if (res.status === 200) {
-          setOrganization(organizationData);
-          // console.log("organization", organizationData)
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   useEffect(() => {
@@ -91,12 +71,9 @@ function Pengguna() {
     if (
       name &&
       email &&
-      phone &&
-      organization &&
       role &&
       username &&
-      password &&
-      docUpload
+      password
     ) {
       postRegis();
     } else {
@@ -109,12 +86,9 @@ function Pengguna() {
 
     formData.append("name", name);
     formData.append("email", email);
-    formData.append("phone", phone);
-    formData.append("organization", selectedOrganization);
     formData.append("role", selectedRole);
     formData.append("username", username);
     formData.append("password", password);
-    formData.append("doc", docUpload);
 
     console.log("form data dari register", formData);
     API.postRegis(formData)
@@ -128,14 +102,10 @@ function Pengguna() {
         }
         setName("");
         setEmail("");
-        setPhone("");
-        setOrganization([]);
-        setSelectedOrganization();
         setRole([]);
         setSelectedRole([]);
         setUsername("");
         setPassword("");
-        setDocUpload("");
       })
       .catch((err) => {
         setErrorMessage(err?.response?.data?.message ?? "Register Gagal");
@@ -167,18 +137,6 @@ function Pengguna() {
   }
 
   function handleChange(e) {
-    switch (e.target.name) {
-      case "doc":
-        let fileExtension = e.target.files[0].name.split(".").pop();
-        if (fileExtension !== "pdf") {
-          setErrorDocFormat("Format Dokumen harus .pdf");
-          setDocUpload("");
-        } else {
-          setErrorDocFormat("");
-          setDocUpload(e.target.files[0]);
-        }
-        break;
-    }
   }
 
   // Modal component for tambah data
@@ -290,50 +248,6 @@ function Pengguna() {
               </select>
             </div>
             <AvField
-              name='phone'
-              label='No. Telp'
-              value=''
-              type='number'
-              className={style.placeholder}
-              placeholder='No. Telp'
-              onChange={(e) => setPhone(e.target.value)}
-              validate={{
-                required: {
-                  value: true,
-                  errorMessage: "Masukkan No. Telp yang valid",
-                },
-                number: {
-                  value: true,
-                  errorMessage: "No. Telp harus berupa angka",
-                },
-              }}
-            />
-            <label className='col-form-label'>Nama Instansi</label>
-            <div>
-              <select
-                name='organization'
-                onChange={(e) => setSelectedOrganization(e.target.value)}
-                className={`form-control form-group ${style.placeholder}`}
-              >
-                <option className={style.placeholder}>Pilih Instansi</option>
-                {organization && organization?.length ? (
-                  organization?.map((org, index) => {
-                    return (
-                      <option
-                        value={org.name}
-                        key={index}
-                        className={style.placeholder}
-                      >
-                        {org?.name ?? "Pilih Instansi"}
-                      </option>
-                    );
-                  })
-                ) : (
-                  <option className={style.placeholder}>Pilih Instansi</option>
-                )}
-              </select>
-            </div>
-            <AvField
               name='username'
               label='Username'
               value=''
@@ -385,33 +299,6 @@ function Pengguna() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {/* <FormGroup> */}
-            <Label for='basicpill-firstname-input14'>Dokumen Pendukung</Label>
-            <Label
-              style={{
-                color: "red",
-                marginLeft: "15px",
-                fontSize: "11px",
-              }}
-            >
-              {errorDocFormat === "" ? "" : errorDocFormat}
-            </Label>
-            <input
-              type='file'
-              className='form-control'
-              name={"doc"}
-              onChange={(e) => handleChange(e)}
-              className='form-control'
-              style={{
-                display: "flex",
-                justifyItems: "center",
-                alignItems: "center",
-                height: "43px",
-              }}
-              accept='application/pdf'
-            />
-            {/* </FormGroup> */}
-
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
