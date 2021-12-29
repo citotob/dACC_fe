@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, Redirect } from "react-router-dom";
 
 import { Label, Modal, Alert } from "reactstrap";
 
@@ -85,6 +85,7 @@ function Bank() {
         setName("");
         setCode("");
         selectedCurrency("");
+        Table.getDataBankTable()
       })
       .catch((err) => {
         setErrorMessage(err?.response?.data?.message ?? "Tambah Bank Gagal");
@@ -96,6 +97,7 @@ function Bank() {
   };
 
   const handleKeyPress = (e) => {
+    // e.preventDefault();
     if (e.key === "Enter") {
       postAddBank();
     }
@@ -230,7 +232,7 @@ function Bank() {
                 type='button'
                 onClick={() => {
                   tog_AddData();
-                  setrefresh(!refresh);
+                  // setrefresh(!refresh);
                 }}
                 className={`btn-block waves-effect ${style.noButton}`}
                 data-dismiss='modal'
