@@ -156,7 +156,7 @@ function Bank() {
             >
               Tambah Bank berhasil
             </Alert>
-            <Alert
+            {/* <Alert
               color={"danger"}
               isOpen={toggleFailedAlert}
               className={style.alertDetail}
@@ -167,7 +167,7 @@ function Bank() {
               {errorMessage &&
                 errorMessage?.includes("currency") &&
                 "Currency Sudah Ada"}
-            </Alert>
+            </Alert> */}
           </div>
           <h5 className={style.title}>Tambahkan Bank</h5>
           {/* ============================== form start  */}
@@ -293,7 +293,7 @@ function Bank() {
         </div>
         {/* ======================== CONTENT ======================= */}
         <div className='py-4'>
-          <Table shouldRefresh={shouldRefresh} />
+          <Table shouldRefresh={setshouldRefresh} />
         </div>
       </div>
     </div>

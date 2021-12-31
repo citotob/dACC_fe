@@ -35,7 +35,7 @@ import API from "../../../services";
 // IMPORT LIBRARY
 import Skeleton from "react-loading-skeleton";
 
-function TableBootstrap({ shouldRefresh }) {
+function TableBootstrap({setShouldRefresh, shouldRefresh}) {
   // redux
   const dispatch = useDispatch();
 

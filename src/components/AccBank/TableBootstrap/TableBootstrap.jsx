@@ -35,6 +35,7 @@ import API from "../../../services";
 import Skeleton from "react-loading-skeleton";
 
 function TableBootstrap() {
+  let roleName = window.localStorage.getItem("roleName");
   // redux
   const dispatch = useDispatch();
 
@@ -81,7 +82,7 @@ function TableBootstrap() {
       .then((res) => {
         if (res.status === 200) {
           settableData(res.data.values);
-          // console.table(res.data.values);
+          // console.table("ok---",res.data.values);
           if (res.data.values.length < dataPerPage) {
             setdisabledNext(true);
           } else {
@@ -230,6 +231,11 @@ function TableBootstrap() {
                 <th>Bank</th>
                 <th>Rekening</th>
                 <th>Nama</th>
+                {roleName === "admin" ? (
+                  <th>User Rekening</th>
+                ) : (
+                  <></>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -241,6 +247,11 @@ function TableBootstrap() {
                       <td>{data?.bank_name}</td>
                       <td>{data?.account}</td>
                       <td>{data?.name}</td>
+                      {roleName === "admin" ? (
+                        <td>{data?.user_account}</td>
+                      ) : (
+                        <></>
+                      )}
                     </tr>
                   );
                 })}
