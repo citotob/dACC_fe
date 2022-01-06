@@ -43,6 +43,7 @@ function WL() {
   const [url_website, setUrl_website] = useState([]);
   const [url_admin, setUrl_admin] = useState([]);
   const [account_bank, setAccount_bank] = useState([]);
+  const [selectedAccBank, setSelectedAccBank] = useState([]);
   // 
 
   // modal error messages
@@ -50,7 +51,23 @@ function WL() {
   const [toggleAlert, settoggleAlert] = useState(false);
   const [toggleFailedAlert, settoggleFailedAlert] = useState(false);
 
+  // initial data for modal tambah pengguna
+  const getInitData = () => {
+    API.getAccBank()
+      .then((res) => {
+        const accbankData = res?.data?.values ?? "";
+        // console.log("iniroledata", roleData)
+        if (res.status === 200) {
+          setAccount_bank(accbankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
+    getInitData();
   }, []);
 
   // modal functions
@@ -61,7 +78,7 @@ function WL() {
       name &&
       url_website &&
       url_admin &&
-      account_bank
+      selectedAccBank 
     ) {
       postAddWL();
     } else {
@@ -74,9 +91,9 @@ function WL() {
 
     formData.append("id_wl", id_wl);
     formData.append("name", name);
-    formData.append("url_website", url_website);
-    formData.append("url_admin", url_admin);
-    formData.append("account_bank", account_bank);
+    formData.append("url_website", url_website+",");
+    formData.append("url_admin", url_admin+",");
+    formData.append("account_bank", selectedAccBank+",");
     formData.append("userid", userId);
     API.postAddWL(formData)
       .then((res) => {
@@ -91,7 +108,7 @@ function WL() {
         setName("");
         setUrl_website([]);
         setUrl_admin([]);
-        setAccount_bank([]);
+        setSelectedAccBank([])
       })
       .catch((err) => {
         setErrorMessage(err?.response?.data?.message ?? "Tambah Whitelabel Gagal");
@@ -123,18 +140,18 @@ function WL() {
   }
 
   function handleChange(e) {
-    switch (e.target.name) {
-      case "doc":
-        let fileExtension = e.target.files[0].name.split(".").pop();
-        if (fileExtension !== "pdf") {
-          setErrorDocFormat("Format Dokumen harus .pdf");
-          setDocUpload("");
-        } else {
-          setErrorDocFormat("");
-          setDocUpload(e.target.files[0]);
-        }
-        break;
-    }
+    // switch (e.target.name) {
+    //   case "doc":
+    //     let fileExtension = e.target.files[0].name.split(".").pop();
+    //     if (fileExtension !== "pdf") {
+    //       setErrorDocFormat("Format Dokumen harus .pdf");
+    //       setDocUpload("");
+    //     } else {
+    //       setErrorDocFormat("");
+    //       setDocUpload(e.target.files[0]);
+    //     }
+    //     break;
+    // }
   }
 
   // Modal component for tambah data
@@ -180,20 +197,16 @@ function WL() {
               placeholder='Id_wl'
               onChange={(e) => setId_wl(e.target.value)}
               className={`${style.placeholder} form-control`}
-              validate={{
-                required: {
-                  value: true,
-                  errorMessage: "Please enter a id_wl",
-                },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Nama hanya berisi huruf dan angka",
-                },
-                minLength: {
-                  value: 1,
-                  errorMessage: "Nama harus lebih dari 1 karakter",
-                },
-              }}
+              // validate={{
+              //   required: {
+              //     value: true,
+              //     errorMessage: "Please enter a id_wl",
+              //   },
+              //   minLength: {
+              //     value: 1,
+              //     errorMessage: "Nama harus lebih dari 1 karakter",
+              //   },
+              // }}
             />
             <AvField
               name='nameCustomMessage'
@@ -229,10 +242,6 @@ function WL() {
                   value: true,
                   errorMessage: "Please enter a Url_website",
                 },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Code hanya berisi huruf dan angka",
-                },
                 minLength: {
                   value: 1,
                   errorMessage: "Code harus lebih dari 1 karakter",
@@ -251,16 +260,41 @@ function WL() {
                   value: true,
                   errorMessage: "Please enter a Url_admin",
                 },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Code hanya berisi huruf dan angka",
-                },
                 minLength: {
                   value: 1,
                   errorMessage: "Code harus lebih dari 1 karakter",
                 },
               }}
             />
+            <div>
+              <select
+                name='accbank'
+                onChange={(e) => setSelectedAccBank(e.target.value)}
+                className={`form-control form-group ${style.placeholder}`}
+              >
+                <option className={style.placeholder}>
+                  Pilih Rekening Bank
+                </option>
+                {account_bank && account_bank.length !== 0 ? (
+                  account_bank?.map((account_bank, index) => {
+                    return (
+                      <option
+                        className={style.placeholder}
+                        value={account_bank?.id}
+                        key={index}
+                      >
+                        {/* {bank?.name ?? "Pilih Bank"} */}
+                        {account_bank?.bank_name}-{account_bank?.account}-{account_bank?.name}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option className={style.placeholder}>
+                    Pilih Rekening Bank
+                  </option>
+                )}
+              </select>
+            </div>
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
