@@ -35,7 +35,7 @@ import API from "../../../services";
 // IMPORT LIBRARY
 import Skeleton from "react-loading-skeleton";
 
-function TableBootstrap() {
+function TableBootstrap({setShouldRefresh, shouldRefresh}) {
   // redux
   const dispatch = useDispatch();
 
@@ -125,6 +125,10 @@ function TableBootstrap() {
       setdisabledPrev(true);
     }
   }, [refresh, queryStatus, dataPerPage, pageNumber]);
+
+  useEffect(() => {
+    getDataBankTable()
+  }, [shouldRefresh]);
 
   // modal functions
   function tog_verfiy() {
@@ -403,8 +407,8 @@ function TableBootstrap() {
                   }}
                 >
                   {selectedField === "role" &&
-                  roleList &&
-                  roleList.length !== 0 ? (
+                    roleList &&
+                    roleList.length !== 0 ? (
                     roleList?.map((role, index) => {
                       return (
                         <option value={role?.name} key={index}>

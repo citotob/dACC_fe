@@ -48,6 +48,7 @@ function Bank() {
   const [errorMessage, setErrorMessage] = useState("");
   const [toggleAlert, settoggleAlert] = useState(false);
   const [toggleFailedAlert, settoggleFailedAlert] = useState(false);
+  const [shouldRefresh, setshouldRefresh] = useState(false);
 
   useEffect(() => {
   }, []);
@@ -85,7 +86,9 @@ function Bank() {
         setName("");
         setCode("");
         selectedCurrency("");
-        Table.getDataBankTable()
+        // fetch lagi dimari caranya pake refresh token aja, panggil di useeffect fungsi tabel
+        setshouldRefresh(!shouldRefresh);
+
       })
       .catch((err) => {
         setErrorMessage(err?.response?.data?.message ?? "Tambah Bank Gagal");
@@ -154,7 +157,7 @@ function Bank() {
             >
               Tambah Bank berhasil
             </Alert>
-            <Alert
+            {/* <Alert
               color={"danger"}
               isOpen={toggleFailedAlert}
               className={style.alertDetail}
@@ -165,7 +168,7 @@ function Bank() {
               {errorMessage &&
                 errorMessage?.includes("currency") &&
                 "Currency Sudah Ada"}
-            </Alert>
+            </Alert> */}
           </div>
           <h5 className={style.title}>Tambahkan Bank</h5>
           {/* ============================== form start  */}
@@ -291,7 +294,7 @@ function Bank() {
         </div>
         {/* ======================== CONTENT ======================= */}
         <div className='py-4'>
-          <Table />
+          <Table shouldRefresh={setshouldRefresh} />
         </div>
       </div>
     </div>

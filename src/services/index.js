@@ -32,6 +32,7 @@ const getDataWDTable = (query, userId, pageNumber, row) =>
   Get(`withdrawal/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
 
 const getDashboard = () => Get("dashboard/getAdmin/", "", false);
+const getBank = () => Get("datas/getBank", "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -248,6 +249,7 @@ const API = {
   postAddDeposit,
   postAddWD,
   // 
+  getBank,
   getRole,
   getVPAll,
   searchNotif,

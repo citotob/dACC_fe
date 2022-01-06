@@ -228,6 +228,7 @@ function TableBootstrap() {
               <tr>
                 <th>No.</th>
                 <th>Id wl</th>
+                <th>Nama</th>
                 <th>Url Website</th>
                 <th>Url Admin</th>
                 <th>Rekening</th>
