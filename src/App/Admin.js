@@ -24,6 +24,8 @@ import AsyncAccBank from '../asyncPages/AsyncAccBank';
 import AsyncWL from '../asyncPages/AsyncWL';
 import AsyncDeposit from '../asyncPages/AsyncDeposit';
 import AsyncWD from '../asyncPages/AsyncWD';
+import AsyncBonus from '../asyncPages/AsyncBonus';
+import AsyncReportTransaksi from '../asyncPages/AsyncReportTransaksi';
 // 
 import AsyncProfile from '../asyncPages/AsyncProfile';
 import AsyncLokasiSurvey from '../asyncPages/AsyncLokasiSurvey';
@@ -97,6 +99,16 @@ const AppAdmin = (props) => {
         exact
         path={`${props.match.url}admin/withdrawal`}
         component={AsyncWD}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/bonus`}
+        component={AsyncBonus}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/report_transaksi`}
+        component={AsyncReportTransaksi}
       />
       {/*  */}
       <Route

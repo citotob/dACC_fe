@@ -147,6 +147,21 @@ const SidebarContent = (props) => {
                 <li>
                   <Link to="/admin/withdrawal">{props.t("WITHDRAWAL")}</Link>
                 </li>
+                <li>
+                  <Link to="/admin/bonus">{props.t("BONUS")}</Link>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <Link to="/#" className="has-arrow waves-effect">
+                <i className="bx bx-line-chart-down"></i>
+                <span>{props.t("REPORT")}</span>
+              </Link>
+              <ul className="sub-menu" aria-expanded="false">
+                <li>
+                  <Link to="/admin/report_transaksi">{props.t("TRANSAKSI")}</Link>
+                </li>
               </ul>
             </li>
 

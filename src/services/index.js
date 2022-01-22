@@ -33,6 +33,9 @@ const getDataWDTable = (query, userId, pageNumber, row) =>
 
 const getDashboard = () => Get("dashboard/getAdmin/", "", false);
 const getBank = () => Get("datas/getBank", "", false);
+
+const getDataBonusTable = (query, pageNumber, row) =>
+  Get(`bonus/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -242,6 +245,7 @@ const API = {
   getAccBank,
   getWL,
   getDataWDTable,
+  getDataBonusTable,
 
   postAddBank,
   postAddAccBank,
