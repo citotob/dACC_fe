@@ -12,6 +12,7 @@ const postAddAccBank = (data) => Post("datas/addAccBank", data, true);
 const postAddWL = (data) => Post("datas/addWL", data, true);
 const postAddDeposit = (data) => Post("depo/add", data, true);
 const postAddWD = (data) => Post("withdrawal/add", data, true);
+const postAddBonus = (data) => Post("bonus/add", data, true);
 
 const getDataRoleTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
@@ -252,6 +253,7 @@ const API = {
   postAddWL,
   postAddDeposit,
   postAddWD,
+  postAddBonus,
   // 
   getBank,
   getRole,

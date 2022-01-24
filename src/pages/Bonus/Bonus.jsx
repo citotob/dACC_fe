@@ -52,12 +52,11 @@ function Bonus() {
 
   // initial data for modal tambah pengguna
   const getInitData = () => {
-    API.getBank()
+    API.getWL()
       .then((res) => {
-        const bankData = res?.data?.values ?? "";
-        // console.log("iniroledata", roleData)
+        const wlData = res?.data?.values ?? "";
         if (res.status === 200) {
-          setBank(bankData);
+          setWL(wlData);
         }
       })
       .catch((err) => {
@@ -73,11 +72,10 @@ function Bonus() {
   // submit new Acc bank
   function handleValidSubmit(event, values) {
     if (
-      selectedBank &&
-      account &&
-      name &&
-      user_account &&
-      pass_account
+      selectedWL &&
+      member &&
+      keterangan &&
+      amount
     ) {
       postAddBonus();
     } else {
@@ -88,11 +86,10 @@ function Bonus() {
   const postAddBonus = () => {
     let formData = new URLSearchParams();
 
-    formData.append("bankid", selectedBank);
-    formData.append("account", account);
-    formData.append("name", name);
-    formData.append("user_account", user_account);
-    formData.append("pass_account", pass_account);
+    formData.append("whitelabel", selectedWL);
+    formData.append("amount", amount);
+    formData.append("member", member);
+    formData.append("keterangan", keterangan);
     formData.append("userid", userId);
     API.postAddBonus(formData)
       .then((res) => {
@@ -103,12 +100,10 @@ function Bonus() {
             settoggleAlert(false);
           }, 3000);
         }
-        // setBank("")
-        // setSelectedBank([]);
-        setAccount("");
-        setName("");
-        setUser_account("");
-        setPass_account("");
+        setSelectedWL("");
+        setMember("");
+        setAmount("");
+        setKeterangan("");
       })
       .catch((err) => {
         setErrorMessage(err?.response?.data?.message ?? "Tambah Bonus Gagal");
@@ -182,119 +177,93 @@ function Bonus() {
               className={style.alertDetail}
             >
               {errorMessage &&
-                errorMessage?.includes("name") &&
-                "Nama Bonus Sudah Ada"}
-              {errorMessage &&
-                errorMessage?.includes("account") &&
-                "Rekening Sudah Ada"}
-              {errorMessage &&
-                errorMessage?.includes("bank") &&
-                "Bank Sudah Ada"}
+                errorMessage?.includes("member") &&
+                "Member Bonus Sudah Ada"}
             </Alert>
           </div>
           <h5 className={style.title}>Tambahkan Bonus</h5>
           {/* ============================== form start  */}
 
           <AvForm className='form-horizontal' onValidSubmit={() => postAddBonus()}>
-          <label className='col-form-label'>Pilih Tipe Pengguna</label>
             <div>
               <select
                 name='bank'
-                onChange={(e) => setSelectedBank(e.target.value)}
+                onChange={(e) => setSelectedWL(e.target.value)}
                 className={`form-control form-group ${style.placeholder}`}
               >
                 <option className={style.placeholder}>
-                  Pilih Bank
+                  Pilih WL
                 </option>
-                {bank && bank.length !== 0 ? (
-                  bank?.map((bank, index) => {
+                {wl && wl.length !== 0 ? (
+                  wl?.map((wl, index) => {
                     return (
                       <option
                         className={style.placeholder}
-                        value={bank?.id}
+                        value={wl?.id}
                         key={index}
                       >
-                        {/* {bank?.name ?? "Pilih Bank"} */}
-                        {bank?.name}-{bank?.currency}
+                        {wl?.name ?? "Pilih WL"}
                       </option>
                     );
                   })
                 ) : (
                   <option className={style.placeholder}>
-                    Pilih Bank
+                    Pilih WL
                   </option>
                 )}
               </select>
             </div>
             <AvField
-              name='accountCustomMessage'
-              label='Account'
+              name='member'
+              label='Member'
               type='text'
-              placeholder='Rekening'
-              onChange={(e) => setAccount(e.target.value)}
+              placeholder='Member'
+              onChange={(e) => setMember(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
                   value: true,
-                  errorMessage: "Please enter a rekening",
+                  errorMessage: "Please enter a member",
                 },
                 minLength: {
                   value: 1,
-                  errorMessage: "Rekening harus lebih dari 1 karakter",
+                  errorMessage: "Member harus lebih dari 1 karakter",
                 },
               }}
             />
             <AvField
-              name='nameCustomMessage'
-              label='Name'
+              name='keterangan'
+              label='Keterangan'
               type='text'
-              placeholder='Nama'
-              onChange={(e) => setName(e.target.value)}
+              placeholder='Keterangan'
+              onChange={(e) => setKeterangan(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
                   value: true,
-                  errorMessage: "Please enter a name",
+                  errorMessage: "Please enter a keterangan",
                 },
                 minLength: {
                   value: 1,
-                  errorMessage: "Nama harus lebih dari 1 karakter",
+                  errorMessage: "Keterangan harus lebih dari 1 karakter",
                 },
               }}
             />
             <AvField
-              name='user_accountCustomMessage'
-              label='User_account'
+              name='amount'
+              label='Amount'
               type='text'
-              placeholder='User_account'
-              onChange={(e) => setUser_account(e.target.value)}
+              placeholder='Amount'
+              onChange={(e) => setAmount(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
                   value: true,
-                  errorMessage: "Please enter a user_account",
+                  errorMessage: "Please enter a amount",
                 },
                 minLength: {
                   value: 1,
-                  errorMessage: "User_account harus lebih dari 1 karakter",
-                },
-              }}
-            />
-            <AvField
-              name='pass_accountCustomMessage'
-              label='Pass_account'
-              type='text'
-              placeholder='Password Account'
-              onChange={(e) => setPass_account(e.target.value)}
-              className={`${style.placeholder} form-control`}
-              validate={{
-                required: {
-                  value: true,
-                  errorMessage: "Please enter a user_account",
-                },
-                minLength: {
-                  value: 1,
-                  errorMessage: "User_account harus lebih dari 1 karakter",
+                  errorMessage: "Amount harus lebih dari 1 karakter",
                 },
               }}
             />
