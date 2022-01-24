@@ -75,10 +75,11 @@ function TableBootstrap() {
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
 
+  let userId = window.localStorage.getItem("userid");
   // fetch api
   const getDataBonusTable = () => {
     setloading(true);
-    API.getDataBonusTable(queryStatus, pageNumber, dataPerPage)
+    API.getDataBonusTable(queryStatus, userId, pageNumber, dataPerPage)
       .then((res) => {
         if (res.status === 200) {
           settableData(res.data.values);
