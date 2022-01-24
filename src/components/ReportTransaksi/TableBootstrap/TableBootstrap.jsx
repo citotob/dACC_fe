@@ -76,13 +76,12 @@ function TableBootstrap() {
   const [selectStateField, setSelectStateField] = useState(true);
 
   // fetch api
-  const getDataAccBankTable = () => {
+  const getDataReportTransaksiTable = () => {
     setloading(true);
-    API.getDataAccBankTable(queryStatus, pageNumber, dataPerPage)
+    API.getDataReportTransaksiTable(queryStatus, pageNumber, dataPerPage)
       .then((res) => {
         if (res.status === 200) {
           settableData(res.data.values);
-          // console.table("ok---",res.data.values);
           if (res.data.values.length < dataPerPage) {
             setdisabledNext(true);
           } else {
@@ -108,7 +107,7 @@ function TableBootstrap() {
 
   useEffect(() => {
     if (!selectedField) {
-      getDataAccBankTable();
+      getDataReportTransaksiTable();
     } else {
       if (activeSearch === "search") {
         handleFilterSearch(searchInput);
@@ -228,14 +227,15 @@ function TableBootstrap() {
             <thead>
               <tr>
                 <th>No.</th>
-                <th>Bank</th>
-                <th>Rekening</th>
-                <th>Nama</th>
-                {roleName === "admin" ? (
-                  <th>User Rekening</th>
-                ) : (
-                  <></>
-                )}
+                <th>Tanggal Jam</th>
+                <th>WL</th>
+                <th>tiket</th>
+                <th>member</th>
+                <th>user</th>
+                <th>Depo/WD</th>
+                <th>Debit</th>
+                <th>Kredit</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -244,14 +244,15 @@ function TableBootstrap() {
                   return (
                     <tr key={i}>
                       <td>{i + 1}</td>
-                      <td>{data?.bank_name}</td>
-                      <td>{data?.account}</td>
-                      <td>{data?.name}</td>
-                      {roleName === "admin" ? (
-                        <td>{data?.user_account}</td>
-                      ) : (
-                        <></>
-                      )}
+                      <td>{data?.tanggal}</td>
+                      <td>{data?.wl_name}</td>
+                      <td>{data?.ticket_id}</td>
+                      <td>{data?.member}</td>
+                      <td>{data?.user_name}</td>
+                      <td>{data?.jenis}</td>
+                      <td>{data?.debit}</td>
+                      <td>{data?.kredit}</td>
+                      <td>{data?.status}</td>
                     </tr>
                   );
                 })}
@@ -279,12 +280,12 @@ function TableBootstrap() {
                     })}
                     onClick={() => {
                       toggleCustom("2");
-                      dispatch(changeBreadcrumbItem("AccBank Aktif"));
+                      dispatch(changeBreadcrumbItem("Report Transaksi"));
                       setqueryStatus();
                       setpageNumber(1);
                     }}
                   >
-                    <span className='d-none d-sm-block'>AccBank Aktif</span>
+                    <span className='d-none d-sm-block'>Report Transaksi</span>
                   </NavLink>
                 </NavItem>
                 <div className={`${style.tableSearchWrapper} ml-auto`}>
@@ -358,9 +359,7 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='bank_name'>Bank</option>
-                    <option value='account'>Akun</option>
-                    <option value='name'>Nama</option>
+                    <option value='member'>Member</option>
                   </select>
                 </div>
                 <button
@@ -400,8 +399,8 @@ function TableBootstrap() {
                   }}
                 >
                   <option value=''>Pilih</option>
-                  <option value='account'>Akun</option>
-                  <option value='name'>Nama</option>
+                  <option value='wl'>WL</option>
+                  <option value='jenis'>Depo/WD</option>
                 </select>
                 <button
                   className={`${style.searchButton}`}

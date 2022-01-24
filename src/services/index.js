@@ -37,6 +37,8 @@ const getBank = () => Get("datas/getBank", "", false);
 
 const getDataBonusTable = (query, userId, pageNumber, row) =>
   Get(`bonus/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
+  const getDataReportTransaksiTable = (query, pageNumber, row) =>
+  Get(`report/transaksi/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -247,6 +249,7 @@ const API = {
   getWL,
   getDataWDTable,
   getDataBonusTable,
+  getDataReportTransaksiTable,
 
   postAddBank,
   postAddAccBank,
