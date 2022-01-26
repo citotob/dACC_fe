@@ -234,7 +234,6 @@ function TableBootstrap({setShouldRefresh, shouldRefresh}) {
                 <th>No.</th>
                 <th>Nama</th>
                 <th>Code</th>
-                <th>Currency</th>
               </tr>
             </thead>
             <tbody>
@@ -245,7 +244,6 @@ function TableBootstrap({setShouldRefresh, shouldRefresh}) {
                       <td>{i + 1}</td>
                       <td>{data?.name}</td>
                       <td>{data?.code}</td>
-                      <td>{data?.currency}</td>
                     </tr>
                   );
                 })}

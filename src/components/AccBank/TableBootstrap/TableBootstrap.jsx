@@ -232,7 +232,12 @@ function TableBootstrap() {
                 <th>Rekening</th>
                 <th>Nama</th>
                 {roleName === "admin" ? (
-                  <th>User Rekening</th>
+                  <th>User Rekening</th>                  
+                ) : (
+                  <></>
+                )}
+                {roleName === "admin" ? (
+                  <th>PIN/Pass Rekening</th>                  
                 ) : (
                   <></>
                 )}
@@ -248,7 +253,12 @@ function TableBootstrap() {
                       <td>{data?.account}</td>
                       <td>{data?.name}</td>
                       {roleName === "admin" ? (
-                        <td>{data?.user_account}</td>
+                        <td>{data?.user_account.substr(1, 3)}***</td>
+                      ) : (
+                        <></>
+                      )}
+                      {roleName === "admin" ? (
+                        <td>******</td>
                       ) : (
                         <></>
                       )}

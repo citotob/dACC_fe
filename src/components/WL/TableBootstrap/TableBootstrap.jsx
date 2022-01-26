@@ -242,9 +242,24 @@ function TableBootstrap() {
                       <td>{i + 1}</td>
                       <td>{data?.id_wl}</td>
                       <td>{data?.name}</td>
-                      <td>{data?.url_website}</td>
-                      <td>{data?.url_admin}</td>
-                      <td>{data?.account_bank}</td>
+                      <td>
+                        {data?.url_website?.length > 0 ? 
+                          data?.url_website?.map((item) => {
+                        return <tr>{item}</tr>
+                        }) : (<></>)}
+                      </td>
+                      <td>
+                        {data?.url_admin?.length > 0 ? 
+                          data?.url_admin?.map((item) => {
+                        return <tr>{item}</tr>
+                        }) : (<></>)}
+                      </td>
+                      <td>
+                        {data?.account_bank?.length > 0 ? 
+                          data?.account_bank?.map((item) => {
+                        return <tr>{item.bankname}-{item.account}-{item.name}</tr>
+                        }) : (<></>)}
+                      </td>
                     </tr>
                   );
                 })}

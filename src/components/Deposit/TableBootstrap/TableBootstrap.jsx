@@ -237,8 +237,8 @@ function TableBootstrap() {
                 <th>Create Date</th>
                 <th>Status</th>
                 <th>In Progress</th>
-                <th>Approve</th>
-                <th>Reject</th>
+                <th>-</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -256,8 +256,47 @@ function TableBootstrap() {
                       <td>{data?.create_date}</td>
                       <td>{data?.status}</td>
                       <td>{data?.inprogress}</td>
-                      <td>{data?.approve}</td>
-                      <td>{data?.reject}</td>
+                      <td className={`${style.aksiButtonsWrapper}`}>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            tog_verfiy();
+                            setselectedTableData(data);
+                          }}
+                          className={`btn-block waves-effect ${style.noButton}`}
+                          data-dismiss='modal'
+                        >
+                          Mutasi
+                        </button>
+                      </td>
+                      {data?.status === "PENDING" ? (
+                        <td className={`${style.aksiButtonsWrapper}`}>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              tog_verfiy();
+                              setselectedTableData(data);
+                            }}
+                            data-toggle='modal'
+                            data-target='#myModal'
+                          >
+                            <img src={AksiYesIcon} alt='Icon Aksi Yes' />
+                          </button>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              tog_reject();
+                              setselectedTableData(data);
+                            }}
+                            data-toggle='modal'
+                            data-target='#myModal'
+                          >
+                            <img src={AksiNoIcon} alt='Icon Aksi No' />
+                          </button>
+                        </td>
+                      ) : (
+                        <></>
+                      )}
                     </tr>
                   );
                 })}

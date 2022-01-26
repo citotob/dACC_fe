@@ -39,17 +39,28 @@ function WL() {
   const [errorDocFormat, setErrorDocFormat] = useState();
   // cito
   const [id_wl, setId_wl] = useState("");
-  const [name, setName] = useState("");
+  const [nameWL, setNameWL] = useState("");
   const [url_website, setUrl_website] = useState([]);
+  // const [listurl_website, setListurl_website] = useState([]);
   const [url_admin, setUrl_admin] = useState([]);
   const [account_bank, setAccount_bank] = useState([]);
   const [selectedAccBank, setSelectedAccBank] = useState([]);
-  // 
 
+  
   // modal error messages
   const [errorMessage, setErrorMessage] = useState("");
   const [toggleAlert, settoggleAlert] = useState(false);
   const [toggleFailedAlert, settoggleFailedAlert] = useState(false);
+
+  
+  const [listurl_website, setListurl_website] = useState([]);
+  const [inputurl_website, setInputurl_website] = useState("");
+
+  const [listurl_admin, setListurl_admin] = useState([]);
+  const [inputurl_admin, setInputurl_admin] = useState("");
+
+  const [listAccBank, setListAccBank] = useState([]);
+  const [inputAccBank, setInputAccBank] = useState("");
 
   // initial data for modal tambah pengguna
   const getInitData = () => {
@@ -75,7 +86,7 @@ function WL() {
   function handleValidSubmit(event, values) {
     if (
       id_wl &&
-      name &&
+      nameWL &&
       url_website &&
       url_admin &&
       selectedAccBank 
@@ -90,10 +101,10 @@ function WL() {
     let formData = new URLSearchParams();
 
     formData.append("id_wl", id_wl);
-    formData.append("name", name);
-    formData.append("url_website", url_website+",");
-    formData.append("url_admin", url_admin+",");
-    formData.append("account_bank", selectedAccBank+",");
+    formData.append("name", nameWL);
+    formData.append("url_website", listurl_website);
+    formData.append("url_admin", listurl_admin);
+    formData.append("account_bank", listAccBank);
     formData.append("userid", userId);
     API.postAddWL(formData)
       .then((res) => {
@@ -105,10 +116,10 @@ function WL() {
           }, 3000);
         }
         setId_wl("");
-        setName("");
+        setNameWL("");
         setUrl_website([]);
         setUrl_admin([]);
-        setSelectedAccBank([])
+        setSelectedAccBank([]);
       })
       .catch((err) => {
         setErrorMessage(err?.response?.data?.message ?? "Tambah Whitelabel Gagal");
@@ -131,6 +142,9 @@ function WL() {
   );
 
   function tog_AddData() {
+    setListurl_website([]);
+    setListurl_admin([]);
+    setListAccBank([]);
     setmodalAddDataOpen(!modalAddDataOpen);
     removeBodyCss();
   }
@@ -210,10 +224,10 @@ function WL() {
             />
             <AvField
               name='nameCustomMessage'
-              label='Name'
+              label='NameWL'
               type='text'
               placeholder='Nama'
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setNameWL(e.target.value)}
               className={`${style.placeholder} form-control`}
               validate={{
                 required: {
@@ -230,46 +244,40 @@ function WL() {
                 },
               }}
             />
-            <AvField
-              name='url_websiteCustomMessage'
-              label='Url_website'
-              type='text'
-              placeholder='url_website'
-              onChange={(e) => setUrl_website(e.target.value)}
-              className={`${style.placeholder} form-control`}
-              validate={{
-                required: {
-                  value: true,
-                  errorMessage: "Please enter a Url_website",
-                },
-                minLength: {
-                  value: 1,
-                  errorMessage: "Code harus lebih dari 1 karakter",
-                },
-              }}
-            />
-            <AvField
-              name='url_adminCustomMessage'
-              label='Url_admin'
-              type='text'
-              placeholder='Url_admin'
-              onChange={(e) => setUrl_admin(e.target.value)}
-              className={`${style.placeholder} form-control`}
-              validate={{
-                required: {
-                  value: true,
-                  errorMessage: "Please enter a Url_admin",
-                },
-                minLength: {
-                  value: 1,
-                  errorMessage: "Code harus lebih dari 1 karakter",
-                },
-              }}
-            />
-            <div>
+            <div class="form-group">
+              <label for="website" class="">URL Website</label>
+              <input name="website" value={inputurl_website} onChange={(e) => setInputurl_website(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+
+              <button type='button' onClick={() => {
+                setListurl_website((prevurl_website) => [...prevurl_website, inputurl_website])
+                setInputurl_website("")
+              }}>Add Data</button>
+              <button type='button' onClick={() => {
+                setListurl_website([])
+              }}>Reset Data</button>
+
+              {listurl_website.map((itemurl_website, k) => <p key={k}>{itemurl_website} | <span onClick={() => setListurl_website((prevurl_website) => prevurl_website.filter((e) => e !== itemurl_website))}>delete</span></p>)}
+            </div>
+            <div class="form-group">
+              <label for="webadmin" class="">URL Admin</label>
+              <input name="webadmin" value={inputurl_admin} onChange={(e) => setInputurl_admin(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+
+              <button type='button' onClick={() => {
+                setListurl_admin((prevurl_admin) => [...prevurl_admin, inputurl_admin])
+                setInputurl_admin("")
+              }}>Add Data</button>
+              <button type='button' onClick={() => {
+                setListurl_admin([])
+              }}>Reset Data</button>
+
+              {listurl_admin.map((itemurl_admin, i) => <p key={i}>{itemurl_admin} | <span onClick={() => setListurl_admin((prevurl_admin) => prevurl_admin.filter((e) => e !== itemurl_admin))}>delete</span></p>)}
+            </div>
+            <div class="form-group">
               <select
                 name='accbank'
-                onChange={(e) => setSelectedAccBank(e.target.value)}
+                onChange={(e) => setInputAccBank(e.target.value)}
                 className={`form-control form-group ${style.placeholder}`}
               >
                 <option className={style.placeholder}>
@@ -280,7 +288,7 @@ function WL() {
                     return (
                       <option
                         className={style.placeholder}
-                        value={account_bank?.id}
+                        value={account_bank?.id+"-"+account_bank?.bank_name+"-"+account_bank?.account+"-"+account_bank?.name}
                         key={index}
                       >
                         {/* {bank?.name ?? "Pilih Bank"} */}
@@ -294,6 +302,15 @@ function WL() {
                   </option>
                 )}
               </select>
+              <button type='button' onClick={() => {
+                setListAccBank((prevAccBank) => [...prevAccBank, inputAccBank])
+                setInputAccBank("")
+              }}>Add Data</button>
+              <button type='button' onClick={() => {
+                setListAccBank([])
+              }}>Reset Data</button>
+
+              {listAccBank.map((itemAccBank, j) => <p name="p_accbank" key={j}>{itemAccBank} | <span name="s_accbank" onClick={() => setListAccBank((prevAccBank) => prevAccBank.filter((e) => e !== itemAccBank))}>delete</span></p>)}
             </div>
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
