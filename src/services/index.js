@@ -1,6 +1,7 @@
 // import Get from "./Get";
 import Post from "./Post";
 import Get from "./Get";
+import Put from "./Put";
 
 // NOTE : Gunakan true or false, kalau true dia kirim params ke url,
 // kalau false tidak kirim params
@@ -13,6 +14,9 @@ const postAddWL = (data) => Post("datas/addWL", data, true);
 const postAddDeposit = (data) => Post("depo/add", data, true);
 const postAddWD = (data) => Post("withdrawal/add", data, true);
 const postAddBonus = (data) => Post("bonus/add", data, true);
+
+const putDepoApprove = (data) => Put("depo/approve", data, true);
+const putDepoReject = (data) => Put("depo/reject", data, true);
 
 const getDataRoleTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
@@ -37,7 +41,7 @@ const getBank = () => Get("datas/getBank", "", false);
 
 const getDataBonusTable = (query, userId, pageNumber, row) =>
   Get(`bonus/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
-  const getDataReportTransaksiTable = (query, pageNumber, row) =>
+const getDataReportTransaksiTable = (query, pageNumber, row) =>
   Get(`report/transaksi/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
@@ -257,6 +261,8 @@ const API = {
   postAddDeposit,
   postAddWD,
   postAddBonus,
+  putDepoApprove,
+  putDepoReject,
   // 
   getBank,
   getRole,
