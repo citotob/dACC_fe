@@ -225,7 +225,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Id wl</th>
                 <th>Nama</th>

@@ -18,6 +18,9 @@ const postAddBonus = (data) => Post("bonus/add", data, true);
 const putDepoApprove = (data) => Put("depo/approve", data, true);
 const putDepoReject = (data) => Put("depo/reject", data, true);
 
+const putWDApprove = (data) => Put("withdrawal/approve", data, true);
+const putWDReject = (data) => Put("withdrawal/reject", data, true);
+
 const getDataRoleTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getDataBankTable = (query, pageNumber, row) =>
@@ -263,6 +266,8 @@ const API = {
   postAddBonus,
   putDepoApprove,
   putDepoReject,
+  putWDApprove,
+  putWDReject,
   // 
   getBank,
   getRole,

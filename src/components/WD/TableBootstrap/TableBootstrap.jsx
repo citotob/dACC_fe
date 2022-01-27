@@ -33,6 +33,7 @@ import API from "../../../services";
 
 // IMPORT LIBRARY
 import Skeleton from "react-loading-skeleton";
+import NumberFormat from 'react-number-format';
 
 function TableBootstrap() {
   // redux
@@ -127,7 +128,7 @@ function TableBootstrap() {
   }, [refresh, queryStatus, dataPerPage, pageNumber]);
 
   // modal functions
-  function tog_verfiy() {
+  function tog_approve() {
     setmodalVerifyOpen(!modalVerifyOpen);
     removeBodyCss();
   }
@@ -188,6 +189,37 @@ function TableBootstrap() {
     settextcount(event.target.value.length);
   }
 
+  // Action Button Functions
+  const handleApproveAction = (data) => {
+    let params = new URLSearchParams();
+    params.append("id", data);
+    params.append("userid", userId);
+    API.putWDApprove(params)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Handle Approve Action 200 : ", res);
+        }
+      })
+      .catch((err) => {
+        console.log("Handle Approve Catch Error : ", err);
+      });
+  };
+
+  const handleRejectAction = (data) => {
+    let params = new URLSearchParams();
+    params.append("id", data);
+    params.append("userid", userId);
+    API.putWDReject(params)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Handle Reject Action 200 : ", res);
+        }
+      })
+      .catch((err) => {
+        console.log("Handle Reject Catch Error : ", err);
+      });
+  };
+
   const handleFilterSearch = (searchData) => {
     setloading(true);
     API.getUserSearch(
@@ -226,7 +258,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Ticket Id</th>
                 <th>Member</th>
@@ -237,8 +269,8 @@ function TableBootstrap() {
                 <th>Create Date</th>
                 <th>Status</th>
                 <th>In Progress</th>
-                <th>Approve</th>
-                <th>Reject</th>
+                <th>-</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -251,13 +283,53 @@ function TableBootstrap() {
                       <td>{data?.member}</td>
                       <td>{data?.bank_member}</td>
                       <td>{data?.bank_origin_bname}-{data?.bank_origin_account}-{data?.bank_origin_name}</td>
-                      <td>{data?.amount}</td>
+                      <td><NumberFormat value={data?.amount} displayType={'text'} thousandSeparator={true} prefix={''}
+                        decimalScale={0} /></td>
                       <td>{data?.whitelabel_name}</td>
                       <td>{data?.create_date}</td>
                       <td>{data?.status}</td>
                       <td>{data?.inprogress}</td>
-                      <td>{data?.approve}</td>
-                      <td>{data?.reject}</td>
+                      <td className={`${style.aksiButtonsWrapper}`}>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            tog_approve();
+                            setselectedTableData(data);
+                          }}
+                          className={`btn-block waves-effect ${style.noButton}`}
+                          data-dismiss='modal'
+                        >
+                          Mutasi
+                        </button>
+                      </td>
+                      {data?.status === "PENDING" ? (
+                        <td className={`${style.aksiButtonsWrapper}`}>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              tog_approve();
+                              setselectedTableData(data);
+                            }}
+                            data-toggle='modal'
+                            data-target='#myModal'
+                          >
+                            <img src={AksiYesIcon} alt='Icon Aksi Yes' />
+                          </button>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              tog_reject();
+                              setselectedTableData(data);
+                            }}
+                            data-toggle='modal'
+                            data-target='#myModal'
+                          >
+                            <img src={AksiNoIcon} alt='Icon Aksi No' />
+                          </button>
+                        </td>
+                      ) : (
+                        <></>
+                      )}
                     </tr>
                   );
                 })}
@@ -270,10 +342,121 @@ function TableBootstrap() {
     );
   };
 
+  // Modal components
+  const modalComponentApprove = () => {
+    return (
+      <Modal
+        isOpen={modalVerifyOpen}
+        centered={true}
+        toggle={() => {
+          tog_approve();
+        }}
+      >
+        <div className={`modal-body ${style.modalBody}`}>
+          <h5 className={style.title}>Approve WD</h5>
+          <div style={{ textAlign: "center" }}>
+            <h1 className={style.name}>Tiket {selectedTableData?.ticket_id ?? ""}</h1>
+            <p>{selectedTableData?.role?.name ?? ""}</p>
+          </div>
+          <div>
+            <p className={style.confirmation}>Approve WD?</p>
+            <div className={`span2 ${style.modalButtonWrapper}`}>
+              <button
+                type='button'
+                onClick={() => {
+                  tog_approve();
+                }}
+                className={`btn-block waves-effect ${style.noButton}`}
+                data-dismiss='modal'
+              >
+                Tutup
+              </button>
+              <button
+                type='button'
+                className={`bln-block waves-effect waves-light ${style.yesButton}`}
+                onClick={() => {
+                  tog_approve();
+                  handleApproveAction(selectedTableData?.id);
+                  setrefresh(!refresh);
+                  setalertVerifyStatus(style.alertOn);
+                  setTimeout(() => {
+                    setalertVerifyStatus(style.alertOff);
+                    setselectedTableData(null);
+                  }, 2000);
+                }}
+              >
+                Iya
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    );
+  };
+
+  const modalComponentReject = () => {
+    return (
+      <Modal
+        isOpen={modalRejectOpen}
+        centered={true}
+        toggle={() => {
+          tog_reject();
+        }}
+      >
+        <div className={`modal-body ${style.modalBody}`}>
+          <h5 className={style.title}>Tolak WD</h5>
+          <div style={{ textAlign: "center" }}>
+            <h1 className={style.name}>Tiket {selectedTableData?.ticket_id ?? ""}</h1>
+            <p>{selectedTableData?.role?.name ?? ""}</p>
+          </div>
+          <div className={`d-flex flex-column align-items-center gap16`}>
+            <p className={style.confirmation}>Tolak WD?</p>
+            <div className={`span2 ${style.modalButtonWrapper}`}>
+              <button
+                type='button'
+                onClick={() => {
+                  tog_reject();
+                }}
+                className={`btn-block waves-effect ${style.noButton}`}
+                data-dismiss='modal'
+              >
+                Tutup
+              </button>
+              <button
+                type='button'
+                className={`bln-block waves-effect waves-light ${style.yesButton}`}
+                onClick={() => {
+                  tog_reject();
+                  handleRejectAction(selectedTableData?.id);
+                  setrefresh(!refresh);
+                  setalertRejectStatus(style.alertOn);
+                  setTimeout(() => {
+                    setalertRejectStatus(style.alertOff);
+                    setselectedTableData(null);
+                  }, 2000);
+                }}
+              >
+                Iya
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    );
+  };
+
   return (
     <React.Fragment>
       <Row>
         <Col className='col-12'>
+        <div className={`${alertVerifyStatus}`}>
+            <Alert color='success'>WD berhasil di approve!</Alert>
+          </div>
+          <div className={`${alertRejectStatus}`}>
+            <Alert color='success'>WD berhasil di reject!</Alert>
+          </div>
+          {modalComponentApprove()}
+          {modalComponentReject()}
           <Card>
             <CardBody>
               <Nav tabs className='nav-tabs-custom'>

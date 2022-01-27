@@ -278,7 +278,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Nama</th>
                 <th>Username</th>
@@ -338,7 +338,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Nama</th>
                 <th>Username</th>
@@ -357,7 +357,6 @@ function TableBootstrap() {
                       <td>{data?.username}</td>
                       <td>{data?.role_name}</td>
                       <td>{data?.email}</td>
-                      <td>{data?.phone}</td>
                       <td className={`${style.aksiButtonsWrapper}`}>
                         <button
                           type='button'
@@ -388,7 +387,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Nama</th>
                 <th>Username</th>

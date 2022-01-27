@@ -33,6 +33,7 @@ import API from "../../../services";
 
 // IMPORT LIBRARY
 import Skeleton from "react-loading-skeleton";
+import NumberFormat from 'react-number-format';
 
 function TableBootstrap() {
   let roleName = window.localStorage.getItem("roleName");
@@ -226,7 +227,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>WL</th>
                 <th>Tanggal</th>
@@ -247,7 +248,8 @@ function TableBootstrap() {
                       <td>{data?.member}</td>
                       <td>{data?.keterangan}</td>
                       <td>{data?.user_name}</td>
-                      <td>{data?.amount}</td>
+                      <td><NumberFormat value={data?.amount} displayType={'text'} thousandSeparator={true} prefix={''}
+                        decimalScale={0} /></td>
                     </tr>
                   );
                 })}

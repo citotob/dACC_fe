@@ -230,7 +230,7 @@ function TableBootstrap({setShouldRefresh, shouldRefresh}) {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Nama</th>
                 <th>Code</th>

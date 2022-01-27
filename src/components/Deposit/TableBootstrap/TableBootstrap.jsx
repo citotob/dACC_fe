@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NumberFormat from 'react-number-format';
 import { changeBreadcrumbItem } from "../../../store/breadcrumb/action";
 import { useDispatch } from "react-redux";
 import {
@@ -257,7 +258,7 @@ function TableBootstrap() {
         {tableData.length > 0 ? (
           <table className='table'>
             <thead>
-              <tr>
+              <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
                 <th>Ticket Id</th>
                 <th>Member</th>
@@ -282,7 +283,8 @@ function TableBootstrap() {
                       <td>{data?.member}</td>
                       <td>{data?.bank_member}</td>
                       <td>{data?.bank_destination_bname}-{data?.bank_destination_account}-{data?.bank_destination_name}</td>
-                      <td>{data?.amount}</td>
+                      <td><NumberFormat value={data?.amount} displayType={'text'} thousandSeparator={true} prefix={''}
+                        decimalScale={0} /></td>
                       <td>{data?.whitelabel_name}</td>
                       <td>{data?.create_date}</td>
                       <td>{data?.status}</td>
