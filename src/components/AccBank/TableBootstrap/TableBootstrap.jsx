@@ -231,6 +231,7 @@ function TableBootstrap() {
                 <th>Bank</th>
                 <th>Rekening</th>
                 <th>Nama</th>
+                <th>Kategori</th>
                 {roleName === "admin" ? (
                   <th>User Rekening</th>                  
                 ) : (
@@ -241,6 +242,7 @@ function TableBootstrap() {
                 ) : (
                   <></>
                 )}
+                <th>Saldo</th>
               </tr>
             </thead>
             <tbody>
@@ -252,6 +254,7 @@ function TableBootstrap() {
                       <td>{data?.bank_name}</td>
                       <td>{data?.account}</td>
                       <td>{data?.name}</td>
+                      <td>{data?.kategori}</td>
                       {roleName === "admin" ? (
                         <td>{data?.user_account.substr(1, 3)}***</td>
                       ) : (
@@ -262,6 +265,7 @@ function TableBootstrap() {
                       ) : (
                         <></>
                       )}
+                      <td>{data?.saldo}</td>
                     </tr>
                   );
                 })}

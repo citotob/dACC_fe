@@ -55,17 +55,17 @@ function Deposit() {
 
   // initial data for modal tambah pengguna
   const getInitData = () => {
-    API.getAccBank()
-      .then((res) => {
-        const accBankData = res?.data?.values ?? "";
-        // console.log("iniroledata", roleData)
-        if (res.status === 200) {
-          setBank_destination(accBankData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // API.getAccBank()
+    //   .then((res) => {
+    //     const accBankData = res?.data?.values ?? "";
+    //     // console.log("iniroledata", roleData)
+    //     if (res.status === 200) {
+    //       setBank_destination(accBankData);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     API.getWL()
       .then((res) => {
         const wlData = res?.data?.values ?? "";
@@ -133,6 +133,21 @@ function Deposit() {
         setTimeout(() => {
           settoggleFailedAlert(false);
         }, 3000);
+      });
+  };
+
+  function getAccBankWL(data) {
+    let params = new URLSearchParams();
+    params.append("id",data)
+    API.getWLById(params)
+      .then((res) => {
+        const accBankData = res?.data?.values ?? "";
+        if (res.status === 200) {
+          setBank_destination(accBankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -214,7 +229,10 @@ function Deposit() {
             <div>
               <select
                 name='whitelabel'
-                onChange={(e) => setSelectedWhitelabel(e.target.value)}
+                onChange={(e) => {
+                  setSelectedWhitelabel(e.target.value);
+                  getAccBankWL(e.target.value);
+                }}
                 className={`form-control form-group ${style.placeholder}`}
               >
                 <option className={style.placeholder}>
@@ -295,10 +313,10 @@ function Deposit() {
                   value: true,
                   errorMessage: "Please enter a Bank Member",
                 },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Code hanya berisi huruf dan angka",
-                },
+                // pattern: {
+                //   value: "^[A-Za-z0-9]+$",
+                //   errorMessage: "Code hanya berisi huruf dan angka",
+                // },
                 minLength: {
                   value: 1,
                   errorMessage: "Code harus lebih dari 1 karakter",
@@ -324,7 +342,7 @@ function Deposit() {
                         key={index}
                       >
                         {/* {bank_destination?.name ?? "Pilih Bank Destination"} */}
-                        {bank_destination?.bank_name}-{bank_destination?.account}-{bank_destination?.name}
+                        {bank_destination?.bankname}-{bank_destination?.account}-{bank_destination?.name}
                       </option>
                     );
                   })

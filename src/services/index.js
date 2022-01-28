@@ -35,6 +35,8 @@ const getAccBank = (query, pageNumber, row) =>
   Get(`datas/getAccBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getWL = (query, pageNumber, row) =>
   Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
+  const getWLById = (query, pageNumber, row) =>
+  Get(`datas/getWLById/?${query}&page=${pageNumber}&row=${row}`, "", false);
 
 const getDataWDTable = (query, userId, pageNumber, row) =>
   Get(`withdrawal/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
@@ -257,6 +259,7 @@ const API = {
   getDataWDTable,
   getDataBonusTable,
   getDataReportTransaksiTable,
+  getWLById,
 
   postAddBank,
   postAddAccBank,
