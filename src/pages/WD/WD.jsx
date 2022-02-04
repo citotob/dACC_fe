@@ -55,17 +55,17 @@ function WD() {
 
   // initial data for modal tambah pengguna
   const getInitData = () => {
-    API.getAccBank()
-      .then((res) => {
-        const accBankData = res?.data?.values ?? "";
-        // console.log("iniroledata", roleData)
-        if (res.status === 200) {
-          setBank_origin(accBankData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // API.getAccBank()
+    //   .then((res) => {
+    //     const accBankData = res?.data?.values ?? "";
+    //     // console.log("iniroledata", roleData)
+    //     if (res.status === 200) {
+    //       setBank_origin(accBankData);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     API.getWL()
       .then((res) => {
         const wlData = res?.data?.values ?? "";
@@ -136,6 +136,21 @@ function WD() {
       });
   };
 
+  function getAccBankWL(data) {
+    let params = new URLSearchParams();
+    params.append("id",data)
+    API.getWLById(params)
+      .then((res) => {
+        const accBankData = res?.data?.values ?? "";
+        if (res.status === 200) {
+          setBank_origin(accBankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       postAddWD();
@@ -201,9 +216,6 @@ function WD() {
               {errorMessage &&
                 errorMessage?.includes("name") &&
                 "Nama WD Sudah Ada"}
-              {errorMessage &&
-                errorMessage?.includes("currency") &&
-                "Currency Sudah Ada"}
             </Alert>
           </div>
           <h5 className={style.title}>Tambahkan WD</h5>
@@ -214,7 +226,10 @@ function WD() {
             <div>
               <select
                 name='whitelabel'
-                onChange={(e) => setSelectedWhitelabel(e.target.value)}
+                onChange={(e) => {
+                  setSelectedWhitelabel(e.target.value);
+                  getAccBankWL(e.target.value);
+                }}
                 className={`form-control form-group ${style.placeholder}`}
               >
                 <option className={style.placeholder}>
@@ -273,10 +288,6 @@ function WD() {
                   value: true,
                   errorMessage: "Please enter a member",
                 },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Code hanya berisi huruf dan angka",
-                },
                 minLength: {
                   value: 1,
                   errorMessage: "Code harus lebih dari 1 karakter",
@@ -294,10 +305,6 @@ function WD() {
                 required: {
                   value: true,
                   errorMessage: "Please enter a Bank Member",
-                },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Code hanya berisi huruf dan angka",
                 },
                 minLength: {
                   value: 1,
@@ -324,7 +331,7 @@ function WD() {
                         key={index}
                       >
                         {/* {bank_origin?.name ?? "Pilih Bank origin"} */}
-                        {bank_origin?.bank_name}-{bank_origin?.account}-{bank_origin?.name}
+                        {bank_origin?.bankname}-{bank_origin?.account}-{bank_origin?.name}
                       </option>
                     );
                   })
