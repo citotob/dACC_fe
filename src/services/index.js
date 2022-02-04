@@ -21,6 +21,8 @@ const putDepoReject = (data) => Put("depo/reject", data, true);
 const putWDApprove = (data) => Put("withdrawal/approve", data, true);
 const putWDReject = (data) => Put("withdrawal/reject", data, true);
 
+const putUpdateSaldoAccBank = (data) => Put("datas/updateSaldoAccBank", data, true);
+
 const getDataRoleTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getDataBankTable = (query, pageNumber, row) =>
@@ -271,6 +273,7 @@ const API = {
   putDepoReject,
   putWDApprove,
   putWDReject,
+  putUpdateSaldoAccBank,
   // 
   getBank,
   getRole,

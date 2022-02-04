@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import NumberFormat from 'react-number-format';
 import { changeBreadcrumbItem } from "../../../store/breadcrumb/action";
 import { useDispatch } from "react-redux";
 import {
@@ -34,6 +35,9 @@ import API from "../../../services";
 // IMPORT LIBRARY
 import Skeleton from "react-loading-skeleton";
 
+// availity-reactstrap-validation
+import { AvForm, AvField } from "availity-reactstrap-validation";
+
 function TableBootstrap() {
   let roleName = window.localStorage.getItem("roleName");
   // redux
@@ -53,13 +57,11 @@ function TableBootstrap() {
   const [disabledNext, setdisabledNext] = useState(false);
 
   // styling states
-  const [alertVerifyStatus, setalertVerifyStatus] = useState(style.alertOff);
+  const [alertEditStatus, setalertEditStatus] = useState(style.alertOff);
   const [alertRejectStatus, setalertRejectStatus] = useState(style.alertOff);
 
   // modal states
-  const [modalVerifyOpen, setmodalVerifyOpen] = useState(false);
-  const [modalRejectOpen, setmodalRejectOpen] = useState(false);
-  const [alasanTolak, setalasanTolak] = useState("");
+  const [modalEditOpen, setmodalEditOpen] = useState(false);
 
   // endpoint query status
   const [queryStatus, setqueryStatus] = useState("");
@@ -74,6 +76,14 @@ function TableBootstrap() {
   const [selectedField, setselectedField] = useState("");
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
+  const [saldo, setSaldo] = useState("");
+
+  // modal error messages
+  const [errorMessage, setErrorMessage] = useState("");
+  const [toggleAlert, settoggleAlert] = useState(false);
+  const [toggleFailedAlert, settoggleFailedAlert] = useState(false);
+
+  let userId = window.localStorage.getItem("userid");
 
   // fetch api
   const getDataAccBankTable = () => {
@@ -127,13 +137,8 @@ function TableBootstrap() {
   }, [refresh, queryStatus, dataPerPage, pageNumber]);
 
   // modal functions
-  function tog_verfiy() {
-    setmodalVerifyOpen(!modalVerifyOpen);
-    removeBodyCss();
-  }
-  function tog_reject() {
-    setmodalRejectOpen(!modalRejectOpen);
-    settextarearequiredtext(false);
+  function tog_edit() {
+    setmodalEditOpen(!modalEditOpen);
     removeBodyCss();
   }
   function removeBodyCss() {
@@ -172,6 +177,23 @@ function TableBootstrap() {
     } else {
       setfilterShow("d-none");
     }
+  };
+
+  // Action Button Functions
+  const handleEditAction = (data) => {
+    let params = new URLSearchParams();
+    params.append("id", data);
+    params.append("userid", userId);
+    params.append("saldo", saldo);
+    API.putUpdateSaldoAccBank(params)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Handle Approve Action 200 : ", res);
+        }
+      })
+      .catch((err) => {
+        console.log("Handle Approve Catch Error : ", err);
+      });
   };
 
   // Text Area Functions
@@ -243,6 +265,7 @@ function TableBootstrap() {
                   <></>
                 )}
                 <th>Saldo</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -256,7 +279,7 @@ function TableBootstrap() {
                       <td>{data?.name}</td>
                       <td>{data?.kategori}</td>
                       {roleName === "admin" ? (
-                        <td>{data?.user_account.substr(1, 3)}***</td>
+                        <td>{data?.user_account.substr(0, 3)}***</td>
                       ) : (
                         <></>
                       )}
@@ -265,7 +288,26 @@ function TableBootstrap() {
                       ) : (
                         <></>
                       )}
-                      <td>{data?.saldo}</td>
+                      <td><NumberFormat value={data?.saldo} displayType={'text'} thousandSeparator={true} prefix={''}
+                        decimalScale={0} /></td>
+                      {roleName === "admin" ? (
+                        <td className={`${style.aksiButtonsWrapper}`}>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              tog_edit();
+                              setselectedTableData(data);
+                            }}
+                            // className={`btn-block waves-effect ${style.noButton}`}
+                            data-toggle='modal'
+                            data-target='#myModal'
+                          >
+                            Update Saldo
+                          </button>
+                        </td>
+                      ) : (
+                        <></>
+                      )}                      
                     </tr>
                   );
                 })}
@@ -278,10 +320,72 @@ function TableBootstrap() {
     );
   };
 
+  // Modal components
+  const modalComponentEdit = () => {
+    return (
+      <Modal
+        isOpen={modalEditOpen}
+        centered={true}
+        toggle={() => {
+          tog_edit();
+        }}
+      >
+        <div className={`modal-body ${style.modalBody}`}>
+          <h5 className={style.title}>Update Saldo</h5>
+          <div style={{ textAlign: "center" }}>
+            <h1 className={style.name}>{selectedTableData?.bank_name ?? ""}-{selectedTableData?.account ?? ""}
+              -{selectedTableData?.name ?? ""}</h1>
+            <p>{selectedTableData?.role?.name ?? ""}</p>
+          </div>
+          <div>
+            {/* <p className={style.confirmation}>Update Saldo?</p> */}
+            <div>
+              <label for="saldo" class="">Saldo</label>
+              <input type="number" name="saldo" onChange={(e) => setSaldo(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+            </div>
+            <div className={`span2 ${style.modalButtonWrapper}`}>
+              <button
+                type='button'
+                onClick={() => {
+                  tog_edit();
+                }}
+                className={`btn-block waves-effect ${style.noButton}`}
+                data-dismiss='modal'
+              >
+                Tutup
+              </button>
+              <button
+                type='button'
+                className={`bln-block waves-effect waves-light ${style.yesButton}`}
+                onClick={() => {
+                  tog_edit();
+                  handleEditAction(selectedTableData?.id);
+                  setrefresh(!refresh);
+                  setalertEditStatus(style.alertOn);
+                  setTimeout(() => {
+                    setalertEditStatus(style.alertOff);
+                    setselectedTableData(null);
+                  }, 2000);
+                }}
+              >
+                Iya
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    );
+  };
+
   return (
     <React.Fragment>
       <Row>
         <Col className='col-12'>
+          <div className={`${alertEditStatus}`}>
+            <Alert color='success'>Rekening berhasil diedit!</Alert>
+          </div>
+          {modalComponentEdit()}
           <Card>
             <CardBody>
               <Nav tabs className='nav-tabs-custom'>

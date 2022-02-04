@@ -11,6 +11,7 @@ import CardMap from "../../components/DashboardAdmin/CardMedium/CardMap";
 
 //import loader
 import Skeleton from "react-loading-skeleton";
+import NumberFormat from 'react-number-format';
 
 //import icons
 import DiajukanMedBlue from "../../assets/icons/diajukan-medblue.svg";
@@ -96,6 +97,28 @@ const DashboardAdmin = ({ title }) => {
         `${dashboardData?.count_wl ?? ""}`
       ),
       icon: `${IsuMedBlue}`,
+    },
+    {
+      title: "Jumlah Depo",
+      amount: loadingCard ? (
+        <Skeleton width={100} />
+      ) : (
+        <NumberFormat value={dashboardData?.total_depo} displayType={'text'} thousandSeparator={true} prefix={'Rp '}
+                        decimalScale={0} />
+        // `Rp ${dashboardData?.total_depo ?? ""}`
+      ),
+      icon: `${DiajukanMedBlue}`,
+    },
+    {
+      title: "Jumlah WD",
+      amount: loadingCard ? (
+        <Skeleton width={100} />
+      ) : (
+        <NumberFormat value={dashboardData?.total_wd} displayType={'text'} thousandSeparator={true} prefix={'Rp '}
+                        decimalScale={0} />
+        // `Rp ${dashboardData?.total_wd ?? ""}`
+      ),
+      icon: `${DisurveyMedBlue}`,
     },
   ];
 

@@ -43,6 +43,7 @@ function AccBank() {
   const [name, setName] = useState("");
   const [user_account, setUser_account] = useState("");
   const [pass_account, setPass_account] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState([]);
   // 
 
   // modal error messages
@@ -77,7 +78,8 @@ function AccBank() {
       account &&
       name &&
       user_account &&
-      pass_account
+      pass_account &&
+      selectedCategory
     ) {
       postAddAccBank();
     } else {
@@ -92,6 +94,8 @@ function AccBank() {
     formData.append("account", account);
     formData.append("name", name);
     formData.append("user_account", user_account);
+    formData.append("kategori", selectedCategory);
+    formData.append("pass_account", pass_account);
     formData.append("pass_account", pass_account);
     formData.append("userid", userId);
     API.postAddAccBank(formData)
@@ -196,7 +200,6 @@ function AccBank() {
           {/* ============================== form start  */}
 
           <AvForm className='form-horizontal' onValidSubmit={() => postAddAccBank()}>
-          <label className='col-form-label'>Pilih Tipe Pengguna</label>
             <div>
               <select
                 name='bank'
@@ -215,7 +218,7 @@ function AccBank() {
                         key={index}
                       >
                         {/* {bank?.name ?? "Pilih Bank"} */}
-                        {bank?.name}-{bank?.currency}
+                        {bank?.name}
                       </option>
                     );
                   })
@@ -262,6 +265,22 @@ function AccBank() {
                 },
               }}
             />
+            <div>
+              <select
+                name='kategori'
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className={`form-control form-group ${style.placeholder}`}
+              >
+                <option className={style.placeholder}>
+                  Pilih Kategori
+                </option>
+                <option value='depo'>Depo</option>
+                <option value='wd'>WD</option>
+                <option value='pengaman1'>Pengaman 1</option>
+                <option value='pengaman2'>Pengaman 2</option>
+                <option value='pengaman3'>Pengaman 3</option>
+              </select>
+            </div>
             <AvField
               name='user_accountCustomMessage'
               label='User_account'

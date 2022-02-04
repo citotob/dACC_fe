@@ -181,6 +181,7 @@ function Bank() {
               placeholder='Nama'
               onChange={(e) => setName(e.target.value)}
               className={`${style.placeholder} form-control`}
+              // autoFocus
               validate={{
                 required: {
                   value: true,
@@ -218,7 +219,7 @@ function Bank() {
                 },
               }}
             />
-            <label className='col-form-label'>Pilih Currency</label>
+            {/* <label className='col-form-label'>Pilih Currency</label>
             <div>
               <select
                 name='Currency'
@@ -229,7 +230,7 @@ function Bank() {
                 <option value='IDR'>IDR</option>
                 <option value='USD'>USD</option>
               </select>
-            </div>
+            </div> */}
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
