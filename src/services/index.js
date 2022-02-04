@@ -50,6 +50,8 @@ const getDataBonusTable = (query, userId, pageNumber, row) =>
   Get(`bonus/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
 const getDataReportTransaksiTable = (query, pageNumber, row) =>
   Get(`report/transaksi/?${query}&page=${pageNumber}&row=${row}`, "", false);
+
+const getMutasiBCA = () => Get("mutasiBank/bca", "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -262,6 +264,7 @@ const API = {
   getDataBonusTable,
   getDataReportTransaksiTable,
   getWLById,
+  getMutasiBCA,
 
   postAddBank,
   postAddAccBank,

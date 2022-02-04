@@ -137,6 +137,10 @@ function TableBootstrap() {
     settextarearequiredtext(false);
     removeBodyCss();
   }
+  function tog_bca() {
+    setmodalVerifyOpen(!modalVerifyOpen);
+    removeBodyCss();
+  }
   function removeBodyCss() {
     document.body.classList.add("no_padding");
   }
@@ -220,6 +224,21 @@ function TableBootstrap() {
       });
   };
 
+  // Action Button Functions
+  const handleOpenBCAAction = () => {
+    API.getMutasiBCA()
+      .then((res) => {
+        // const bankData = res?.data?.values ?? "";
+        // console.log("iniroledata", roleData)
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
   const handleFilterSearch = (searchData) => {
     setloading(true);
     API.getUserSearch(
@@ -289,19 +308,23 @@ function TableBootstrap() {
                       <td>{data?.create_date}</td>
                       <td>{data?.status}</td>
                       <td>{data?.inprogress}</td>
-                      <td className={`${style.aksiButtonsWrapper}`}>
-                        <button
-                          type='button'
-                          onClick={() => {
-                            tog_approve();
-                            setselectedTableData(data);
-                          }}
-                          className={`btn-block waves-effect ${style.noButton}`}
-                          data-dismiss='modal'
-                        >
-                          Mutasi
-                        </button>
-                      </td>
+                      {data?.status === "PENDING" ? (
+                        <td className={`${style.aksiButtonsWrapper}`}>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              // tog_bca();
+                              handleOpenBCAAction(selectedTableData?.id);
+                            }}
+                            className={`btn-block waves-effect ${style.noButton}`}
+                            data-dismiss='modal'
+                          >
+                            Mutasi
+                          </button>
+                        </td>
+                      ) : (
+                        <></>
+                      )}
                       {data?.status === "PENDING" ? (
                         <td className={`${style.aksiButtonsWrapper}`}>
                           <button
