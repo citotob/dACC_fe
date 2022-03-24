@@ -225,18 +225,52 @@ function TableBootstrap() {
   };
 
   // Action Button Functions
-  const handleOpenBCAAction = () => {
-    API.getMutasiBCA()
-      .then((res) => {
-        // const bankData = res?.data?.values ?? "";
-        // console.log("iniroledata", roleData)
-        if (res.status === 200) {
-          // setBank(bankData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleOpenBankAction = (data) => {
+    console.log(data)
+    switch(data.bank_destination_bname) {
+      case 'BCA':
+        API.getMutasiBCA()
+        .then((res) => {
+          // const bankData = res?.data?.values ?? "";
+          // console.log("iniroledata", roleData)
+          if (res.status === 200) {
+            // setBank(bankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      case 'DANAMON':
+        API.getMutasiDanamon()
+        .then((res) => {
+          if (res.status === 200) {
+            // setBank(bankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      case 'BNI':
+          API.getMutasiBNI()
+          .then((res) => {
+            if (res.status === 200) {
+              // setBank(bankData);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      // default:
+      //   API.getMutasiBCA()
+      //   .then((res) => {
+      //     if (res.status === 200) {
+      //       // setBank(bankData);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+    }
   };
   
   const handleFilterSearch = (searchData) => {
@@ -308,23 +342,19 @@ function TableBootstrap() {
                       <td>{data?.create_date}</td>
                       <td>{data?.status}</td>
                       <td>{data?.inprogress}</td>
-                      {data?.status === "PENDING" ? (
-                        <td className={`${style.aksiButtonsWrapper}`}>
-                          <button
-                            type='button'
-                            onClick={() => {
-                              // tog_bca();
-                              handleOpenBCAAction(selectedTableData?.id);
-                            }}
-                            className={`btn-block waves-effect ${style.noButton}`}
-                            data-dismiss='modal'
-                          >
-                            Mutasi
-                          </button>
-                        </td>
-                      ) : (
-                        <></>
-                      )}
+                      <td className={`${style.aksiButtonsWrapper}`}>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            // tog_bca();
+                            handleOpenBankAction(data);
+                          }}
+                          className={`btn-block waves-effect ${style.noButton}`}
+                          data-dismiss='modal'
+                        >
+                          Mutasi
+                        </button>
+                      </td>
                       {data?.status === "PENDING" ? (
                         <td className={`${style.aksiButtonsWrapper}`}>
                           <button
