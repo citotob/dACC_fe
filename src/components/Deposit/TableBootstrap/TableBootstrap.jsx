@@ -260,6 +260,26 @@ function TableBootstrap() {
           .catch((err) => {
             console.log(err);
           });
+      case 'BRI':
+        API.getMutasiBRI()
+        .then((res) => {
+          if (res.status === 200) {
+            // setBank(bankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    case 'MANDIRI':
+      API.getMutasiMandiri()
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
       // default:
       //   API.getMutasiBCA()
       //   .then((res) => {
