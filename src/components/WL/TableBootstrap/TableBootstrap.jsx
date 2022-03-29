@@ -35,6 +35,7 @@ import API from "../../../services";
 import Skeleton from "react-loading-skeleton";
 
 function TableBootstrap() {
+  let roleName = window.localStorage.getItem("roleName");
   // redux
   const dispatch = useDispatch();
 
@@ -52,6 +53,7 @@ function TableBootstrap() {
   const [disabledNext, setdisabledNext] = useState(false);
 
   // styling states
+  const [alertEditStatus, setalertEditStatus] = useState(style.alertOff);
   const [alertVerifyStatus, setalertVerifyStatus] = useState(style.alertOff);
   const [alertRejectStatus, setalertRejectStatus] = useState(style.alertOff);
 
@@ -59,6 +61,7 @@ function TableBootstrap() {
   const [modalVerifyOpen, setmodalVerifyOpen] = useState(false);
   const [modalRejectOpen, setmodalRejectOpen] = useState(false);
   const [alasanTolak, setalasanTolak] = useState("");
+  const [modalEditOpen, setmodalEditOpen] = useState(false);
 
   // endpoint query status
   const [queryStatus, setqueryStatus] = useState("");
@@ -73,6 +76,15 @@ function TableBootstrap() {
   const [selectedField, setselectedField] = useState("");
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
+
+  const [listurl_website, setListurl_website] = useState([]);
+  const [inputurl_website, setInputurl_website] = useState("");
+
+  const [listurl_admin, setListurl_admin] = useState([]);
+  const [inputurl_admin, setInputurl_admin] = useState("");
+
+  const [listAccBank, setListAccBank] = useState([]);
+  const [inputAccBank, setInputAccBank] = useState("");
 
   // fetch api
   const getDataWLTable = () => {
@@ -135,6 +147,12 @@ function TableBootstrap() {
     settextarearequiredtext(false);
     removeBodyCss();
   }
+  // modal functions
+  function tog_edit() {
+    setmodalEditOpen(!modalEditOpen);
+    removeBodyCss();
+  }
+
   function removeBodyCss() {
     document.body.classList.add("no_padding");
   }
@@ -171,6 +189,24 @@ function TableBootstrap() {
     } else {
       setfilterShow("d-none");
     }
+  };
+
+  // Action Button Functions
+  const handleEditAction = (data) => {
+    console.log("data",data);
+    // let params = new URLSearchParams();
+    // params.append("id", data);
+    // params.append("userid", userId);
+    // params.append("saldo", saldo);
+    // API.putUpdateSaldoAccBank(params)
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       console.log("Handle Approve Action 200 : ", res);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log("Handle Approve Catch Error : ", err);
+    //   });
   };
 
   // Text Area Functions
@@ -232,6 +268,7 @@ function TableBootstrap() {
                 <th>Url Website</th>
                 <th>Url Admin</th>
                 <th>Rekening</th>
+                <th>-</th>
               </tr>
             </thead>
             <tbody>
@@ -260,6 +297,31 @@ function TableBootstrap() {
                         return <tr>{item.bankname}-{item.account}-{item.name}</tr>
                         }) : (<></>)}
                       </td>
+                      {roleName === "admin" ? (
+                        <td className={`${style.aksiButtonsWrapper}`}>
+                          <button
+                            type='button'
+                            onClick={() => {
+                              tog_edit();
+                              setselectedTableData(data);
+                              setListurl_website(data?.url_website);
+                              setListurl_admin(data?.url_admin);
+                              var lst_acc_bank = [];
+                              for(i=0; i < data?.account_bank.length; i++){
+                                lst_acc_bank.push(data?.account_bank[i].id+"-"+data?.account_bank[i].bankname+"-"+data?.account_bank[i].account+"-"+data?.account_bank[i].name)
+                              }
+                              setListAccBank(lst_acc_bank);
+                            }}
+                            // className={`btn-block waves-effect ${style.noButton}`}
+                            data-toggle='modal'
+                            data-target='#myModal'
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      ) : (
+                        <></>
+                      )}
                     </tr>
                   );
                 })}
@@ -272,10 +334,143 @@ function TableBootstrap() {
     );
   };
 
+  const modalComponentEdit = () => {
+    return (
+      <Modal
+        isOpen={modalEditOpen}
+        centered={true}
+        toggle={() => {
+          tog_edit();
+        }}
+      >
+        <div className={`modal-body ${style.modalBody}`}>
+          <h5 className={style.title}>Update WL</h5>
+          <div style={{ textAlign: "center" }}>
+            <h1 className={style.name}>{selectedTableData?.name ?? ""}</h1>
+            <p>{selectedTableData?.bankname ?? ""}</p>
+          </div>
+          <div>
+            <div class="form-group">
+              <label for="website" class="">URL Website</label>
+              <input name="website" value={inputurl_website} onChange={(e) => setInputurl_website(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+
+              <button type='button' onClick={() => {
+                setListurl_website((prevurl_website) => [...prevurl_website, inputurl_website])
+                setInputurl_website("")
+              }}>Add Data</button>
+              <button type='button' onClick={() => {
+                setListurl_website([])
+              }}>Reset Data</button>
+              
+              {listurl_website.map((itemurl_website, k) => <p key={k}>{itemurl_website} | <span onClick={() => setListurl_website((prevurl_website) => prevurl_website.filter((e) => e !== itemurl_website))}>delete</span></p>)}
+            </div>
+            <div class="form-group">
+              <label for="webadmin" class="">URL Admin</label>
+              <input name="webadmin" value={inputurl_admin} onChange={(e) => setInputurl_admin(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+
+              <button type='button' onClick={() => {
+                setListurl_admin((prevurl_admin) => [...prevurl_admin, inputurl_admin])
+                setInputurl_admin("")
+              }}>Add Data</button>
+              <button type='button' onClick={() => {
+                setListurl_admin([])
+              }}>Reset Data</button>
+
+              {listurl_admin.map((itemurl_admin, i) => <p key={i}>{itemurl_admin} | <span onClick={() => setListurl_admin((prevurl_admin) => prevurl_admin.filter((e) => e !== itemurl_admin))}>delete</span></p>)}
+            </div>
+            <div class="form-group">
+              {/* <select
+                name='accbank'
+                onChange={(e) => setInputAccBank(e.target.value)}
+                className={`form-control form-group ${style.placeholder}`}
+              > */}
+              <select
+                name='accbank'
+                onChange={(e) => {
+                    if (!listAccBank.includes(e.target.value)) {
+                      setInputAccBank(e.target.value)
+                    }
+                  }
+                }
+                className={`form-control form-group ${style.placeholder}`}
+              >
+                <option className={style.placeholder}>
+                  Pilih Rekening Bank
+                </option>
+                {selectedTableData?.account_bank && selectedTableData?.account_bank.length !== 0 ? (
+                  selectedTableData?.account_bank.map((account_bank, index) => {
+                    return (
+                      <option
+                        className={style.placeholder}
+                        value={account_bank?.id+"-"+account_bank?.bankname+"-"+account_bank?.account+"-"+account_bank?.name}
+                        key={index}
+                      >
+                        {account_bank?.id}-{account_bank?.bankname}-{account_bank?.account}-{account_bank?.name}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option className={style.placeholder}>
+                    Pilih Rekening Bank
+                  </option>
+                )}
+              </select>
+              <button type='button' onClick={() => {
+                if (inputAccBank!=="") {
+                  setListAccBank((prevAccBank) => [...prevAccBank, inputAccBank]);
+                  setInputAccBank("");
+                }
+              }}>Add Data</button>
+              <button type='button' onClick={() => {
+                setListAccBank([])
+              }}>Reset Data</button>
+
+              {listAccBank.map((itemAccBank, j) => <p name="p_accbank" key={j}>{itemAccBank} | <span name="s_accbank" onClick={() => setListAccBank((prevAccBank) => prevAccBank.filter((e) => e !== itemAccBank))}>delete</span></p>)}
+            </div>
+            <div className={`span2 ${style.modalButtonWrapper}`}>
+              <button
+                type='button'
+                onClick={() => {
+                  tog_edit();
+                }}
+                className={`btn-block waves-effect ${style.noButton}`}
+                data-dismiss='modal'
+              >
+                Tutup
+              </button>
+              <button
+                type='button'
+                className={`bln-block waves-effect waves-light ${style.yesButton}`}
+                onClick={() => {
+                  tog_edit();
+                  handleEditAction(selectedTableData?.id);
+                  setrefresh(!refresh);
+                  setalertEditStatus(style.alertOn);
+                  setTimeout(() => {
+                    setalertEditStatus(style.alertOff);
+                    setselectedTableData(null);
+                  }, 2000);
+                }}
+              >
+                Iya
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+    );
+  };
+
   return (
     <React.Fragment>
       <Row>
         <Col className='col-12'>
+          <div className={`${alertEditStatus}`}>
+            <Alert color='success'>WL berhasil diedit!</Alert>
+          </div>
+          {modalComponentEdit()}
           <Card>
             <CardBody>
               <Nav tabs className='nav-tabs-custom'>
