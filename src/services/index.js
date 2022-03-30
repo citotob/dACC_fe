@@ -23,6 +23,8 @@ const putWDReject = (data) => Put("withdrawal/reject", data, true);
 
 const putUpdateSaldoAccBank = (data) => Put("datas/updateSaldoAccBank", data, true);
 
+const putUpdateWL = (data) => Put("datas/editWL", data, true);
+
 const getDataRoleTable = (query, pageNumber, row) =>
   Get(`user/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getDataBankTable = (query, pageNumber, row) =>
@@ -285,6 +287,7 @@ const API = {
   putWDApprove,
   putWDReject,
   putUpdateSaldoAccBank,
+  putUpdateWL,
   // 
   getBank,
   getRole,

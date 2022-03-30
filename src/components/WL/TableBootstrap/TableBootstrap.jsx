@@ -36,6 +36,7 @@ import Skeleton from "react-loading-skeleton";
 
 function TableBootstrap() {
   let roleName = window.localStorage.getItem("roleName");
+  let userId = window.localStorage.getItem("userid");
   // redux
   const dispatch = useDispatch();
 
@@ -85,6 +86,7 @@ function TableBootstrap() {
 
   const [listAccBank, setListAccBank] = useState([]);
   const [inputAccBank, setInputAccBank] = useState("");
+  const [accounts_bank, setAccounts_bank] = useState([]);
 
   // fetch api
   const getDataWLTable = () => {
@@ -108,6 +110,24 @@ function TableBootstrap() {
         settableData([]);
         setloading(false);
         console.error(err);
+      });
+    
+      API.getAccBank()
+      .then((res) => {
+        const accbankData = res?.data?.values ?? "";
+        if (res.status === 200) {
+          // setAccount_bank(accbankData);
+          var lst_acc_bank = [];
+          var k;
+          for(k=0; k < accbankData.length; k++){
+            lst_acc_bank.push(accbankData[k].id+"-"+accbankData[k].bank_name+"-"+accbankData[k].account+"-"+accbankData[k].name)
+          }
+          setAccounts_bank(lst_acc_bank);
+          // console.log("accounts_bank",accounts_bank);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -193,20 +213,31 @@ function TableBootstrap() {
 
   // Action Button Functions
   const handleEditAction = (data) => {
-    console.log("data",data);
-    // let params = new URLSearchParams();
-    // params.append("id", data);
-    // params.append("userid", userId);
-    // params.append("saldo", saldo);
-    // API.putUpdateSaldoAccBank(params)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       console.log("Handle Approve Action 200 : ", res);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log("Handle Approve Catch Error : ", err);
-    //   });
+    // console.log("data",data,listurl_website,listurl_admin,listAccBank);
+    var lst_acc_bank = [];
+    var a;
+    var accBank;
+    for(a=0; a < listAccBank.length; a++){
+      accBank=listAccBank[a].split("-");
+      lst_acc_bank.push(accBank[0])
+    }
+    
+    let params = new URLSearchParams();
+    params.append("id", data.id);
+    params.append("userid", userId);
+    params.append("name", data.name);
+    params.append("url_website", listurl_website.join());
+    params.append("url_admin", listurl_admin.join());
+    params.append("account_bank", lst_acc_bank.join());
+    API.putUpdateWL(params)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Handle Approve Action 200 : ", res);
+        }
+      })
+      .catch((err) => {
+        console.log("Handle Approve Catch Error : ", err);
+      });
   };
 
   // Text Area Functions
@@ -307,8 +338,9 @@ function TableBootstrap() {
                               setListurl_website(data?.url_website);
                               setListurl_admin(data?.url_admin);
                               var lst_acc_bank = [];
-                              for(i=0; i < data?.account_bank.length; i++){
-                                lst_acc_bank.push(data?.account_bank[i].id+"-"+data?.account_bank[i].bankname+"-"+data?.account_bank[i].account+"-"+data?.account_bank[i].name)
+                              var ii;
+                              for(ii=0; ii < data?.account_bank.length; ii++){
+                                lst_acc_bank.push(data?.account_bank[ii].id+"-"+data?.account_bank[ii].bankname+"-"+data?.account_bank[ii].account+"-"+data?.account_bank[ii].name)
                               }
                               setListAccBank(lst_acc_bank);
                             }}
@@ -399,15 +431,17 @@ function TableBootstrap() {
                 <option className={style.placeholder}>
                   Pilih Rekening Bank
                 </option>
-                {selectedTableData?.account_bank && selectedTableData?.account_bank.length !== 0 ? (
-                  selectedTableData?.account_bank.map((account_bank, index) => {
+                {accounts_bank && accounts_bank.length !== 0 ? (
+                  accounts_bank.map((accountBank, index) => {
                     return (
                       <option
                         className={style.placeholder}
-                        value={account_bank?.id+"-"+account_bank?.bankname+"-"+account_bank?.account+"-"+account_bank?.name}
+                        // value={accountBank?.id+"-"+accountBank?.bankname+"-"+accountBank?.account+"-"+accountBank?.name}
+                        value={accountBank}
                         key={index}
                       >
-                        {account_bank?.id}-{account_bank?.bankname}-{account_bank?.account}-{account_bank?.name}
+                        {/* {account_bank?.id}-{account_bank?.bankname}-{account_bank?.account}-{account_bank?.name} */}
+                        {accountBank}
                       </option>
                     );
                   })
@@ -445,7 +479,8 @@ function TableBootstrap() {
                 className={`bln-block waves-effect waves-light ${style.yesButton}`}
                 onClick={() => {
                   tog_edit();
-                  handleEditAction(selectedTableData?.id);
+                  // handleEditAction(selectedTableData?.id);
+                  handleEditAction(selectedTableData);
                   setrefresh(!refresh);
                   setalertEditStatus(style.alertOn);
                   setTimeout(() => {
@@ -454,7 +489,7 @@ function TableBootstrap() {
                   }, 2000);
                 }}
               >
-                Iya
+                Update
               </button>
             </div>
           </div>
