@@ -306,6 +306,8 @@ function TableBootstrap() {
 
   // Table components
   const tableAktif = () => {
+    var total_debit=0;
+    var total_kredit=0;
     return (
       <div className='table-responsive'>
         {tableData.length > 0 ? (
@@ -329,6 +331,9 @@ function TableBootstrap() {
             <tbody>
               {tableData.length > 0 &&
                 tableData?.map((data, i) => {
+                  total_debit+=Number(data?.debit);
+                  total_kredit+=Number(data?.kredit);
+                  console.log(total_debit)
                   return (
                     <tr key={i}>
                       <td>{i + 1}</td>
@@ -348,6 +353,22 @@ function TableBootstrap() {
                     </tr>
                   );
                 })}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total</td>
+                  <td><NumberFormat value={total_debit} displayType={'text'} thousandSeparator={true} prefix={''}
+                    decimalScale={0} /></td>
+                  <td><NumberFormat value={total_kredit} displayType={'text'} thousandSeparator={true} prefix={''}
+                    decimalScale={0} /></td>
+                  <td></td>
+                </tr>
             </tbody>
           </table>
         ) : (
