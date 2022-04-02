@@ -131,10 +131,10 @@ function TableBootstrap() {
       getDataReportTransaksiTable();
     } else {
       if (activeSearch === "search") {
-        handleFilterSearch(searchInput);
+        handleSearch(searchInput);
       }
       if (activeSearch === "filter") {
-        handleFilterSearch(selectedFilter);
+        handleFilter(selectedFilter);
       }
     }
     // getInitData();
@@ -233,7 +233,7 @@ function TableBootstrap() {
     settextcount(event.target.value.length);
   }
 
-  const handleFilterSearch = (searchData) => {
+  const handleFilter = (searchData) => {
     var fields=",";
     if (selectedWhitelabel!=="Pilih White Label"){
       if (selectedWhitelabel!==""){
@@ -251,7 +251,7 @@ function TableBootstrap() {
     if (sampaiTanggal!==""){
       fields+="create_date_end|"+sampaiTanggal+",";
     }
-    console.log(fields);
+    
     if (fields!==","){
       setloading(true);
       let params = new URLSearchParams();
@@ -276,26 +276,32 @@ function TableBootstrap() {
           console.error(err);
         });
     }
-    // API.getFilterReport(fields)
-    //   .then((res) => {
-    //     if (res.data.success && res.status === 200) {
-    //       settableData(res.data.values);
-    //       if (res.data.values.length < dataPerPage) {
-    //         setdisabledNext(true);
-    //       } else {
-    //         setdisabledNext(false);
-    //       }
-    //     } else {
-    //       // settableData(null);
-    //       settableData([]);
-    //     }
-    //     setloading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.error("API FAIL :  > ", err);
-    //     // settableData(null);
-    //     settableData([]);
-    //   });
+  };
+
+  const handleSearch = (searchData) => {
+    setloading(true);
+    let params = new URLSearchParams();
+    params.append("field",selectedField)
+    params.append("value",searchData)
+    API.getSearchReport(params, pageNumber, dataPerPage)
+      .then((res) => {
+        if (res.status === 200) {
+          settableData(res.data.values);
+          if (res.data.values.length < dataPerPage) {
+            setdisabledNext(true);
+          } else {
+            setdisabledNext(false);
+          }
+        } else {
+          settableData([]);
+        }
+        setloading(false);
+      })
+      .catch((err) => {
+        settableData([]);
+        setloading(false);
+        console.error(err);
+      });
   };
 
   // Table components
@@ -464,6 +470,7 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
+                    <option value='ticket_id'>Tiket</option>
                     <option value='member'>Member</option>
                   </select>
                 </div>
@@ -471,7 +478,7 @@ function TableBootstrap() {
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(searchInput);
+                    handleSearch(searchInput);
                   }}
                 >
                   Cari
@@ -577,7 +584,7 @@ function TableBootstrap() {
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(selectedFilter);
+                    handleFilter(selectedFilter);
                   }}
                 >
                   Cari

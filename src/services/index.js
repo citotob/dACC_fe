@@ -61,6 +61,8 @@ const getMutasiMandiri = () => Get("mutasiBank/mandiri", "", false);
 
 const getFilterReport = (query, pageNumber, row) =>
   Get(`report/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getSearchReport = (query, pageNumber, row) =>
+  Get(`report/search/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -279,6 +281,7 @@ const API = {
   getMutasiBRI,
   getMutasiMandiri,
   getFilterReport,
+  getSearchReport,
 
   postAddBank,
   postAddAccBank,
