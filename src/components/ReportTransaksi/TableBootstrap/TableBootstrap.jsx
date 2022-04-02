@@ -76,12 +76,6 @@ function TableBootstrap() {
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
 
-  const [filterWL, setfilterWL] = useState("");
-  const [filterBank, setfilterBank] = useState("");
-  const [filterDariTanggal, setfilterDariTanggal] = useState("");
-  const [filterSampaiTanggal, setfilterSampaiTanggal] = useState("");
-  const [filterRekening, setfilterRekening] = useState("");
-
   const [dataWL, setdataWL] = useState("");
 
   const [ticket_id, setTicket_id] = useState("");
@@ -96,6 +90,8 @@ function TableBootstrap() {
   const [selectedWhitelabel, setSelectedWhitelabel] = useState("");
   const [dariTanggal, setDariTanggal] = useState("");
   const [sampaiTanggal, setSampaiTanggal] = useState("");
+  const [status, setStatus] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   // fetch api
   const getDataReportTransaksiTable = () => {
@@ -243,6 +239,11 @@ function TableBootstrap() {
     if (selectedAccBank!=="Pilih Rekening Bank"){
       if (selectedAccBank!==""){
         fields+="bank_destination|"+selectedAccBank+",";
+      }
+    }
+    if (selectedStatus!=="Pilih Status"){
+      if (selectedStatus!==""){
+        fields+="status|"+selectedStatus+",";
       }
     }
     if (dariTanggal!==""){
@@ -579,6 +580,19 @@ function TableBootstrap() {
                     </option>
                   )}
                 </select>
+                <select
+                  name='status'
+                  value={selectedStatus}
+                  className={`form-control form-group ${style.placeholder}`}
+                  onChange={(e) => {
+                    setSelectedStatus(e.target.value);
+                  }}
+                >
+                  <option value=''>Pilih Status</option>
+                  <option value='PENDING'>Pending</option>
+                  <option value='APPROVE'>Approve</option>
+                  <option value='REJECT'>Reject</option>
+                </select>
                 <input
                   type="date"
                   name='daritanggal'
@@ -614,6 +628,7 @@ function TableBootstrap() {
                   onClick={() => {
                     setSelectedWhitelabel("");
                     setSelectedAccBank("");
+                    setSelectedStatus("");
                     setDariTanggal("");
                     setSampaiTanggal("");
                     setrefresh(!refresh);
