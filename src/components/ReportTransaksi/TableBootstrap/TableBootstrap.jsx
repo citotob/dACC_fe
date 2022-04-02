@@ -584,11 +584,10 @@ function TableBootstrap() {
                 </button>
                 <button
                   onClick={() => {
-                    // setselectedField("");
-                    // setselectedFilter("");
-                    // setsearchInput("");
-                    setSelectedAccBank("");
                     setSelectedWhitelabel("");
+                    setSelectedAccBank("");
+                    setDariTanggal("");
+                    setSampaiTanggal("");
                     setrefresh(!refresh);
                     setpageNumber(1);
                   }}
