@@ -510,7 +510,7 @@ function TableBootstrap() {
                   }}
                   className={`form-control form-group ${style.placeholder}`}
                 >
-                  <option className={style.placeholder}>
+                  <option className={style.placeholder} value="" >
                     Pilih White Label
                   </option>
                   {whitelabel && whitelabel.length !== 0 ? (
@@ -526,7 +526,7 @@ function TableBootstrap() {
                       );
                     })
                   ) : (
-                    <option className={style.placeholder}>
+                    <option className={style.placeholder} value="" >
                       Pilih White Label
                     </option>
                   )}
@@ -536,7 +536,7 @@ function TableBootstrap() {
                   onChange={(e) => setSelectedAccBank(e.target.value)}
                   className={`form-control form-group ${style.placeholder}`}
                 >
-                  <option className={style.placeholder}>
+                  <option value="" className={style.placeholder}>
                     Pilih Rekening Bank 
                   </option>
                   {account_bank && account_bank.length !== 0 ? (
@@ -553,7 +553,7 @@ function TableBootstrap() {
                       );
                     })
                   ) : (
-                    <option className={style.placeholder}>
+                    <option className={style.placeholder} value="">
                       Pilih Rekening Bank
                     </option>
                   )}
