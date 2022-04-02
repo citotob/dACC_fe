@@ -274,7 +274,7 @@ function TableBootstrap() {
                   return (
                     <tr key={i}>
                       <td>{i + 1}</td>
-                      <td>{data?.bank_name}</td>
+                      <td>{data?.bankname}</td>
                       <td>{data?.account}</td>
                       <td>{data?.name}</td>
                       <td>{data?.kategori}</td>
@@ -333,7 +333,7 @@ function TableBootstrap() {
         <div className={`modal-body ${style.modalBody}`}>
           <h5 className={style.title}>Update Saldo</h5>
           <div style={{ textAlign: "center" }}>
-            <h1 className={style.name}>{selectedTableData?.bank_name ?? ""}-{selectedTableData?.account ?? ""}
+            <h1 className={style.name}>{selectedTableData?.bankname ?? ""}-{selectedTableData?.account ?? ""}
               -{selectedTableData?.name ?? ""}</h1>
             <p>{selectedTableData?.role?.name ?? ""}</p>
           </div>
@@ -476,7 +476,7 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='bank_name'>Bank</option>
+                    <option value='bankname'>Bank</option>
                     <option value='account'>Akun</option>
                     <option value='name'>Nama</option>
                   </select>

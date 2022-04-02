@@ -566,7 +566,7 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='bank_name'>Bank</option>
+                    <option value='bankname'>Bank</option>
                     <option value='account'>Akun</option>
                     <option value='name'>Nama</option>
                   </select>

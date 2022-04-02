@@ -288,11 +288,11 @@ function WL() {
                     return (
                       <option
                         className={style.placeholder}
-                        value={account_bank?.id+"-"+account_bank?.bank_name+"-"+account_bank?.account+"-"+account_bank?.name}
+                        value={account_bank?.id+"-"+account_bank?.bankname+"-"+account_bank?.account+"-"+account_bank?.name}
                         key={index}
                       >
                         {/* {bank?.name ?? "Pilih Bank"} */}
-                        {account_bank?.bank_name}-{account_bank?.account}-{account_bank?.name}
+                        {account_bank?.bankname}-{account_bank?.account}-{account_bank?.name}
                       </option>
                     );
                   })

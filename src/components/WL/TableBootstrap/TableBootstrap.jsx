@@ -120,7 +120,7 @@ function TableBootstrap() {
           var lst_acc_bank = [];
           var k;
           for(k=0; k < accbankData.length; k++){
-            lst_acc_bank.push(accbankData[k].id+"-"+accbankData[k].bank_name+"-"+accbankData[k].account+"-"+accbankData[k].name)
+            lst_acc_bank.push(accbankData[k].id+"-"+accbankData[k].bankname+"-"+accbankData[k].account+"-"+accbankData[k].name)
           }
           setAccounts_bank(lst_acc_bank);
           // console.log("accounts_bank",accounts_bank);

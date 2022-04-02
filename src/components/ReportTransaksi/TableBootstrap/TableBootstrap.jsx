@@ -76,6 +76,27 @@ function TableBootstrap() {
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
 
+  const [filterWL, setfilterWL] = useState("");
+  const [filterBank, setfilterBank] = useState("");
+  const [filterDariTanggal, setfilterDariTanggal] = useState("");
+  const [filterSampaiTanggal, setfilterSampaiTanggal] = useState("");
+  const [filterRekening, setfilterRekening] = useState("");
+
+  const [dataWL, setdataWL] = useState("");
+
+  const [ticket_id, setTicket_id] = useState("");
+  const [member, setMember] = useState("");
+  const [bank_member, setBank_member] = useState("");
+  const [account_bank, setAccount_bank] = useState([]);
+  const [selectedAccBank, setSelectedAccBank] = useState("");
+  const [account_bankAll, setAccount_bankAll] = useState([]);
+  const [selectedAccBankAll, setSelectedAccBankAll] = useState([]);
+  const [amount, setAmount] = useState("");
+  const [whitelabel, setWhitelabel] = useState([]);
+  const [selectedWhitelabel, setSelectedWhitelabel] = useState("");
+  const [dariTanggal, setDariTanggal] = useState("");
+  const [sampaiTanggal, setSampaiTanggal] = useState("");
+
   // fetch api
   const getDataReportTransaksiTable = () => {
     setloading(true);
@@ -101,7 +122,6 @@ function TableBootstrap() {
   };
 
   // useeffect
-
   useEffect(() => {
     dispatch(changeBreadcrumbItem("Aktif"));
   }, []);
@@ -150,6 +170,31 @@ function TableBootstrap() {
 
   // toggles
   const tog_filter = () => {
+    if (dataWL === ""){
+      setdataWL("ok");
+      API.getWL()
+        .then((res) => {
+          const wlData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setWhitelabel(wlData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        
+      API.getAccBank()
+        .then((res) => {
+          const accbankData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setAccount_bankAll(accbankData);
+            setAccount_bank(accbankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     if (filterShow === "d-none") {
       setfilterShow("d-flex");
     } else {
@@ -189,34 +234,68 @@ function TableBootstrap() {
   }
 
   const handleFilterSearch = (searchData) => {
-    setloading(true);
-    API.getUserSearch(
-      queryStatus,
-      selectedField,
-      searchData,
-      dataPerPage,
-      pageNumber
-    )
-      .then((res) => {
-        if (res.data.success && res.status === 200) {
-          // console.log("API SUCCESS :  > ", res);
-          settableData(res.data.values);
-          if (res.data.values.length < dataPerPage) {
-            setdisabledNext(true);
+    var fields=",";
+    if (selectedWhitelabel!=="Pilih White Label"){
+      if (selectedWhitelabel!==""){
+        fields+="whitelabel|"+selectedWhitelabel+",";
+      }
+    }
+    if (selectedAccBank!=="Pilih Rekening Bank"){
+      if (selectedAccBank!==""){
+        fields+="bank_destination|"+selectedAccBank+",";
+      }
+    }
+    if (dariTanggal!==""){
+      fields+="create_date_from|"+dariTanggal+",";
+    }
+    if (sampaiTanggal!==""){
+      fields+="create_date_end|"+sampaiTanggal+",";
+    }
+    console.log(fields);
+    if (fields!==","){
+      setloading(true);
+      let params = new URLSearchParams();
+      params.append("fields",fields)
+      API.getFilterReport(params, pageNumber, dataPerPage)
+        .then((res) => {
+          if (res.status === 200) {
+            settableData(res.data.values);
+            if (res.data.values.length < dataPerPage) {
+              setdisabledNext(true);
+            } else {
+              setdisabledNext(false);
+            }
           } else {
-            setdisabledNext(false);
+            settableData([]);
           }
-        } else {
-          // settableData(null);
+          setloading(false);
+        })
+        .catch((err) => {
           settableData([]);
-        }
-        setloading(false);
-      })
-      .catch((err) => {
-        console.error("API FAIL :  > ", err);
-        // settableData(null);
-        settableData([]);
-      });
+          setloading(false);
+          console.error(err);
+        });
+    }
+    // API.getFilterReport(fields)
+    //   .then((res) => {
+    //     if (res.data.success && res.status === 200) {
+    //       settableData(res.data.values);
+    //       if (res.data.values.length < dataPerPage) {
+    //         setdisabledNext(true);
+    //       } else {
+    //         setdisabledNext(false);
+    //       }
+    //     } else {
+    //       // settableData(null);
+    //       settableData([]);
+    //     }
+    //     setloading(false);
+    //   })
+    //   .catch((err) => {
+    //     console.error("API FAIL :  > ", err);
+    //     // settableData(null);
+    //     settableData([]);
+    //   });
   };
 
   // Table components
@@ -228,11 +307,13 @@ function TableBootstrap() {
             <thead>
               <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
-                <th>Tanggal Jam</th>
+                <th>Tanggal</th>
+                <th>Jam</th>
                 <th>WL</th>
-                <th>tiket</th>
-                <th>member</th>
-                <th>user</th>
+                <th>Tiket</th>
+                <th>Member</th>
+                <th>User</th>
+                <th>Rekening</th>
                 <th>Depo/WD</th>
                 <th>Debit</th>
                 <th>Kredit</th>
@@ -246,10 +327,12 @@ function TableBootstrap() {
                     <tr key={i}>
                       <td>{i + 1}</td>
                       <td>{data?.tanggal}</td>
+                      <td>{data?.jam}</td>
                       <td>{data?.wl_name}</td>
                       <td>{data?.ticket_id}</td>
                       <td>{data?.member}</td>
                       <td>{data?.user_name}</td>
+                      <td>{data?.bank_bname}-{data?.bank_account}-{data?.bank_name}</td>
                       <td>{data?.jenis}</td>
                       <td><NumberFormat value={data?.debit} displayType={'text'} thousandSeparator={true} prefix={''}
                         decimalScale={0} /></td>
@@ -266,6 +349,25 @@ function TableBootstrap() {
         )}{" "}
       </div>
     );
+  };
+
+  function getAccBankWL(data) {
+    if (data==="Pilih White Label"){
+      setAccount_bank(account_bankAll);
+    } else {
+      let params = new URLSearchParams();
+      params.append("id",data)
+      API.getWLById(params)
+        .then((res) => {
+          const accBankData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setAccount_bank(accBankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -389,22 +491,88 @@ function TableBootstrap() {
               </div>
 
               <div
-                className={`${filterShow} flex-row my-2 justify-content-end w-50 ml-auto ${style.filterSearchWrapper}`}
+                className={`${filterShow} flex-row my-2 justify-content-end w-100 ml-auto ${style.filterSearchWrapper}`}
               >
                 {/* ****** filter */}
                 {/* --- dropdown select field  */}
                 <select
-                  className={`${style.filterSearchSelect} w-25 `}
-                  name='field'
-                  value={selectedField}
+                  name='whitelabel'
                   onChange={(e) => {
-                    setselectedField(e.target.value);
+                    setSelectedWhitelabel(e.target.value);
+                    getAccBankWL(e.target.value);
                   }}
+                  className={`form-control form-group ${style.placeholder}`}
                 >
-                  <option value=''>Pilih</option>
-                  <option value='wl'>WL</option>
-                  <option value='jenis'>Depo/WD</option>
+                  <option className={style.placeholder}>
+                    Pilih White Label
+                  </option>
+                  {whitelabel && whitelabel.length !== 0 ? (
+                    whitelabel?.map((whitelabel, index) => {
+                      return (
+                        <option
+                          className={style.placeholder}
+                          value={whitelabel?.id}
+                          key={index}
+                        >
+                          {whitelabel?.name ?? "Pilih White Label"}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option className={style.placeholder}>
+                      Pilih White Label
+                    </option>
+                  )}
                 </select>
+                <select
+                  name='bank'
+                  onChange={(e) => setSelectedAccBank(e.target.value)}
+                  className={`form-control form-group ${style.placeholder}`}
+                >
+                  <option className={style.placeholder}>
+                    Pilih Rekening Bank 
+                  </option>
+                  {account_bank && account_bank.length !== 0 ? (
+                    account_bank?.map((account_bank, index) => {
+                      return (
+                        <option
+                          className={style.placeholder}
+                          value={account_bank?.id}
+                          key={index}
+                        >
+                          {/* {bank_destination?.name ?? "Pilih Bank Destination"} */}
+                          {account_bank?.bankname}-{account_bank?.account}-{account_bank?.name}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option className={style.placeholder}>
+                      Pilih Rekening Bank
+                    </option>
+                  )}
+                </select>
+                <input
+                  type="date"
+                  name='daritanggal'
+                  value={dariTanggal}
+                  placeholder='Tanggal Dari...'
+                  // className={`${style.searchInput}`}
+                  onChange={(e) => {
+                    setDariTanggal(e.target.value);
+                    // setactiveSearch("search");
+                  }}
+                />
+                <input
+                  type="date"
+                  name='sampaitanggal'
+                  value={sampaiTanggal}
+                  placeholder='Tanggal Sampai...'
+                  // className={`${style.searchInput}`}
+                  onChange={(e) => {
+                    setSampaiTanggal(e.target.value);
+                    // setactiveSearch("search");
+                  }}
+                />
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
@@ -416,9 +584,11 @@ function TableBootstrap() {
                 </button>
                 <button
                   onClick={() => {
-                    setselectedField("");
-                    setselectedFilter("");
-                    setsearchInput("");
+                    // setselectedField("");
+                    // setselectedFilter("");
+                    // setsearchInput("");
+                    setSelectedAccBank("");
+                    setSelectedWhitelabel("");
                     setrefresh(!refresh);
                     setpageNumber(1);
                   }}

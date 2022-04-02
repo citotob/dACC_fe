@@ -226,51 +226,54 @@ function TableBootstrap() {
 
   // Action Button Functions
   const handleOpenBankAction = (data) => {
-    console.log(data)
-    switch(data.bank_destination_bname) {
-      case 'BCA':
-        API.getMutasiBCA()
-        .then((res) => {
-          // const bankData = res?.data?.values ?? "";
-          // console.log("iniroledata", roleData)
-          if (res.status === 200) {
-            // setBank(bankData);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      case 'DANAMON':
-        API.getMutasiDanamon()
-        .then((res) => {
-          if (res.status === 200) {
-            // setBank(bankData);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      case 'BNI':
-          API.getMutasiBNI()
-          .then((res) => {
-            if (res.status === 200) {
-              // setBank(bankData);
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      case 'BRI':
-        API.getMutasiBRI()
-        .then((res) => {
-          if (res.status === 200) {
-            // setBank(bankData);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    case 'MANDIRI':
+    if (data.bank_destination_bname === 'BCA') {
+      console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBCA()
+      .then((res) => {
+        // const bankData = res?.data?.values ?? "";
+        // console.log("iniroledata", roleData)
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_destination_bname === 'DANAMON'){
+      console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiDanamon()
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_destination_bname === 'BNI'){
+      console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBNI()
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_destination_bname === 'BRI'){
+      console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBRI()
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_destination_bname === 'MANDIRI'){
+      console.log("data.bank_destination_bname",data.bank_destination_bname)
       API.getMutasiMandiri()
       .then((res) => {
         if (res.status === 200) {
@@ -280,16 +283,6 @@ function TableBootstrap() {
       .catch((err) => {
         console.log(err);
       });
-      // default:
-      //   API.getMutasiBCA()
-      //   .then((res) => {
-      //     if (res.status === 200) {
-      //       // setBank(bankData);
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
     }
   };
   
@@ -620,7 +613,7 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='bank_name'>Bank</option>
+                    <option value='bankname'>Bank</option>
                     <option value='account'>Akun</option>
                     <option value='name'>Nama</option>
                   </select>

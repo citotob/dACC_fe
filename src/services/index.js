@@ -58,6 +58,9 @@ const getMutasiDanamon = () => Get("mutasiBank/danamon", "", false);
 const getMutasiBNI = () => Get("mutasiBank/bni", "", false);
 const getMutasiBRI = () => Get("mutasiBank/bri", "", false);
 const getMutasiMandiri = () => Get("mutasiBank/mandiri", "", false);
+
+const getFilterReport = (query, pageNumber, row) =>
+  Get(`report/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -275,6 +278,7 @@ const API = {
   getMutasiBNI,
   getMutasiBRI,
   getMutasiMandiri,
+  getFilterReport,
 
   postAddBank,
   postAddAccBank,
