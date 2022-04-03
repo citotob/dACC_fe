@@ -216,14 +216,14 @@ const Login = (props) => {
                       </button>
                     </div>
 
-                    <div className='mt-3 mb-3 text-center'>
+                    {/* <div className='mt-3 mb-3 text-center'>
                       <Link to='/register' className='text-muted'>
                         Register
                       </Link>
-                    </div>
-                    <div className={`${styles.forget} ${styles.placeholder}`}>
+                    </div> */}
+                    {/* <div className={`${styles.forget} ${styles.placeholder}`}>
                       <Link to='/forgot-password'>Lupa Password?</Link>
-                    </div>
+                    </div> */}
                   </AvForm>
                 </div>
               </CardBody>
