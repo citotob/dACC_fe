@@ -77,6 +77,8 @@ function TableBootstrap() {
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
   const [saldo, setSaldo] = useState("");
+  const [accUser, setAccUser] = useState("");
+  const [accPass, setAccPass] = useState("");
 
   // modal error messages
   const [errorMessage, setErrorMessage] = useState("");
@@ -185,7 +187,9 @@ function TableBootstrap() {
     params.append("id", data);
     params.append("userid", userId);
     params.append("saldo", saldo);
-    API.putUpdateSaldoAccBank(params)
+    params.append("accUser", accUser);
+    params.append("accPass", accPass);
+    API.putUpdateAccBank(params)
       .then((res) => {
         if (res.status === 200) {
           console.log("Handle Approve Action 200 : ", res);
@@ -299,6 +303,9 @@ function TableBootstrap() {
                           <button
                             type='button'
                             onClick={() => {
+                              setSaldo(data?.saldo);
+                              setAccUser(data?.user_account);
+                              setAccPass(data?.password_account);
                               tog_edit();
                               setselectedTableData(data);
                             }}
@@ -306,7 +313,7 @@ function TableBootstrap() {
                             data-toggle='modal'
                             data-target='#myModal'
                           >
-                            Update Saldo
+                            Edit
                           </button>
                         </td>
                       ) : (
@@ -335,7 +342,7 @@ function TableBootstrap() {
         }}
       >
         <div className={`modal-body ${style.modalBody}`}>
-          <h5 className={style.title}>Update Saldo</h5>
+          <h5 className={style.title}>Update Rekening</h5>
           <div style={{ textAlign: "center" }}>
             <h1 className={style.name}>{selectedTableData?.bankname ?? ""}-{selectedTableData?.account ?? ""}
               -{selectedTableData?.name ?? ""}</h1>
@@ -345,13 +352,22 @@ function TableBootstrap() {
             {/* <p className={style.confirmation}>Update Saldo?</p> */}
             <div>
               <label for="saldo" class="">Saldo</label>
-              <input type="number" name="saldo" onChange={(e) => setSaldo(e.target.value)} 
+              <input type="number" name="saldo" pattern="[0-9]*" placeholder={selectedTableData?.saldo} onChange={(e) => setSaldo(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+              <label for="accUser" class="">User Rekeing</label>
+              <input type="text" name="accUser" placeholder={selectedTableData?.user_account} onChange={(e) => setAccUser(e.target.value)} 
+                class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
+              <label for="accPass" class="">Password Rekeing</label>
+              <input type="text" name="accPass" placeholder={selectedTableData?.password_account} onChange={(e) => setAccPass(e.target.value)} 
                 class="style_placeholder__3GMKG form-control is-untouched is-pristine av-invalid form-control"/>
             </div>
             <div className={`span2 ${style.modalButtonWrapper}`}>
               <button
                 type='button'
                 onClick={() => {
+                  setSaldo("");
+                  setAccUser("");
+                  setAccPass("");
                   tog_edit();
                 }}
                 className={`btn-block waves-effect ${style.noButton}`}

@@ -21,7 +21,7 @@ const putDepoReject = (data) => Put("depo/reject", data, true);
 const putWDApprove = (data) => Put("withdrawal/approve", data, true);
 const putWDReject = (data) => Put("withdrawal/reject", data, true);
 
-const putUpdateSaldoAccBank = (data) => Put("datas/updateSaldoAccBank", data, true);
+const putUpdateAccBank = (data) => Put("datas/updateAccBank", data, true);
 
 const putUpdateWL = (data) => Put("datas/editWL", data, true);
 
@@ -293,7 +293,7 @@ const API = {
   putDepoReject,
   putWDApprove,
   putWDReject,
-  putUpdateSaldoAccBank,
+  putUpdateAccBank,
   putUpdateWL,
   // 
   getBank,
