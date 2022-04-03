@@ -280,7 +280,7 @@ function TableBootstrap({setShouldRefresh, shouldRefresh}) {
                   </NavLink>
                 </NavItem>
                 <div className={`${style.tableSearchWrapper} ml-auto`}>
-                  <button
+                  {/* <button
                     onClick={() => {
                       tog_search();
                       setselectedField("");
@@ -295,7 +295,7 @@ function TableBootstrap({setShouldRefresh, shouldRefresh}) {
                     }}
                   >
                     Filter
-                  </button>
+                  </button> */}
                   <div className={`d-flex ${style.selectDropdown}`}>
                     <select
                       style={{}}
