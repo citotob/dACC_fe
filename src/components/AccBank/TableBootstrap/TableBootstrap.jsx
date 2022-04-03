@@ -265,7 +265,11 @@ function TableBootstrap() {
                   <></>
                 )}
                 <th>Saldo</th>
-                <th>Aksi</th>
+                {roleName === "admin" ? (
+                  <th>Aksi</th>                  
+                ) : (
+                  <></>
+                )}
               </tr>
             </thead>
             <tbody>

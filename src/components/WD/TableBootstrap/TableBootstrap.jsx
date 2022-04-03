@@ -142,8 +142,13 @@ function TableBootstrap() {
   }
 
   // Action Button Functions
-  const handleOpenBCAAction = () => {
-    API.getMutasiBCA()
+  const handleOpenBankAction = (data) => {    
+    let params = new URLSearchParams();
+    params.append("userid", userId);
+    params.append("accountBankId", data.bank_origin_id);
+    if (data.bank_origin_bname === 'BCA') {
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBCA(params)
       .then((res) => {
         // const bankData = res?.data?.values ?? "";
         // console.log("iniroledata", roleData)
@@ -154,6 +159,51 @@ function TableBootstrap() {
       .catch((err) => {
         console.log(err);
       });
+    } else if (data.bank_origin_bname === 'DANAMON'){
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiDanamon(params)
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_origin_bname === 'BNI'){
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBNI(params)
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_origin_bname === 'BRI'){
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBRI(params)
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else if (data.bank_origin_bname === 'MANDIRI'){
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiMandiri(params)
+      .then((res) => {
+        if (res.status === 200) {
+          // setBank(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
   };
   
   // Tabs functions (verifikasi, aktif, ditolak)
@@ -304,23 +354,19 @@ function TableBootstrap() {
                       <td>{data?.create_date}</td>
                       <td>{data?.status}</td>
                       <td>{data?.inprogress}</td>
-                      {data?.status === "PENDING" ? (
-                        <td className={`${style.aksiButtonsWrapper}`}>
-                          <button
-                            type='button'
-                            onClick={() => {
-                              // tog_bca();
-                              handleOpenBCAAction(selectedTableData?.id);
-                            }}
-                            className={`btn-block waves-effect ${style.noButton}`}
-                            data-dismiss='modal'
-                          >
-                            Mutasi
-                          </button>
-                        </td>
-                      ) : (
-                        <></>
-                      )}
+                      <td className={`${style.aksiButtonsWrapper}`}>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            // tog_bca();
+                            handleOpenBankAction(data);
+                          }}
+                          className={`btn-block waves-effect ${style.noButton}`}
+                          data-dismiss='modal'
+                        >
+                          Mutasi
+                        </button>
+                      </td>
                       {data?.status === "PENDING" ? (
                         <td className={`${style.aksiButtonsWrapper}`}>
                           <button

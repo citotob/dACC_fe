@@ -299,7 +299,11 @@ function TableBootstrap() {
                 <th>Url Website</th>
                 <th>Url Admin</th>
                 <th>Rekening</th>
-                <th>-</th>
+                {roleName === "admin" ? (
+                  <th>-</th>
+                ) : (
+                  <></>
+                )}
               </tr>
             </thead>
             <tbody>

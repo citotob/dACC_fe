@@ -226,9 +226,12 @@ function TableBootstrap() {
 
   // Action Button Functions
   const handleOpenBankAction = (data) => {
+    let params = new URLSearchParams();
+    params.append("userid", userId);
+    params.append("accountBankId", data.bank_destination_id);
     if (data.bank_destination_bname === 'BCA') {
-      console.log("data.bank_destination_bname",data.bank_destination_bname)
-      API.getMutasiBCA()
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBCA(params)
       .then((res) => {
         // const bankData = res?.data?.values ?? "";
         // console.log("iniroledata", roleData)
@@ -240,8 +243,8 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_destination_bname === 'DANAMON'){
-      console.log("data.bank_destination_bname",data.bank_destination_bname)
-      API.getMutasiDanamon()
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiDanamon(params)
       .then((res) => {
         if (res.status === 200) {
           // setBank(bankData);
@@ -251,8 +254,8 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_destination_bname === 'BNI'){
-      console.log("data.bank_destination_bname",data.bank_destination_bname)
-      API.getMutasiBNI()
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBNI(params)
       .then((res) => {
         if (res.status === 200) {
           // setBank(bankData);
@@ -262,8 +265,8 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_destination_bname === 'BRI'){
-      console.log("data.bank_destination_bname",data.bank_destination_bname)
-      API.getMutasiBRI()
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiBRI(params)
       .then((res) => {
         if (res.status === 200) {
           // setBank(bankData);
@@ -273,8 +276,8 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_destination_bname === 'MANDIRI'){
-      console.log("data.bank_destination_bname",data.bank_destination_bname)
-      API.getMutasiMandiri()
+      // console.log("data.bank_destination_bname",data.bank_destination_bname)
+      API.getMutasiMandiri(params)
       .then((res) => {
         if (res.status === 200) {
           // setBank(bankData);

@@ -53,11 +53,11 @@ const getDataBonusTable = (query, userId, pageNumber, row) =>
 const getDataReportTransaksiTable = (query, pageNumber, row) =>
   Get(`report/transaksi/?${query}&page=${pageNumber}&row=${row}`, "", false);
 
-const getMutasiBCA = () => Get("mutasiBank/bca", "", false);
-const getMutasiDanamon = () => Get("mutasiBank/danamon", "", false);
-const getMutasiBNI = () => Get("mutasiBank/bni", "", false);
-const getMutasiBRI = () => Get("mutasiBank/bri", "", false);
-const getMutasiMandiri = () => Get("mutasiBank/mandiri", "", false);
+const getMutasiBCA = (query) => Get(`mutasiBank/bca/?${query}`, "", false);
+const getMutasiDanamon = (query) => Get(`mutasiBank/danamon/?${query}`, "", false);
+const getMutasiBNI = (query) => Get(`mutasiBank/bni/?${query}`, "", false);
+const getMutasiBRI = (query) => Get(`mutasiBank/bri/?${query}`, "", false);
+const getMutasiMandiri = (query) => Get(`mutasiBank/mandiri/?${query}`, "", false);
 
 const getFilterReport = (query, pageNumber, row) =>
   Get(`report/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
