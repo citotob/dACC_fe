@@ -80,6 +80,8 @@ function TableBootstrap() {
   const [accUser, setAccUser] = useState("");
   const [accPass, setAccPass] = useState("");
 
+  const [bankList, setbankList] = useState([]);
+
   // modal error messages
   const [errorMessage, setErrorMessage] = useState("");
   const [toggleAlert, settoggleAlert] = useState(false);
@@ -109,6 +111,18 @@ function TableBootstrap() {
         settableData([]);
         setloading(false);
         console.error(err);
+      });
+
+    API.getBank()
+      .then((res) => {
+        const bankData = res?.data?.values ?? "";
+        // console.log("iniroledata", roleData)
+        if (res.status === 200) {
+          setbankList(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -216,8 +230,8 @@ function TableBootstrap() {
 
   const handleFilterSearch = (searchData) => {
     setloading(true);
-    API.getUserSearch(
-      queryStatus,
+    API.getSearchAccBank(
+      userId,
       selectedField,
       searchData,
       dataPerPage,
@@ -496,8 +510,7 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='bankname'>Bank</option>
-                    <option value='account'>Akun</option>
+                    <option value='account'>Rekening</option>
                     <option value='name'>Nama</option>
                   </select>
                 </div>
@@ -538,8 +551,47 @@ function TableBootstrap() {
                   }}
                 >
                   <option value=''>Pilih</option>
-                  <option value='account'>Akun</option>
-                  <option value='name'>Nama</option>
+                  <option value='bank'>Bank</option>
+                  <option value='kategori'>Kategori</option>
+                </select>
+                {/* --- dropdown select value search input */}
+                <select
+                  name='fieldvalue'
+                  className={`${style.filterSearchSelect} w-75`}
+                  value={selectedFilter}
+                  onChange={(e) => {
+                    setselectedFilter(e.target.value);
+                    setactiveSearch("filter");
+                  }}
+                >
+                  <option className={style.placeholder} value="" >
+                    Pilih
+                  </option>
+                  {selectedField === "bank" &&
+                  bankList &&
+                  bankList.length !== 0 ? (
+                    bankList?.map((bank, index) => {
+                      return (
+                        <option value={bank?.id} key={index}>
+                          {bank?.name ?? "Pilih Bank"}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
+                  {selectedField === "kategori" ? (
+                    (
+                      <><option value='depo'>Depo</option>
+                        <option value='wd'>WD</option>
+                        <option value='pengaman1'>Pengaman1</option>
+                        <option value='pengaman2'>Pengaman2</option>
+                        <option value='pengaman3'>Pengaman3</option>
+                      </>
+                    )
+                  ) : (
+                    <></>
+                  )}
                 </select>
                 <button
                   className={`${style.searchButton}`}

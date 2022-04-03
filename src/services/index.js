@@ -35,8 +35,16 @@ const getDataWLTable = (query, pageNumber, row) =>
   Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getDataDepositTable = (query, userId, pageNumber, row) =>
   Get(`depo/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
+
 const getAccBank = (query, pageNumber, row) =>
   Get(`datas/getAccBank/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getSearchAccBank = (userId, field, value, row, page) =>
+  Get(
+    `datas/searchAccBank/?userId=${userId}&field=${field}&value=${value}&row=${row}&page=${page}`,
+    "",
+    false
+  );
+
 const getWL = (query, pageNumber, row) =>
   Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
   const getWLById = (query, pageNumber, row) =>
@@ -270,6 +278,8 @@ const API = {
   getDataWLTable,
   getDataDepositTable,
   getAccBank,
+  getSearchAccBank,
+
   getWL,
   getDataWDTable,
   getDataBonusTable,
