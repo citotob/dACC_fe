@@ -107,9 +107,9 @@ const getDataPenggunaTable = (query, pageNumber, row) =>
 const postUserVerify = (data) => Post("user/verify", data, true);
 const postUserDecline = (data) => Post("user/decline", data, true);
 // ********** PENGUNA SEARCH
-const getUserSearch = (status, field, value, row, page) =>
+const getUserSearch = (userId, status, field, value, row, page) =>
   Get(
-    `user/search/?${status}&field=${field}&value=${value}&row=${row}&page=${page}`,
+    `user/search/?${status}&userId=${userId}&field=${field}&value=${value}&row=${row}&page=${page}`,
     "",
     false
   );

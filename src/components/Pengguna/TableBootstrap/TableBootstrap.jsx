@@ -74,6 +74,7 @@ function TableBootstrap() {
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
 
+  let userId = window.localStorage.getItem("userid");
   // fetch api
   const getDataPenggunaTable = () => {
     setloading(true);
@@ -243,6 +244,7 @@ function TableBootstrap() {
   const handleFilterSearch = (searchData) => {
     setloading(true);
     API.getUserSearch(
+      userId,
       queryStatus,
       selectedField,
       searchData,
@@ -722,12 +724,15 @@ function TableBootstrap() {
                     setactiveSearch("filter");
                   }}
                 >
+                  <option className={style.placeholder} value="" >
+                    Pilih
+                  </option>
                   {selectedField === "role" &&
                   roleList &&
                   roleList.length !== 0 ? (
                     roleList?.map((role, index) => {
                       return (
-                        <option value={role?.name} key={index}>
+                        <option value={role?.id} key={index}>
                           {role?.name ?? "Pilih Tipe Pengguna"}
                         </option>
                       );
