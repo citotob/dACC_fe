@@ -190,10 +190,10 @@ function Pengguna() {
                   value: true,
                   errorMessage: "Please enter a name",
                 },
-                pattern: {
-                  value: "^[A-Za-z0-9]+$",
-                  errorMessage: "Nama hanya berisi huruf dan angka",
-                },
+                // pattern: {
+                //   value: "^[A-Za-z0-9]+$",
+                //   errorMessage: "Nama hanya berisi huruf dan angka",
+                // },
                 minLength: {
                   value: 6,
                   errorMessage: "Nama harus lebih dari 6 karakter",
@@ -265,8 +265,8 @@ function Pengguna() {
                   errorMessage: "Username hanya boleh berisi angka dan huruf",
                 },
                 minLength: {
-                  value: 5,
-                  errorMessage: "Masukkan minimal 5 karakter",
+                  value: 1,
+                  errorMessage: "Masukkan minimal 1 karakter",
                 },
                 // maxLength: {value: 16}
               }}

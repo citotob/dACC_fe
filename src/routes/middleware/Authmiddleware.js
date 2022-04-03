@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, withRouter, Redirect } from "react-router-dom";
 import AppAdmin from "../../App/Admin";
+import AppCS from "../../App/Cs";
+
 import AppVendor from "../../App/Vendor";
 import AppExecutive from "../../App/Executive";
 import AppSurveyor from "../../App/Surveyor";
@@ -29,6 +31,12 @@ const Authmiddleware = ({ component: Component, layout: Layout }) => (
               return (
                 <Layout>
                   <AppAdmin {...props} />
+                </Layout>
+              );
+            case "cs":
+              return (
+                <Layout>
+                  <AppCS {...props} />
                 </Layout>
               );
             case "adminsurveyor":

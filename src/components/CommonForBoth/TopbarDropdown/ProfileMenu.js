@@ -18,6 +18,7 @@ import avatarAdmin from "../../../assets/images/users/avatarAdmin.png";
 import avatarSurveyor from "../../../assets/images/users/avatarSurveyor.png";
 import avatarExecutive from "../../../assets/images/users/avatarExecutive.png";
 import avatarStaff from "../../../assets/images/users/avatarStaff.png";
+import avatarCS from "../../../assets/images/users/avatarStaff.png";
 
 //import style
 import style from "./style.module.scss";
@@ -67,6 +68,13 @@ const ProfileMenu = (props) => {
               alt='Header Avatar'
             />
           )}
+          {role === "cs" && (
+            <img
+              className='rounded-circle header-profile-user'
+              src={avatarCS}
+              alt='Header Avatar'
+            />
+          )}
           {role === "adminsurveyor" && (
             <img
               className='rounded-circle header-profile-user'
@@ -112,6 +120,13 @@ const ProfileMenu = (props) => {
               </div>
               {role === "admin" && (
                 <Link to='/admin/profile'>
+                  <span className={`${style.profileDropdown}`}>
+                    {props.t("Profile")}{" "}
+                  </span>
+                </Link>
+              )}
+              {role === "cs" && (
+                <Link to='/cs/profile'>
                   <span className={`${style.profileDropdown}`}>
                     {props.t("Profile")}{" "}
                   </span>

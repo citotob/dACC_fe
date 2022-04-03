@@ -14,6 +14,8 @@ import ModuleMapTitik from '../pages/ModuleMap/MapTitik';
 import ModuleNotif from '../pages/ModuleNotif';
 import DashboardAdmin from '../pages/DashboardAdmin/dashboardAdmin';
 import Pengguna from '../pages/Pengguna/Pengguna';
+// CS
+import DashboardCS from '../pages/DashboardCS/dashboardCS';
 // cito
 import Bank from '../pages/Bank/Bank';
 // 
@@ -69,6 +71,9 @@ const userRoutes = [
   //Admin
   { path: '/admin/dashboard', component: DashboardAdmin },
   { path: '/admin/data-pengguna', component: Pengguna },
+  // CS
+  { path: '/cs/dashboard', component: DashboardCS },
+  { path: '/cs/bank', component: Bank },
   // cito
   { path: '/admin/bank', component: Bank },
   // 
