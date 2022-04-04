@@ -77,6 +77,17 @@ const getFilterReport = (query, pageNumber, row) =>
   Get(`report/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
 const getSearchReport = (query, pageNumber, row) =>
   Get(`report/search/?${query}&page=${pageNumber}&row=${row}`, "", false);
+
+const getFilterDeposit = (query, pageNumber, row) =>
+  Get(`depo/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
+// const getSearchDeposit = (query, pageNumber, row) =>
+//   Get(`depo/search/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getSearchDeposit = (userId, field, value, row, page) =>
+  Get(
+    `depo/search/?userId=${userId}&field=${field}&value=${value}&row=${row}&page=${page}`,
+    "",
+    false
+  );
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -299,6 +310,8 @@ const API = {
   getMutasiMandiri,
   getFilterReport,
   getSearchReport,
+  getFilterDeposit,
+  getSearchDeposit,
 
   postAddBank,
   postAddAccBank,
