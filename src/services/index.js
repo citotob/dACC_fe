@@ -88,6 +88,14 @@ const getSearchDeposit = (userId, field, value, row, page) =>
     "",
     false
   );
+const getFilterWD = (query, pageNumber, row) =>
+  Get(`withdrawal/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getSearchWD = (userId, field, value, row, page) =>
+  Get(
+    `withdrawal/search/?userId=${userId}&field=${field}&value=${value}&row=${row}&page=${page}`,
+    "",
+    false
+  );
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -312,6 +320,8 @@ const API = {
   getSearchReport,
   getFilterDeposit,
   getSearchDeposit,
+  getFilterWD,
+  getSearchWD,
 
   postAddBank,
   postAddAccBank,

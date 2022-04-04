@@ -75,6 +75,18 @@ function TableBootstrap() {
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
 
+  const [whitelabel, setWhitelabel] = useState([]);
+  const [selectedWhitelabel, setSelectedWhitelabel] = useState("");
+  const [dariTanggal, setDariTanggal] = useState("");
+  const [sampaiTanggal, setSampaiTanggal] = useState("");
+  const [status, setStatus] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [account_bank, setAccount_bank] = useState([]);
+  const [selectedAccBank, setSelectedAccBank] = useState("");
+  const [account_bankAll, setAccount_bankAll] = useState([]);
+  const [selectedAccBankAll, setSelectedAccBankAll] = useState([]);
+  const [dataWL, setdataWL] = useState("");
+
   let userId = window.localStorage.getItem("userid");
   // fetch api
   const getDataWDTable = () => {
@@ -112,10 +124,10 @@ function TableBootstrap() {
       getDataWDTable();
     } else {
       if (activeSearch === "search") {
-        handleFilterSearch(searchInput);
+        handleSearch(searchInput);
       }
       if (activeSearch === "filter") {
-        handleFilterSearch(selectedFilter);
+        handleFilter(selectedFilter);
       }
     }
     // getInitData();
@@ -147,7 +159,6 @@ function TableBootstrap() {
     params.append("userid", userId);
     params.append("accountBankId", data.bank_origin_id);
     if (data.bank_origin_bname === 'BCA') {
-      // console.log("data.bank_destination_bname",data.bank_destination_bname)
       API.getMutasiBCA(params)
       .then((res) => {
         // const bankData = res?.data?.values ?? "";
@@ -160,7 +171,6 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_origin_bname === 'DANAMON'){
-      // console.log("data.bank_destination_bname",data.bank_destination_bname)
       API.getMutasiDanamon(params)
       .then((res) => {
         if (res.status === 200) {
@@ -171,7 +181,6 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_origin_bname === 'BNI'){
-      // console.log("data.bank_destination_bname",data.bank_destination_bname)
       API.getMutasiBNI(params)
       .then((res) => {
         if (res.status === 200) {
@@ -182,7 +191,6 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_origin_bname === 'BRI'){
-      // console.log("data.bank_destination_bname",data.bank_destination_bname)
       API.getMutasiBRI(params)
       .then((res) => {
         if (res.status === 200) {
@@ -193,7 +201,6 @@ function TableBootstrap() {
         console.log(err);
       });
     } else if (data.bank_origin_bname === 'MANDIRI'){
-      // console.log("data.bank_destination_bname",data.bank_destination_bname)
       API.getMutasiMandiri(params)
       .then((res) => {
         if (res.status === 200) {
@@ -216,6 +223,31 @@ function TableBootstrap() {
 
   // toggles
   const tog_filter = () => {
+    if (dataWL === ""){
+      setdataWL("ok");
+      API.getWL()
+        .then((res) => {
+          const wlData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setWhitelabel(wlData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        
+      API.getAccBank()
+        .then((res) => {
+          const accbankData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setAccount_bankAll(accbankData);
+            setAccount_bank(accbankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     if (filterShow === "d-none") {
       setfilterShow("d-flex");
     } else {
@@ -285,10 +317,61 @@ function TableBootstrap() {
       });
   };
 
-  const handleFilterSearch = (searchData) => {
+  const handleFilter = (searchData) => {
+    var fields=",";
+    if (selectedWhitelabel!=="Pilih White Label"){
+      if (selectedWhitelabel!==""){
+        fields+="whitelabel|"+selectedWhitelabel+",";
+      }
+    }
+    if (selectedAccBank!=="Pilih Rekening Bank"){
+      if (selectedAccBank!==""){
+        fields+="bank_origin|"+selectedAccBank+",";
+      }
+    }
+    if (selectedStatus!=="Pilih Status"){
+      if (selectedStatus!==""){
+        fields+="status|"+selectedStatus+",";
+      }
+    }
+    if (dariTanggal!==""){
+      fields+="create_date_from|"+dariTanggal+",";
+    }
+    if (sampaiTanggal!==""){
+      fields+="create_date_end|"+sampaiTanggal+",";
+    }
+    
+    if (fields!==","){
+      setloading(true);
+      let params = new URLSearchParams();
+      params.append("fields",fields)
+      API.getFilterWD(params, pageNumber, dataPerPage)
+        .then((res) => {
+          if (res.status === 200) {
+            settableData(res.data.values);
+            if (res.data.values.length < dataPerPage) {
+              setdisabledNext(true);
+            } else {
+              setdisabledNext(false);
+            }
+          } else {
+            settableData([]);
+          }
+          setloading(false);
+        })
+        .catch((err) => {
+          settableData([]);
+          setloading(false);
+          console.error(err);
+        });
+    }
+  };
+
+  const handleSearch = (searchData) => {
+    console.log("searchData",searchData)
     setloading(true);
-    API.getUserSearch(
-      queryStatus,
+    API.getSearchWD(
+      userId,
       selectedField,
       searchData,
       dataPerPage,
@@ -316,6 +399,25 @@ function TableBootstrap() {
       });
   };
 
+  function getAccBankWL(data) {
+    if (data==="Pilih White Label"){
+      setAccount_bank(account_bankAll);
+    } else {
+      let params = new URLSearchParams();
+      params.append("id",data)
+      API.getWLById(params)
+        .then((res) => {
+          const accBankData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setAccount_bank(accBankData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   // Table components
   const tableAktif = () => {
     return (
@@ -331,7 +433,8 @@ function TableBootstrap() {
                 <th>Bank Origin</th>
                 <th>Amount</th>
                 <th>Whitelabel Name</th>
-                <th>Create Date</th>
+                <th>Tanggal</th>
+                <th>Jam</th>
                 <th>Status</th>
                 <th>In Progress</th>
                 <th>-</th>
@@ -351,7 +454,8 @@ function TableBootstrap() {
                       <td><NumberFormat value={data?.amount} displayType={'text'} thousandSeparator={true} prefix={''}
                         decimalScale={0} /></td>
                       <td>{data?.whitelabel_name}</td>
-                      <td>{data?.create_date}</td>
+                      <td>{data?.tanggal}</td>
+                      <td>{data?.jam}</td>
                       <td>{data?.status}</td>
                       <td>{data?.inprogress}</td>
                       <td className={`${style.aksiButtonsWrapper}`}>
@@ -612,16 +716,15 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='bankname'>Bank</option>
-                    <option value='account'>Akun</option>
-                    <option value='name'>Nama</option>
+                    <option value='ticket_id'>Tiket</option>
+                    <option value='member'>Member</option>
                   </select>
                 </div>
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(searchInput);
+                    handleSearch(searchInput);
                   }}
                 >
                   Cari
@@ -641,27 +744,105 @@ function TableBootstrap() {
               </div>
 
               <div
-                className={`${filterShow} flex-row my-2 justify-content-end w-50 ml-auto ${style.filterSearchWrapper}`}
+                className={`${filterShow} flex-row my-2 justify-content-end w-100 ml-auto ${style.filterSearchWrapper}`}
               >
                 {/* ****** filter */}
                 {/* --- dropdown select field  */}
                 <select
-                  className={`${style.filterSearchSelect} w-25 `}
-                  name='field'
-                  value={selectedField}
+                  name='whitelabel'
                   onChange={(e) => {
-                    setselectedField(e.target.value);
+                    setSelectedWhitelabel(e.target.value);
+                    getAccBankWL(e.target.value);
+                  }}
+                  className={`form-control form-group ${style.placeholder}`}
+                >
+                  <option className={style.placeholder} value="" >
+                    Pilih White Label
+                  </option>
+                  {whitelabel && whitelabel.length !== 0 ? (
+                    whitelabel?.map((whitelabel, index) => {
+                      return (
+                        <option
+                          className={style.placeholder}
+                          value={whitelabel?.id}
+                          key={index}
+                        >
+                          {whitelabel?.name ?? "Pilih White Label"}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option className={style.placeholder} value="" >
+                      Pilih White Label
+                    </option>
+                  )}
+                </select>
+                <select
+                  name='bank'
+                  onChange={(e) => setSelectedAccBank(e.target.value)}
+                  className={`form-control form-group ${style.placeholder}`}
+                >
+                  <option value="" className={style.placeholder}>
+                    Pilih Rekening Bank 
+                  </option>
+                  {account_bank && account_bank.length !== 0 ? (
+                    account_bank?.map((account_bank, index) => {
+                      return (
+                        <option
+                          className={style.placeholder}
+                          value={account_bank?.id}
+                          key={index}
+                        >
+                          {account_bank?.bankname}-{account_bank?.account}-{account_bank?.name}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option className={style.placeholder} value="">
+                      Pilih Rekening Bank
+                    </option>
+                  )}
+                </select>
+                <select
+                  name='status'
+                  value={selectedStatus}
+                  className={`form-control form-group ${style.placeholder}`}
+                  onChange={(e) => {
+                    setSelectedStatus(e.target.value);
                   }}
                 >
-                  <option value=''>Pilih</option>
-                  <option value='account'>Akun</option>
-                  <option value='name'>Nama</option>
+                  <option value=''>Pilih Status</option>
+                  <option value='PENDING'>Pending</option>
+                  <option value='APPROVE'>Approve</option>
+                  <option value='REJECT'>Reject</option>
                 </select>
+                <input
+                  type="date"
+                  name='daritanggal'
+                  value={dariTanggal}
+                  placeholder='Tanggal Dari...'
+                  // className={`${style.searchInput}`}
+                  onChange={(e) => {
+                    setDariTanggal(e.target.value);
+                    // setactiveSearch("search");
+                  }}
+                />
+                <input
+                  type="date"
+                  name='sampaitanggal'
+                  value={sampaiTanggal}
+                  placeholder='Tanggal Sampai...'
+                  // className={`${style.searchInput}`}
+                  onChange={(e) => {
+                    setSampaiTanggal(e.target.value);
+                    // setactiveSearch("search");
+                  }}
+                />
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(selectedFilter);
+                    handleFilter(selectedFilter);
                   }}
                 >
                   Cari
