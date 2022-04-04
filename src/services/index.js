@@ -44,6 +44,12 @@ const getSearchAccBank = (userId, field, value, row, page) =>
     "",
     false
   );
+const getSearchWL = (userId, field, value, row, page) =>
+  Get(
+    `datas/searchWL/?userId=${userId}&field=${field}&value=${value}&row=${row}&page=${page}`,
+    "",
+    false
+  );
 
 const getWL = (query, pageNumber, row) =>
   Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
@@ -279,6 +285,7 @@ const API = {
   getDataDepositTable,
   getAccBank,
   getSearchAccBank,
+  getSearchWL,
 
   getWL,
   getDataWDTable,

@@ -88,6 +88,8 @@ function TableBootstrap() {
   const [inputAccBank, setInputAccBank] = useState("");
   const [accounts_bank, setAccounts_bank] = useState([]);
 
+  const [bankList, setbankList] = useState([]);
+
   // fetch api
   const getDataWLTable = () => {
     setloading(true);
@@ -112,6 +114,18 @@ function TableBootstrap() {
         console.error(err);
       });
     
+      API.getBank()
+      .then((res) => {
+        const bankData = res?.data?.values ?? "";
+        // console.log("iniroledata", roleData)
+        if (res.status === 200) {
+          setbankList(bankData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
       API.getAccBank()
       .then((res) => {
         const accbankData = res?.data?.values ?? "";
@@ -255,9 +269,10 @@ function TableBootstrap() {
   }
 
   const handleFilterSearch = (searchData) => {
+    console.log('searchData',searchData);
     setloading(true);
-    API.getUserSearch(
-      queryStatus,
+    API.getSearchWL(
+      userId,
       selectedField,
       searchData,
       dataPerPage,
@@ -601,13 +616,15 @@ function TableBootstrap() {
                   >
                     <option value=''>Pilih</option>
                     <option value='name'>Nama</option>
-                    <option value='account_bank'>Rekening Bank</option>
+                    <option value='url_website'>Website</option>
+                    <option value='url_admin'>Web Admin</option>
                   </select>
                 </div>
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
+                    console.log("searchInput",searchInput);
                     handleFilterSearch(searchInput);
                   }}
                 >
@@ -633,16 +650,30 @@ function TableBootstrap() {
                 {/* ****** filter */}
                 {/* --- dropdown select field  */}
                 <select
-                  className={`${style.filterSearchSelect} w-25 `}
-                  name='field'
-                  value={selectedField}
+                  name='fieldvalue'
+                  className={`${style.filterSearchSelect} w-75`}
+                  value={selectedFilter}
                   onChange={(e) => {
-                    setselectedField(e.target.value);
+                    setselectedFilter(e.target.value);
+                    setselectedField("account_bank");
+                    setactiveSearch("filter");
                   }}
                 >
-                  <option value=''>Pilih</option>
-                  <option value='name'>Nama</option>
-                  <option value='account_bank'>Rekening Bank</option>
+                  <option className={style.placeholder} value="" >
+                    Pilih Bank
+                  </option>
+                  {bankList &&
+                  bankList.length !== 0 ? (
+                    bankList?.map((bank, index) => {
+                      return (
+                        <option value={bank?.id} key={index}>
+                          {bank?.name ?? "Pilih Bank"}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
                 </select>
                 <button
                   className={`${style.searchButton}`}
