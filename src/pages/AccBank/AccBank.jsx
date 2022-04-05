@@ -92,7 +92,6 @@ function AccBank() {
 
     formData.append("bankid", selectedBank);
     formData.append("account", account);
-    console.log("name",name);
     formData.append("name", name);
     formData.append("user_account", user_account);
     formData.append("kategori", selectedCategory);
