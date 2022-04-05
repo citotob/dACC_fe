@@ -278,7 +278,7 @@ function TableBootstrap() {
     return (
       <div className='table-responsive'>
         {tableData.length > 0 ? (
-          <table className='table'>
+          <table id="content">
             <thead>
               <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
@@ -338,7 +338,7 @@ function TableBootstrap() {
     return (
       <div className='table-responsive'>
         {tableData.length > 0 ? (
-          <table className='table'>
+          <table id="content">
             <thead>
               <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
@@ -387,7 +387,7 @@ function TableBootstrap() {
     return (
       <div className='table-responsive'>
         {tableData.length > 0 ? (
-          <table className='table'>
+          <table id="content">
             <thead>
               <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
