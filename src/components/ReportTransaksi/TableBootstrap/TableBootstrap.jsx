@@ -354,23 +354,39 @@ function TableBootstrap() {
                     </tr>
                   );
                 })}
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Total</td>
-                  <td><NumberFormat value={total_debit} displayType={'text'} thousandSeparator={true} prefix={''}
-                    decimalScale={0} /></td>
-                  <td><NumberFormat value={total_kredit} displayType={'text'} thousandSeparator={true} prefix={''}
-                    decimalScale={0} /></td>
-                  <td></td>
-                </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th>Debit</th>
+                <th>Kredit</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><NumberFormat value={total_debit} displayType={'text'} thousandSeparator={true} prefix={''}
+                  decimalScale={0} /></td>
+                <td><NumberFormat value={total_kredit} displayType={'text'} thousandSeparator={true} prefix={''}
+                  decimalScale={0} /></td>
+                <td></td>
+              </tr>
+            </tfoot>
           </table>
         ) : (
           <p>Tidak Ditemukan Data</p>
