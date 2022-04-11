@@ -65,6 +65,8 @@ function TableBootstrap() {
   // endpoint query status
   const [queryStatus, setqueryStatus] = useState("");
 
+  const [dataWL, setdataWL] = useState("");
+
   // filter states
   const [filterShow, setfilterShow] = useState("d-none");
   const [searchShow, setsearchShow] = useState("d-none");
@@ -75,6 +77,10 @@ function TableBootstrap() {
   const [selectedField, setselectedField] = useState("");
   const [activeSearch, setactiveSearch] = useState("");
   const [selectStateField, setSelectStateField] = useState(true);
+  const [whitelabel, setWhitelabel] = useState([]);
+  const [selectedWhitelabel, setSelectedWhitelabel] = useState("");
+  const [dariTanggal, setDariTanggal] = useState("");
+  const [sampaiTanggal, setSampaiTanggal] = useState("");
 
   let userId = window.localStorage.getItem("userid");
   // fetch api
@@ -112,10 +118,10 @@ function TableBootstrap() {
       getDataBonusTable();
     } else {
       if (activeSearch === "search") {
-        handleFilterSearch(searchInput);
+        handleSearch(searchInput);
       }
       if (activeSearch === "filter") {
-        handleFilterSearch(selectedFilter);
+        handleFilter(selectedFilter);
       }
     }
     // getInitData();
@@ -151,6 +157,19 @@ function TableBootstrap() {
 
   // toggles
   const tog_filter = () => {
+    if (dataWL === ""){
+      setdataWL("ok");
+      API.getWL()
+        .then((res) => {
+          const wlData = res?.data?.values ?? "";
+          if (res.status === 200) {
+            setWhitelabel(wlData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     if (filterShow === "d-none") {
       setfilterShow("d-flex");
     } else {
@@ -189,10 +208,10 @@ function TableBootstrap() {
     settextcount(event.target.value.length);
   }
 
-  const handleFilterSearch = (searchData) => {
+  const handleSearch = (searchData) => {
     setloading(true);
-    API.getUserSearch(
-      queryStatus,
+    API.getSearchBonus(
+      userId,
       selectedField,
       searchData,
       dataPerPage,
@@ -220,6 +239,46 @@ function TableBootstrap() {
       });
   };
 
+  const handleFilter = (searchData) => {
+    var fields=",";
+    if (selectedWhitelabel!=="Pilih White Label"){
+      if (selectedWhitelabel!==""){
+        fields+="whitelabel|"+selectedWhitelabel+",";
+      }
+    }
+    if (dariTanggal!==""){
+      fields+="create_date_from|"+dariTanggal+",";
+    }
+    if (sampaiTanggal!==""){
+      fields+="create_date_end|"+sampaiTanggal+",";
+    }
+    
+    if (fields!==","){
+      setloading(true);
+      let params = new URLSearchParams();
+      params.append("fields",fields)
+      API.getFilterBonus(params, pageNumber, dataPerPage)
+        .then((res) => {
+          if (res.status === 200) {
+            settableData(res.data.values);
+            if (res.data.values.length < dataPerPage) {
+              setdisabledNext(true);
+            } else {
+              setdisabledNext(false);
+            }
+          } else {
+            settableData([]);
+          }
+          setloading(false);
+        })
+        .catch((err) => {
+          settableData([]);
+          setloading(false);
+          console.error(err);
+        });
+    }
+  };
+
   // Table components
   const tableAktif = () => {
     return (
@@ -231,6 +290,7 @@ function TableBootstrap() {
                 <th>No.</th>
                 <th>WL</th>
                 <th>Tanggal</th>
+                <th>Jam</th>
                 <th>Member</th>
                 <th>Keterangan</th>
                 <th>CS</th>
@@ -244,7 +304,8 @@ function TableBootstrap() {
                     <tr key={i}>
                       <td>{i + 1}</td>
                       <td>{data?.whitelabel_name}</td>
-                      <td>{data?.create_date}</td>
+                      <td>{data?.tanggal}</td>
+                      <td>{data?.jam}</td>
                       <td>{data?.member}</td>
                       <td>{data?.keterangan}</td>
                       <td>{data?.user_name}</td>
@@ -356,15 +417,14 @@ function TableBootstrap() {
                     }}
                   >
                     <option value=''>Pilih</option>
-                    <option value='whitelabel_name'>WL</option>
-                    <option value='create_date'>Tanggal</option>
+                    <option value='member'>Member</option>
                   </select>
                 </div>
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(searchInput);
+                    handleSearch(searchInput);
                   }}
                 >
                   Cari
@@ -389,28 +449,70 @@ function TableBootstrap() {
                 {/* ****** filter */}
                 {/* --- dropdown select field  */}
                 <select
-                  className={`${style.filterSearchSelect} w-25 `}
-                  name='field'
-                  value={selectedField}
+                  name='whitelabel'
                   onChange={(e) => {
-                    setselectedField(e.target.value);
+                    setSelectedWhitelabel(e.target.value);
+                    // getAccBankWL(e.target.value);
                   }}
+                  className={`form-control form-group ${style.placeholder}`}
                 >
-                  <option value=''>Pilih</option>
-                  <option value='whitelabel_name'>WL</option>
-                  <option value='create_date'>Tanggal</option>
+                  <option className={style.placeholder} value="" >
+                    Pilih White Label
+                  </option>
+                  {whitelabel && whitelabel.length !== 0 ? (
+                    whitelabel?.map((whitelabel, index) => {
+                      return (
+                        <option
+                          className={style.placeholder}
+                          value={whitelabel?.id}
+                          key={index}
+                        >
+                          {whitelabel?.name ?? "Pilih White Label"}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option className={style.placeholder} value="" >
+                      Pilih White Label
+                    </option>
+                  )}
                 </select>
+                <input
+                  type="date"
+                  name='daritanggal'
+                  value={dariTanggal}
+                  placeholder='Tanggal Dari...'
+                  // className={`${style.searchInput}`}
+                  onChange={(e) => {
+                    setDariTanggal(e.target.value);
+                    // setactiveSearch("search");
+                  }}
+                />
+                <input
+                  type="date"
+                  name='sampaitanggal'
+                  value={sampaiTanggal}
+                  placeholder='Tanggal Sampai...'
+                  // className={`${style.searchInput}`}
+                  onChange={(e) => {
+                    setSampaiTanggal(e.target.value);
+                    // setactiveSearch("search");
+                  }}
+                />
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(selectedFilter);
+                    handleFilter(selectedFilter);
                   }}
                 >
                   Cari
                 </button>
                 <button
                   onClick={() => {
+                    setSelectedWhitelabel("");
+                    setDariTanggal("");
+                    setSampaiTanggal("");
                     setselectedField("");
                     setselectedFilter("");
                     setsearchInput("");
