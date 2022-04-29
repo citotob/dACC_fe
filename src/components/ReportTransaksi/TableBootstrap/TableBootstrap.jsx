@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { changeBreadcrumbItem } from "../../../store/breadcrumb/action";
 import { useDispatch } from "react-redux";
 import {
@@ -312,82 +313,93 @@ function TableBootstrap() {
     return (
       <div className='table-responsive'>
         {tableData.length > 0 ? (
-          <table id="content">
-            <thead>
-              <tr style={{backgroundColor : "#406d96", color : "white"}}>
-                <th>No.</th>
-                <th>Tanggal</th>
-                <th>Jam</th>
-                <th>WL</th>
-                <th>Tiket</th>
-                <th>Member</th>
-                <th>User</th>
-                <th>Rekening</th>
-                <th>Depo/WD</th>
-                <th>Debit</th>
-                <th>Kredit</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.length > 0 &&
-                tableData?.map((data, i) => {
-                  total_debit+=Number(data?.debit);
-                  total_kredit+=Number(data?.kredit);
-                  console.log(total_debit)
-                  return (
-                    <tr key={i}>
-                      <td>{i + 1}</td>
-                      <td>{data?.tanggal}</td>
-                      <td>{data?.jam}</td>
-                      <td>{data?.wl_name}</td>
-                      <td>{data?.ticket_id}</td>
-                      <td>{data?.member}</td>
-                      <td>{data?.user_name}</td>
-                      <td>{data?.bank_bname}-{data?.bank_account}-{data?.bank_name}</td>
-                      <td>{data?.jenis}</td>
-                      <td><NumberFormat value={data?.debit} displayType={'text'} thousandSeparator={true} prefix={''}
-                        decimalScale={0} /></td>
-                      <td><NumberFormat value={data?.kredit} displayType={'text'} thousandSeparator={true} prefix={''}
-                        decimalScale={0} /></td>
-                      <td>{data?.status}</td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>Total</th>
-                <th>Debit</th>
-                <th>Kredit</th>
-                <th></th>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><NumberFormat value={total_debit} displayType={'text'} thousandSeparator={true} prefix={''}
-                  decimalScale={0} /></td>
-                <td><NumberFormat value={total_kredit} displayType={'text'} thousandSeparator={true} prefix={''}
-                  decimalScale={0} /></td>
-                <td></td>
-              </tr>
-            </tfoot>
-          </table>
+          <InfiniteScroll
+            dataLength={tableData.length}
+            next={() => {
+              if (tableData?.length === dataPerPage) {
+                setpageNumber((prev) => prev + 1);
+              }
+            }}
+            hasMore={true}
+            loader={<h4>Loading more items...</h4>}
+          >
+            <table id="content">
+              <thead>
+                <tr style={{backgroundColor : "#406d96", color : "white"}}>
+                  <th>No.</th>
+                  <th>Tanggal</th>
+                  <th>Jam</th>
+                  <th>WL</th>
+                  <th>Tiket</th>
+                  <th>Member</th>
+                  <th>User</th>
+                  <th>Rekening</th>
+                  <th>Depo/WD</th>
+                  <th>Debit</th>
+                  <th>Kredit</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tableData.length > 0 &&
+                  tableData?.map((data, i) => {
+                    total_debit+=Number(data?.debit);
+                    total_kredit+=Number(data?.kredit);
+                    console.log(total_debit)
+                    return (
+                      <tr key={i}>
+                        <td>{i + 1}</td>
+                        <td>{data?.tanggal}</td>
+                        <td>{data?.jam}</td>
+                        <td>{data?.wl_name}</td>
+                        <td>{data?.ticket_id}</td>
+                        <td>{data?.member}</td>
+                        <td>{data?.user_name}</td>
+                        <td>{data?.bank_bname}-{data?.bank_account}-{data?.bank_name}</td>
+                        <td>{data?.jenis}</td>
+                        <td><NumberFormat value={data?.debit} displayType={'text'} thousandSeparator={true} prefix={''}
+                          decimalScale={0} /></td>
+                        <td><NumberFormat value={data?.kredit} displayType={'text'} thousandSeparator={true} prefix={''}
+                          decimalScale={0} /></td>
+                        <td>{data?.status}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Total</th>
+                  <th>Debit</th>
+                  <th>Kredit</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><NumberFormat value={total_debit} displayType={'text'} thousandSeparator={true} prefix={''}
+                    decimalScale={0} /></td>
+                  <td><NumberFormat value={total_kredit} displayType={'text'} thousandSeparator={true} prefix={''}
+                    decimalScale={0} /></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+            </InfiniteScroll>
         ) : (
           <p>Tidak Ditemukan Data</p>
         )}{" "}
@@ -460,7 +472,7 @@ function TableBootstrap() {
                       className='ml-auto'
                       onChange={(e) => {
                         console.log(e.target.value);
-                        setdataPerPage(parseInt(e.target.value, 10));
+                        setdataPerPage(parseInt(e.target.value, 20));
                         setpageNumber(1);
                       }}
                     >

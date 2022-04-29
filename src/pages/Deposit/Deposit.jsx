@@ -124,7 +124,7 @@ function Deposit() {
         setBank_destination([]);
         setSelectedBank_destination([]);
         setAmount("");
-        setWhitelabel([]);
+        // setWhitelabel([]);
         setSelectedWhitelabel([]);
       })
       .catch((err) => {

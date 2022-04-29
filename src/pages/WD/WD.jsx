@@ -124,7 +124,7 @@ function WD() {
         setBank_origin([]);
         setSelectedBank_origin([]);
         setAmount("");
-        setWhitelabel([]);
+        // setWhitelabel([]);
         setSelectedWhitelabel([]);
       })
       .catch((err) => {
