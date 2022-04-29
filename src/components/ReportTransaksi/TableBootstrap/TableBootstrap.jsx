@@ -313,17 +313,17 @@ function TableBootstrap() {
     console.log("tableData",tableData);
     return (
       <div className='table-responsive'>
-        <InfiniteScroll
-          dataLength={tableData.length}
-          next={() => {
-            if (tableData?.length === dataPerPage) {
-              setpageNumber((prev) => prev + 1);
-            }
-          }}
-          hasMore={true}
-          loader={<h4>Loading more items...</h4>}
-        >
         {tableData.length > 0 ? (
+          <InfiniteScroll
+            dataLength={tableData.length}
+            next={() => {
+              if (tableData?.length === dataPerPage) {
+                setpageNumber((prev) => prev + 1);
+              }
+            }}
+            hasMore={true}
+            // loader={<h4>Loading more items...</h4>}
+          >
             <table id="content">
               <thead>
                 <tr style={{backgroundColor : "#406d96", color : "white"}}>
@@ -400,10 +400,10 @@ function TableBootstrap() {
                 </tr>
               </tfoot>
             </table>
+          </InfiniteScroll>
         ) : (
           <p>Tidak Ditemukan Data</p>
         )}{" "}
-        </InfiniteScroll>
       </div>
     );
   };
@@ -695,7 +695,7 @@ function TableBootstrap() {
             <div
               className={`d-flex flex-row mx-auto justify-content-between align-items-center ${style.paginationWrapper}`}
             >
-              <button
+              {/* <button
                 disabled={disabledPrev}
                 className={`${style.paginationButton}`}
                 onClick={() => {
@@ -713,7 +713,7 @@ function TableBootstrap() {
                     setpageNumber((prev) => prev + 1);
                   }
                 }}
-              >{`>`}</button>
+              >{`>`}</button> */}
             </div>
           )}
         </Col>
