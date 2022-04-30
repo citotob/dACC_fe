@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { changeBreadcrumbItem } from "../../../store/breadcrumb/action";
 import { useDispatch } from "react-redux";
 import {
@@ -284,6 +285,16 @@ function TableBootstrap() {
     return (
       <div className='table-responsive'>
         {tableData.length > 0 ? (
+          <InfiniteScroll
+            dataLength={tableData.length}
+            next={() => {
+              if (tableData?.length === dataPerPage) {
+                setpageNumber((prev) => prev + 1);
+              }
+            }}
+            hasMore={true}
+            // loader={<h4>Loading more items...</h4>}
+          >
           <table id="content">
             <thead>
               <tr style={{backgroundColor : "#406d96", color : "white"}}>
@@ -316,6 +327,7 @@ function TableBootstrap() {
                 })}
             </tbody>
           </table>
+          </InfiniteScroll>
         ) : (
           <p>Tidak Ditemukan Data</p>
         )}{" "}
@@ -551,7 +563,7 @@ function TableBootstrap() {
             <div
               className={`d-flex flex-row mx-auto justify-content-between align-items-center ${style.paginationWrapper}`}
             >
-              <button
+              {/* <button
                 disabled={disabledPrev}
                 className={`${style.paginationButton}`}
                 onClick={() => {
@@ -569,7 +581,7 @@ function TableBootstrap() {
                     setpageNumber((prev) => prev + 1);
                   }
                 }}
-              >{`>`}</button>
+              >{`>`}</button> */}
             </div>
           )}
         </Col>
