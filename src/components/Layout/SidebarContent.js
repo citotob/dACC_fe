@@ -162,6 +162,9 @@ const SidebarContent = (props) => {
                 <li>
                   <Link to="/admin/report_transaksi">{props.t("TRANSAKSI")}</Link>
                 </li>
+                <li>
+                  <Link to="/admin/report_beban">{props.t("BEBAN")}</Link>
+                </li>
               </ul>
             </li>
 

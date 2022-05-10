@@ -26,6 +26,7 @@ import AsyncDeposit from '../asyncPages/AsyncDeposit';
 import AsyncWD from '../asyncPages/AsyncWD';
 import AsyncBonus from '../asyncPages/AsyncBonus';
 import AsyncReportTransaksi from '../asyncPages/AsyncReportTransaksi';
+import AsyncReportBeban from '../asyncPages/AsyncReportBeban';
 // 
 import AsyncProfile from '../asyncPages/AsyncProfile';
 import AsyncLokasiSurvey from '../asyncPages/AsyncLokasiSurvey';
@@ -109,6 +110,11 @@ const AppAdmin = (props) => {
         exact
         path={`${props.match.url}admin/report_transaksi`}
         component={AsyncReportTransaksi}
+      />
+      <Route
+        exact
+        path={`${props.match.url}admin/report_beban`}
+        component={AsyncReportBeban}
       />
       {/*  */}
       <Route

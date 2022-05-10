@@ -4,8 +4,7 @@ import CardSmallDarkBlue from "../../components/DashboardAdmin/CardSmallDarkBlue
 
 import { useLocation } from "react-router-dom";
 // IMPORT COMPONENTS
-import CardChart from "../../components/DashboardAdmin/CardMedium/CardChart";
-import CardMap from "../../components/DashboardAdmin/CardMedium/CardMap";
+import CardPerWL from "../../components/DashboardAdmin/CardMedium/CardPerWL";
 
 // import styles from "../../assets/css/loginpages.module.css";
 
@@ -122,7 +121,6 @@ const DashboardAdmin = ({ title }) => {
     },
   ];
 
-
   return (
     <div className='page-content px-4 overflow-auto'>
       <div className='d-flex flex-row justify-content-between'>
@@ -145,6 +143,9 @@ const DashboardAdmin = ({ title }) => {
             );
           })}
         </ul>
+      </div>
+      <div className='row'>
+        <CardPerWL />
       </div>
     </div>
   );

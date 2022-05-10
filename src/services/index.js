@@ -53,19 +53,25 @@ const getSearchWL = (userId, field, value, row, page) =>
 
 const getWL = (query, pageNumber, row) =>
   Get(`datas/getWL/?${query}&page=${pageNumber}&row=${row}`, "", false);
-  const getWLById = (query, pageNumber, row) =>
+const getWLById = (query, pageNumber, row) =>
   Get(`datas/getWLById/?${query}&page=${pageNumber}&row=${row}`, "", false);
 
 const getDataWDTable = (query, userId, pageNumber, row) =>
   Get(`withdrawal/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
 
 const getDashboard = () => Get("dashboard/getAdmin/", "", false);
+const getTotalTransPerWL = (query) => Get(`dashboard/TotalTransPerWL/?${query}`, "", false);
+
 const getBank = () => Get("datas/getBank", "", false);
 
 const getDataBonusTable = (query, userId, pageNumber, row) =>
   Get(`bonus/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
 const getDataReportTransaksiTable = (query, pageNumber, row) =>
   Get(`report/transaksi/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getDataReportBebanTable = (query, pageNumber, row) =>
+  Get(`report/getBeban/?${query}&page=${pageNumber}&row=${row}`, "", false);
+
+const postAddBeban = (data) => Post("report/addBeban", data, true);
 
 const getMutasiBCA = (query) => Get(`mutasiBank/bca/?${query}`, "", false);
 const getMutasiDanamon = (query) => Get(`mutasiBank/danamon/?${query}`, "", false);
@@ -318,6 +324,7 @@ const API = {
   getDataWDTable,
   getDataBonusTable,
   getDataReportTransaksiTable,
+  getDataReportBebanTable,
   getWLById,
   getMutasiBCA,
   getMutasiDanamon,
@@ -335,6 +342,7 @@ const API = {
 
   postAddBank,
   postAddAccBank,
+  postAddBeban,
   postAddWL,
   postAddDeposit,
   postAddWD,
@@ -345,6 +353,8 @@ const API = {
   putWDReject,
   putUpdateAccBank,
   putUpdateWL,
+
+  getTotalTransPerWL,
   // 
   getBank,
   getRole,
