@@ -68,7 +68,7 @@ function TableBootstrap() {
   const [queryStatus, setqueryStatus] = useState("");
 
   // filter states
-  const [filterShow, setfilterShow] = useState("d-none");
+  const [filterShow, setfilterShow] = useState("d-flex");
   const [searchShow, setsearchShow] = useState("d-none");
   const [searchInput, setsearchInput] = useState("");
   const [selectedFilter, setselectedFilter] = useState("");
@@ -113,6 +113,17 @@ function TableBootstrap() {
         settableData([]);
         setloading(false);
         console.error(err);
+      });
+
+      API.getWL()
+      .then((res) => {
+        const wlData = res?.data?.values ?? "";
+        if (res.status === 200) {
+          setWhitelabel(wlData);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -172,39 +183,39 @@ function TableBootstrap() {
         console.log(err);
       });
       
-    API.getAccBank()
-      .then((res) => {
-        const accbankData = res?.data?.values ?? "";
-        if (res.status === 200) {
-          setAccountBank(accbankData);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // API.getAccBank()
+    //   .then((res) => {
+    //     const accbankData = res?.data?.values ?? "";
+    //     if (res.status === 200) {
+    //       setAccountBank(accbankData);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
-    if (filterShow === "d-none") {
-      setfilterShow("d-flex");
-    } else {
-      setfilterShow("d-none");
-    }
-    if (searchShow === "d-none") {
-      setsearchShow("d-none");
-    } else {
-      setsearchShow("d-none");
-    }
+    // if (filterShow === "d-none") {
+      // setfilterShow("d-flex");
+    // } else {
+    //   setfilterShow("d-none");
+    // }
+    // if (searchShow === "d-none") {
+    //   setsearchShow("d-none");
+    // } else {
+    //   setsearchShow("d-none");
+    // }
   };
   const tog_search = () => {
-    if (searchShow === "d-none") {
-      setsearchShow("d-flex");
-    } else {
-      setsearchShow("d-none");
-    }
-    if (filterShow === "d-none") {
-      setfilterShow("d-none");
-    } else {
-      setfilterShow("d-none");
-    }
+    // if (searchShow === "d-none") {
+    //   setsearchShow("d-flex");
+    // } else {
+    //   setsearchShow("d-none");
+    // }
+    // if (filterShow === "d-none") {
+    //   setfilterShow("d-none");
+    // } else {
+    //   setfilterShow("d-none");
+    // }
   };
 
   // Action Button Functions
@@ -241,34 +252,73 @@ function TableBootstrap() {
   }
 
   const handleFilterSearch = (searchData) => {
-    setloading(true);
-    API.getSearchAccBank(
-      userId,
-      selectedField,
-      searchData,
-      dataPerPage,
-      pageNumber
-    )
-      .then((res) => {
-        if (res.data.success && res.status === 200) {
-          // console.log("API SUCCESS :  > ", res);
-          settableData(res.data.values);
-          if (res.data.values.length < dataPerPage) {
-            setdisabledNext(true);
+    // setloading(true);
+    // API.getSearchAccBank(
+    //   userId,
+    //   selectedField,
+    //   searchData,
+    //   dataPerPage,
+    //   pageNumber
+    // )
+    //   .then((res) => {
+    //     if (res.data.success && res.status === 200) {
+    //       // console.log("API SUCCESS :  > ", res);
+    //       settableData(res.data.values);
+    //       if (res.data.values.length < dataPerPage) {
+    //         setdisabledNext(true);
+    //       } else {
+    //         setdisabledNext(false);
+    //       }
+    //     } else {
+    //       // settableData(null);
+    //       settableData([]);
+    //     }
+    //     setloading(false);
+    //   })
+    //   .catch((err) => {
+    //     console.error("API FAIL :  > ", err);
+    //     // settableData(null);
+    //     settableData([]);
+    //   });
+  };
+
+  const handleFilter = (searchData) => {
+    var fields=",";
+    if (selectedWhitelabel!=="Pilih White Label"){
+      if (selectedWhitelabel!==""){
+        fields+="whitelabel|"+selectedWhitelabel+",";
+      }
+    }
+    if (selectedJenis!=="Pilih Jenis"){
+      if (selectedJenis!==""){
+        fields+="jenis|"+selectedJenis+",";
+      }
+    }
+    
+    if (fields!==","){
+      setloading(true);
+      let params = new URLSearchParams();
+      params.append("fields",fields)
+      API.getFilterBeban(params, pageNumber, dataPerPage)
+        .then((res) => {
+          if (res.status === 200) {
+            settableData(res.data.values);
+            if (res.data.values.length < dataPerPage) {
+              setdisabledNext(true);
+            } else {
+              setdisabledNext(false);
+            }
           } else {
-            setdisabledNext(false);
+            settableData([]);
           }
-        } else {
-          // settableData(null);
+          setloading(false);
+        })
+        .catch((err) => {
           settableData([]);
-        }
-        setloading(false);
-      })
-      .catch((err) => {
-        console.error("API FAIL :  > ", err);
-        // settableData(null);
-        settableData([]);
-      });
+          setloading(false);
+          console.error(err);
+        });
+    }
   };
 
   // Table components
@@ -442,14 +492,14 @@ function TableBootstrap() {
                   </NavLink>
                 </NavItem>
                 <div className={`${style.tableSearchWrapper} ml-auto`}>
-                  <button
+                  {/* <button
                     onClick={() => {
                       tog_search();
                       setselectedField("");
                     }}
                   >
                     Search
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => {
                       tog_filter();
@@ -483,7 +533,7 @@ function TableBootstrap() {
               </Nav>
               {/* ==== filter dropdown  */}
 
-              <div
+              {/* <div
                 className={`${searchShow} flex-row my-2 justify-content-end w-100 ml-auto ${style.filterSearchWrapper}`}
               >
                 <div
@@ -537,7 +587,7 @@ function TableBootstrap() {
                 >
                   Reset
                 </button>
-              </div>
+              </div> */}
 
               <div
                 className={`${filterShow} flex-row my-2 justify-content-end w-50 ml-auto ${style.filterSearchWrapper}`}
@@ -545,60 +595,52 @@ function TableBootstrap() {
                 {/* ****** filter */}
                 {/* --- dropdown select field  */}
                 <select
-                  className={`${style.filterSearchSelect} w-25 `}
-                  name='field'
-                  value={selectedField}
+                  name='whitelabel'
                   onChange={(e) => {
-                    setselectedField(e.target.value);
+                    setSelectedWhitelabel(e.target.value);
                   }}
-                >
-                  <option value=''>Pilih</option>
-                  <option value='whitelabel'>WL</option>
-                  <option value='jenis'>Jenis</option>
-                </select>
-                {/* --- dropdown select value search input */}
-                <select
-                  name='fieldvalue'
-                  className={`${style.filterSearchSelect} w-75`}
-                  value={selectedFilter}
-                  onChange={(e) => {
-                    setselectedFilter(e.target.value);
-                    setactiveSearch("filter");
-                  }}
+                  className={`form-control form-group ${style.placeholder}`}
                 >
                   <option className={style.placeholder} value="" >
-                    Pilih
+                    Pilih White Label
                   </option>
-                  {selectedField === "whitelabel" &&
-                  whitelabel &&
-                  whitelabel.length !== 0 ? (
-                    whitelabel?.map((wl, index) => {
+                  {whitelabel && whitelabel.length !== 0 ? (
+                    whitelabel?.map((whitelabel, index) => {
                       return (
-                        <option value={wl?.id} key={index}>
-                          {wl?.name ?? "Pilih WhiteLabel"}
+                        <option
+                          className={style.placeholder}
+                          value={whitelabel?.id}
+                          key={index}
+                        >
+                          {whitelabel?.name ?? "Pilih White Label"}
                         </option>
                       );
                     })
                   ) : (
-                    <></>
+                    <option className={style.placeholder} value="" >
+                      Pilih White Label
+                    </option>
                   )}
-                  {selectedField === "jenis" ? (
-                    (
-                      <><option value='gaji'>Gaji</option>
-                        <option value='seo'>SEO</option>
-                        <option value='akuran'>Akuran</option>
-                        <option value='lain-lain'>Lain-lain</option>
-                      </>
-                    )
-                  ) : (
-                    <></>
-                  )}
+                </select>
+                {/* --- dropdown select value search input */}
+                <select
+                  name='jenis'
+                  onChange={(e) => setSelectedJenis(e.target.value)}
+                  className={`form-control form-group ${style.placeholder}`}
+                >
+                  <option className={style.placeholder}>
+                    Pilih Jenis
+                  </option>
+                  <option value='gaji'>Gaji</option>
+                  <option value='seo'>SEO</option>
+                  <option value='akuran'>Akuran</option>
+                  <option value='lain-lain'>Lain-lain</option>
                 </select>
                 <button
                   className={`${style.searchButton}`}
                   onClick={() => {
                     setpageNumber(1);
-                    handleFilterSearch(selectedFilter);
+                    handleFilter(selectedFilter);
                   }}
                 >
                   Cari

@@ -110,6 +110,8 @@ const getSearchBonus = (userId, field, value, row, page) =>
     "",
     false
   );
+const getFilterBeban = (query, pageNumber, row) =>
+  Get(`report/filterBeban/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -339,6 +341,7 @@ const API = {
   getSearchWD,
   getFilterBonus,
   getSearchBonus,
+  getFilterBeban,
 
   postAddBank,
   postAddAccBank,
