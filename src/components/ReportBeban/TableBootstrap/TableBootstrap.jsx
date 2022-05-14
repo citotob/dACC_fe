@@ -647,6 +647,8 @@ function TableBootstrap() {
                 </button>
                 <button
                   onClick={() => {
+                    setSelectedWhitelabel("");
+                    setSelectedJenis("");
                     setselectedField("");
                     setselectedFilter("");
                     setsearchInput("");
