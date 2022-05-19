@@ -68,10 +68,10 @@ const getDataBonusTable = (query, userId, pageNumber, row) =>
   Get(`bonus/get/?${query}&userid=${userId}&page=${pageNumber}&row=${row}`, "", false);
 const getDataReportTransaksiTable = (query, pageNumber, row) =>
   Get(`report/transaksi/?${query}&page=${pageNumber}&row=${row}`, "", false);
-const getDataReportBebanTable = (query, pageNumber, row) =>
-  Get(`report/getBeban/?${query}&page=${pageNumber}&row=${row}`, "", false);
+const getDataBebanTable = (query, pageNumber, row) =>
+  Get(`beban/get/?${query}&page=${pageNumber}&row=${row}`, "", false);
 
-const postAddBeban = (data) => Post("report/addBeban", data, true);
+const postAddBeban = (data) => Post("beban/add", data, true);
 
 const getMutasiBCA = (query) => Get(`mutasiBank/bca/?${query}`, "", false);
 const getMutasiDanamon = (query) => Get(`mutasiBank/danamon/?${query}`, "", false);
@@ -111,7 +111,7 @@ const getSearchBonus = (userId, field, value, row, page) =>
     false
   );
 const getFilterBeban = (query, pageNumber, row) =>
-  Get(`report/filterBeban/?${query}&page=${pageNumber}&row=${row}`, "", false);
+  Get(`beban/filter/?${query}&page=${pageNumber}&row=${row}`, "", false);
 // 
 // ============== LOGIN REGISTER
 const postLogin = (data) => Post("user/login", data, true);
@@ -326,7 +326,7 @@ const API = {
   getDataWDTable,
   getDataBonusTable,
   getDataReportTransaksiTable,
-  getDataReportBebanTable,
+  getDataBebanTable,
   getWLById,
   getMutasiBCA,
   getMutasiDanamon,

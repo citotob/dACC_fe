@@ -299,6 +299,7 @@ function TableBootstrap() {
             <thead>
               <tr style={{backgroundColor : "#406d96", color : "white"}}>
                 <th>No.</th>
+                <th>Tiket</th>
                 <th>WL</th>
                 <th>Tanggal</th>
                 <th>Jam</th>
@@ -314,6 +315,7 @@ function TableBootstrap() {
                   return (
                     <tr key={i}>
                       <td>{i + 1}</td>
+                      <td>{data?.prefix}{data?.ticket_id}</td>
                       <td>{data?.whitelabel_name}</td>
                       <td>{data?.tanggal}</td>
                       <td>{data?.jam}</td>

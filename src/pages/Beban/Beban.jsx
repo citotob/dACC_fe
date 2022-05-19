@@ -13,12 +13,12 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import style from "./style.module.css";
 
 // Import Components
-import Table from "../../components/ReportBeban/TableBootstrap/TableBootstrap";
+import Table from "../../components/Beban/TableBootstrap/TableBootstrap";
 
 //import API
 import API from "../../services";
 
-function ReportBeban() {
+function Beban() {
   let roleName = window.localStorage.getItem("roleName");
   let userId = window.localStorage.getItem("userid");
   const location = useLocation();
@@ -373,4 +373,4 @@ function ReportBeban() {
   );
 }
 
-export default ReportBeban;
+export default Beban;

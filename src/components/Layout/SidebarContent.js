@@ -150,6 +150,9 @@ const SidebarContent = (props) => {
                 <li>
                   <Link to="/admin/bonus">{props.t("BONUS")}</Link>
                 </li>
+                <li>
+                  <Link to="/admin/beban">{props.t("BEBAN")}</Link>
+                </li>
               </ul>
             </li>
 
@@ -161,9 +164,6 @@ const SidebarContent = (props) => {
               <ul className="sub-menu" aria-expanded="false">
                 <li>
                   <Link to="/admin/report_transaksi">{props.t("TRANSAKSI")}</Link>
-                </li>
-                <li>
-                  <Link to="/admin/report_beban">{props.t("BEBAN")}</Link>
                 </li>
               </ul>
             </li>

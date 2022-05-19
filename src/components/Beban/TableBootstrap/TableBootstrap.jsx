@@ -92,9 +92,9 @@ function TableBootstrap() {
   let userId = window.localStorage.getItem("userid");
 
   // fetch api
-  const getDataReportBebanTable = () => {
+  const getDataBebanTable = () => {
     setloading(true);
-    API.getDataReportBebanTable(queryStatus, pageNumber, dataPerPage)
+    API.getDataBebanTable(queryStatus, pageNumber, dataPerPage)
       .then((res) => {
         if (res.status === 200) {
           settableData(res.data.values);
@@ -135,7 +135,7 @@ function TableBootstrap() {
 
   useEffect(() => {
     if (!selectedField) {
-      getDataReportBebanTable();
+      getDataBebanTable();
     } else {
       if (activeSearch === "search") {
         handleFilterSearch(searchInput);
@@ -357,7 +357,7 @@ function TableBootstrap() {
                       <td>{i + 1}</td>
                       <td>{data?.tanggal}</td>
                       <td>{data?.jam}</td>
-                      <td>{data?.number}</td>
+                      <td>{data?.prefix}{data?.ticket_id}</td>
                       <td>{data?.jenis}</td>
                       <td>{data?.whitelabel_name}</td>
                       <td>{data?.accountBank_bname}-{data?.accountBank_account}-{data?.accountBank_name}</td>
